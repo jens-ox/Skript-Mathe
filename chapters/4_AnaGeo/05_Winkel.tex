@@ -1,0 +1,78 @@
+\chapter{Winkel und Spiegelungen}
+\begin{inhalt}
+  Winkel zwischen
+  \begin{itemize}
+  	\item Vektoren,
+    \item Geraden,
+    \item Ebenen,
+    \item Gerade und Ebene
+  \end{itemize}
+%  Spiegelung von
+%  \begin{itemize}
+%  	\item Punkt, Gerade und Ebene an Gerade,
+%  	\item Punkt, Gerade und Ebene an Ebene.
+%  \end{itemize}
+\end{inhalt}
+
+Für die Winkel zwischen Objekten schreiben wir $\angle(\text{Ding}_1,\text{Ding}_2)$.
+
+\begin{bla}{Skalarprodukt}
+	Aus dem Skalarprodukt zwischen zwei Vektoren ergibt sich eine Winkelbeziehung:
+	\[
+	\vec p * \vec q = |\vec p| * |\vec q| * \cos\left(\angle\left(\vec p, \vec q\right)\right)
+	\]
+
+	Einfacher schreibt man oft:
+	\[
+	\frac{\vec p * \vec q }{ |\vec p| * |\vec q| } = \cos\left(\angle\left(\vec p, \vec q\right)\right)
+	\]
+\end{bla}
+
+\begin{bla}{Kreuzprodukt}
+	Das Kreuzprodukt funktioniert ähnlich:
+	\[
+	| \vec p \times \vec q | = |\vec p| * |\vec q| * \sin\left(\angle\left(\vec p, \vec q\right)\right)
+	\]
+	Da das Kreuzprodukt einen Vektor liefert, muss man hier noch den Betrag ausrechnen.
+\end{bla}
+
+\clearpage
+
+\begin{bla}{Geraden}
+	Der Winkel zwischen zwei Geraden ist der Winkel zwischen ihren Richtungsvektoren.
+
+	Wenn sich dabei ein Winkel größer als \SI{90}{\degree} ergibt, muss man für ein sinnvolles Ergebnis diese \SI{90}{\degree} wieder abziehen.
+	Alternativ kann man auch $$| \vec p * \vec q |$$ \emph{mit Betragsstrichen} bei der Rechnung verwenden, dann ergibt sich automatisch der kleinere Winkel.
+\end{bla}
+
+\begin{bla}{Ebenen}
+	Der Winkel zwischen zwei Ebenen ist genau der Winkel zwischen ihren Normalenvektoren:
+	\[
+	\angle(E_1,E_2) = \angle(n_1,n_2)
+	\]
+\end{bla}
+
+\begin{bla}{Gerade-Ebene}
+	Man bekommt den Winkel zwischen einer Geraden und einer Ebenen, indem man den zwischen dem Richtungsvektor der Geraden und dem Normalenvektor der Ebenen berechnet.
+	Diesen Winkel muss man noch von \SI{90}{\degree} abziehen.
+
+	Man kann sich den zweiten Rechenschritt sparen, indem man statt eines Cosinus einen Sinus verwendet:
+	\begin{align*}
+	\angle(g,E) = \SI{90}{\degree} - \angle(\vec u_g, \vec n_E)
+	&= \SI{90}{\degree} - \cos^{-1} \left( \frac {\vec u_g * \vec n_E }{ |\vec u_g| * |\vec n_E| } \right)
+	\\
+	&= \sin^{-1} \left( \frac {\vec u_g * \vec n_E }{ |\vec u_g| * |\vec n_E| } \right)
+	\end{align*}
+\end{bla}
+
+\begin{bla}
+	{Spiegelungen}
+	Für eine Spiegelung eines Punktes an etwas anderem muss zuerst der Spiegelpunkt gefunden werden.
+	\\
+	Spiegelt man also einen Punkt $P$ an einer Geraden oder Ebene, möchte man darauf einen Punkt $F$ finden, so dass $\overrightarrow{PF}$ senkrecht auf der Ebene oder Geraden steht.
+
+	Zum Spiegelpunkt gelangt man jetzt, indem man von $P$ zweimal die Strecke $\overrightarrow{PF}$ läuft:
+	\[
+	\vec{p'} = \vec{p} + 2* \overrightarrow{PF} = \vec{f} + \overrightarrow{PF}
+	\]
+\end{bla}

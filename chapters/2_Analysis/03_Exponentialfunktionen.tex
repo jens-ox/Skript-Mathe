@@ -1,0 +1,115 @@
+\chapter{Exponentialfunktionen}
+\begin{inhalt}
+  \begin{itemize}
+    \item Eulersche Zahl
+    \item Exponentialfunktion und Logarithmus
+  \end{itemize}
+\end{inhalt}
+
+\begin{bla}{Eulersche Zahl, natürliche Exponentialfunktion}
+  Leitet man eine Exponentialfunktion der Form $f(x)=a^x$ mit dem Taschenrechner ab, so sieht man, dass es ein $n$ gibt, sodass $f'(x)=n*f(x)$.
+  Wir suchen nun $e$ derart, dass die Ableitung von $e^x$ wieder $e^x$ ist (also $n=1$).
+  Diese Zahl heißt \emph{eulersche Zahl}. Es gilt:
+  \begin{equation*}
+    f(x)=e^x \rightsquigarrow f'(x)=f(x)
+  \end{equation*}
+  Wir nennen diese Funktion auch \emph{natürliche Exponentialfunktion}.
+\end{bla}
+
+\begin{bla}{Natürlicher Logarithmus}
+  Der \emph{natürliche Logarithmus} ist die Gegenfunktion zur natürlichen
+  Exponentialfunktion. Da sie die Gegenfunktion ist gilt:
+  \begin{itemize}
+    \item $\ln(e^x)=x$
+    \item $e^{\ln(x)}=x$
+  \end{itemize}
+\end{bla}
+
+\begin{marginfigure}
+  \begin{tikzpicture}[
+      scale=0.7,
+      thick,
+      >=stealth',
+      dot/.style = {
+        draw,
+        fill = white,
+        circle,
+        inner sep = 0pt,
+        minimum size = 4pt
+      }
+    ]
+    \coordinate (O) at (0,0);
+
+    \draw[step=1cm,gray!40] (-3.9,-3.9) grid (3.9,3.9);
+
+    % Achsen
+    \draw[->] (-4,0) -- (4,0) coordinate[label = {below:$x$}] (xmax);
+    \draw[->] (0,-4) -- (0,4) coordinate[label = {right:$f(x)$}] (ymax);
+
+    % Graph e^x
+    \draw[domain=-3:1.5,smooth,variable=\x,red, label={right:$f$}] plot ({\x},{exp(\x)});
+    \draw (2,4.5) node[red,label= {[red]below:$e^x$}] {};
+
+    % Graph ln(x)
+    \draw[domain=0.05:4,smooth,variable=\x,black!60!green] plot ({\x},{ln(\x)});
+    \draw (3,1) node[red,label= {[black!60!green]below:$ln(x)$}] {};
+
+
+    % Spiegelung
+    \draw[dashed,gray] (-2,-2) -- (2,2);
+    \draw (2,2) node[label= {[gray]right:Spiegelung}] {};
+  \end{tikzpicture}
+  \caption{$e^x$ und $\ln(x)$.}
+\end{marginfigure}
+
+\begin{bla}{Logarithmus und Exponentialfunktion: Wichtige Punkte}
+  Ein paar wichtige Werte von $e^x$ und $\ln(x)$ sollte man sich merken, da so später Gleichungen oft stark vereinfacht werden können ($f(x)=e^x, g(x)=\ln(x)$):
+  \begin{itemize}
+    \item $f(0)=e^0=1$
+    \item $f(1)=e^1=e$
+    \item $g(x)=\ln(x)$ ist nur für positive $x$ definiert
+    \item $g(1)=\ln(1)=0$
+    \item $g(e)=\ln(e)=1$
+  \end{itemize}
+\end{bla}
+
+\begin{bla}{Rechenregeln}
+  Mit diesen Regeln lassen sich Exponentialgleichungen lösen. Diese Regeln wurden bereits im Grundlagenkapitel erwähnt.
+  \begin{itemize}
+    \item $\ln(u*v)=\ln(u)+\ln(v)$
+    \item $\ln(\frac{u}{v})=\ln(u)-\ln(v)$
+    \item $\ln(a^k)=k*\ln(a) \rightsquigarrow a^k=e^{k*\ln(a)}$
+    \item $f(x)=a^x \rightsquigarrow f'(x)=\ln(a)*a^x$ (folgt aus der Kettenregel)
+  \end{itemize}
+\end{bla}
+
+\begin{bla}{Beispiele zum Lösen von Exponential- und Logarithmusgleichungen} \  \\
+  Es gibt verschiedene Ansätze um Exponential- und Logarithmusgleichungen zu lösen:
+  \begin{enumerate}
+    \item \textbf{Naives Umformen}: Sehr einfache Terme können durch naives Umformen gelöst werden:
+      \begin{alignat*}{3}
+        & e^x-e^{2x}=0\  && |+e^{2x} \\
+        \Leftrightarrow\  & e^x=e^{2x} && |\ln \\
+        \Leftrightarrow\  & x=2x && \\
+        \rightsquigarrow & x=0 &&
+      \end{alignat*}
+    \item \textbf{Nullprodukt}: Ein Produkt von zwei Termen wird genau dann Null, wenn einer der beiden Terme Null ist:
+      \begin{alignat*}{3}
+        & (x-1)*(e^x-1)=0 && | \text{\ Terme einzeln betrachten} \\
+        \Leftrightarrow\  & (x-1)=0 \text{\ oder\ } e^x-1=0 && \\
+        \Leftrightarrow\  & x=1 \text{\ oder\ } e^x=1 && \\
+        \Leftrightarrow\ & x=1 \text{\ oder\ } x=0 && \\
+      \end{alignat*}
+    \item \textbf{Substitution}: Die Substitution funktioniert auch hier:
+      \begin{alignat*}{3}
+        & e^x-3e^{-x}+2=0 && | *e^x\\
+        \Leftrightarrow\  & e^{2x}-3+2e^x=0 && |\  \text{Substitiution:\ } u=e^x \\
+        \Leftrightarrow\  & u^2+2u-3=0 && |\  \text{Mitternachtsformel} \\
+        \rightsquigarrow\  & u_1=1, u_2=-\frac{3}{2} && |\ \text{Rücksubstitution} \\
+        \Leftrightarrow\ & 1=e^{x_1}, -\frac{3}{2}=e^{x_2} && |\ \ln \\
+        \Leftrightarrow\ & x_1=\ln(1), x_2=\ln(-\frac{3}{2}) \\
+        \rightsquigarrow\ & x=x_1=\ln(1)=0 &&
+      \end{alignat*}
+      Das Ergebnis $x_2$ gibt es nicht, da $\ln(x)$ nur für positive $x$ definiert ist.
+  \end{enumerate}
+\end{bla}

@@ -1,0 +1,201 @@
+\chapter{Grundlagen}
+\begin{inhalt}
+  \begin{itemize}
+    \item Zufallsexperimente und deren Ausgänge/Ereignisse
+    \item Ereignisse zusammensetzen
+    \item absolute und relative Häufigkeit
+    \item Wahrscheinlichkeiten
+    \item mehrstufige Zufallsexperimente, Pfadregeln
+  \end{itemize}
+\end{inhalt}
+
+\section{Grundlegende Begriffe}
+
+\begin{bla}{Zufallsexperiment, Ausgang}
+  Ein \emph{Zufallsexperiment} ist ein Experiment, bei dem verschiedene Ausgänge
+  mit verschiedenen Wahrscheinlichkeiten auftreten. Ausgänge werden häufig mit kleinen griechischen Buchstaben benannt (besonders gerne mit $\omega$).
+  \\
+  \underline{Beispiel}: Das Werfen eines Würfels ist ein Zufallsexperiment. Seine Ausgänge sind $1,2,3,4,5,6$.
+\end{bla}
+
+\begin{bla}{Ereignis}
+  Ein \emph{Ereignis} ist eine Zusammenfassung mehrerer Ausgänge. Man verwendet für sie gerne Großbuchstaben vom Anfang des Alphabets.
+  \\
+  \underline{Beispiel}: $A=$ "`Augenzahl kleiner $4$"' ist ein Ereignis beim Wurf eines Würfels und besteht aus den Ausgängen $1,2,3$.
+\end{bla}
+
+\begin{bla}{Stichprobe}
+  Wird ein Zufallsexperiment $n$ mal durchgeführt, so erhält man, wenn man die
+  Ausgänge (schriftlich) festhält, eine \emph{Stichprobe vom Umfang $n$}.
+  \\
+  \underline{Beispiel}: Wirft man einen Würfel $100$ mal, so erhält man eine Stichprobe
+  vom Umfang $100$.
+\end{bla}
+
+\clearpage
+
+\begin{bla}{absolute und relative Häufigkeit --- Ausgang}
+  \begin{itemize}
+    \item \textbf{absolute Häufigkeit}: Die \emph{absolute Häufigkeit} $H(\omega)$ gibt an, wie oft der Ausgang $\omega$ in der Stichprobe vorkommt.
+    \item \textbf{relative Häufigkeit}: Die \emph{relative Häufigkeit} $h(\omega)$ ist die absolute Häufigkeit geteilt durch den Umfang der Stichprobe: $h(\omega)=\frac{H(\omega)}{n}$.
+  \end{itemize}
+  \underline{Beispiel}: Wurde ein normaler Würfel $10$ Mal geworfen, so hat man zum Beispiel als Stichprobe $\{2,5,5,1,3,6,3,2,2,1\}$ erhalten. Für den Ausgang $\omega=3$ erhält man also die absolute Häufigkeit $H(\omega)=H(3)=2$ und die relative Häufigkeit $h(\omega)=h(3)=\tfrac{2}{10}=\tfrac{1}{5}$.
+\end{bla}
+
+\begin{bla}{absolute und relative Häufigkeit --- Ereignis}
+  \begin{itemize}
+    \item \textbf{absolute Häufigkeit}: Die absolute Häufigkeit eines Ereignisses ist die Summe der absoluten Häufigkeiten seiner Ausgänge.
+    \item \textbf{relative Häufigkeit}: Die relative Häufigkeit eines Ereignisses ist die Summe der relativen Häufigkeiten seiner Ausgänge.
+  \end{itemize}
+  \underline{Beispiel}: Mit den Daten von oben ergibt sich für das Ereignis $A=$ "`Augenzahl kleiner $4$"' die absolute Häufigkeit $H(A)=H(1)+H(2)+H(3)=2+3+2=7$ und die relative Häufigkeit $h(A)=h(1)+h(2)+h(3)=\tfrac{1}{5}+\tfrac{3}{10}+\tfrac{1}{5}=\tfrac{7}{10}$.
+\end{bla}
+
+\begin{bla}{Wahrscheinlichkeit}
+  Die Wahrscheinlichkeit eines Ausgangs ist die relative Häufigkeit auf lange Sicht. Wirft man zum Beispiel einen normalen Würfel sehr oft, so ist zu erwarten, dass die relative Häufigkeit jeder Augenzahl gegen $\tfrac{1}{6}$ geht. Wir nennen diesen Wert die \emph{Wahrscheinlichkeit} $P(\omega)$ des Ausgangs $\omega$. Die Wahrscheinlichkeit eines Ereignisses ist die Summe der Wahrscheinlichkeiten seiner Ausgänge.
+\end{bla}
+
+\section{Arbeiten mit Ereignissen}
+
+\begin{bla}{Mengenschreibweise}
+  Wie wir oben gesehen haben setzt sich die relative/absolute Häufigkeit und die Wahrscheinlichkeit eines Ereignisses aus seinen Ausgängen zusammen. Deswegen schreibt man ein Ereignis meistens als Menge seiner Ausgänge.
+  \\
+  \underline{Beispiel}: Das Ereignis $A=$ "`Augenzahl kleiner $4$"' beim normalen Würfelwurf kann man auch schreiben als $A=\{1,2,3\}$.
+\end{bla}
+
+\clearpage
+
+\begin{bla}{Besondere Ereignisse}
+  \begin{itemize}
+    \item \textbf{Unmögliches Ereignis}: Ein Ereignis ohne Ausgänge, also
+    $A=\{ \}$, hat die Wahrscheinlichkeit $0$.
+
+    \item \textbf{Sicheres Ereignis}: Ein Ereignis $A$, dass alle möglichen Ausgänge
+    des Zufallsexperiments beinhaltet, hat die Wahrscheinlichkeit $1$.
+  \end{itemize}
+\end{bla}
+
+\begin{bla}{Operationen für Ereignisse}
+  Durch die Mengenoperationen lassen sich neue Ereignisse konstruieren (hier seien
+  $A$ und $B$ Ereignisse):
+  \begin{itemize}
+    \item \textbf{Vereinigung}: Die Vereinigung $A\cup B$ von $A$ und $B$ ist das Ereignis,
+    dass $A$ oder $B$ eintritt.
+
+    \item \textbf{Schnitt}: Der Schnitt $A\cap B$ von $A$ und $B$ ist das Ereignis,
+    dass $A$ und $B$ eintreten.
+
+    \item \textbf{Differenz}: Die Differenz $A\backslash B$ von $A$ und $B$ ist das Ereignis, dass $A$ eintritt, aber $B$ nicht.
+
+    \item \textbf{Komplement}: Das Komplement $\overline{\rm{A}}$ eines Ereignisses ist das
+    Ereignis, dass $A$ \textbf{nicht} eintritt.
+  \end{itemize}
+  \underline{Beispiel}: Ist $A=$ "`Augenzahl kleiner $4$"' und $B=$ "`Ungerade Augenzahl"', so lassen sich diese Ereignisse auch schreiben als $A=\{1,2,3\}$ und $B=\{1,3,5\}$. Also ist zum Beispiel $A\cap B=\{1,3\}$.
+\end{bla}
+
+\begin{bla}{Disjunkte Ereignisse}
+  Ist für zwei Ereignisse $A, B$ der Schnitt leer, also $A\cap B=\{ \}$,
+  so nennt man die beiden Ereignisse \emph{disjunkt}.
+\end{bla}
+
+\begin{bla}{Rechnen mit der Wahrscheinlichkeit konstruierter Ereignisse}%
+  \begin{itemize}
+    \item \textbf{Vereinigung}: Für die Wahrscheinlichkeit der Vereinigung gilt: $P(A\cup B)=P(A)+P(B)-P(A\cap B)$.
+    Sind $A$ und $B$ disjunkt, so ist $P(A\cap B)=P(\{ \})=0$, also $P(A\cup B)=P(A)+P(B)$.
+    \item \textbf{Komplement}: $P(\overline{\rm{A}})=1-P(A)$.
+  \end{itemize}
+\end{bla}
+
+\begin{bla}{Erwartungswert}
+  Der \emph{Erwartungswert} $\mu$ gibt an, welcher Ausgang im Durchschnitt zu erwarten ist. Man berechnet ihm, in dem man die Summe des Produktes von jedem Ausgang mit seiner Wahrscheinlichkeit berechnet.
+  \\
+  \underline{Beispiel}: Bei einem normalen Würfel ist die Wahrscheinlichkeit für jeden Ausgang $\tfrac{1}{6}$, deswegen ist der Erwartungswert $\mu=\tfrac{1}{6}*1+\tfrac{1}{6}*2+\tfrac{1}{6}*3+\tfrac{1}{6}*4+\tfrac{1}{6}*5+\tfrac{1}{6}*6=\tfrac{1}{6}*(1+2+3+4+5+6)=\tfrac{1}{6}*21=3.5$.
+\end{bla}
+
+\section{Zufallsexperimente, Baumdiagramme, Pfadregeln}
+
+\begin{bla}{Mehrstufiges Zufallsexperiment}
+  Besteht ein Zufallsexperiment aus mehreren Teilexperimenten, so spricht man von einem
+  \emph{mehrstufigen Zufallsexperiment}. Die einzelnen Stufen können sich gegebenenfalls
+  gegenseitig beeinflussen (zum Beispiel beim Ziehen aus einer Urne ohne Zurücklegen,
+  siehe später).
+\end{bla}
+
+\begin{bla}{Beeinflusst und unbeeinflusst}
+  Je nach Zufallsexperiment muss man entscheiden, ob sich die einzelnen Stufen beeinflussen oder nicht. Beispielsweise beeinflussen sich die einzelnen Stufen beim Ziehen aus einer Urne \emph{ohne Zurücklegen} gegenseitig, beim Ziehen mit Zurücklegen beeinflussen sie sich nicht.
+\end{bla}
+
+
+
+\begin{bla}{Ausgänge von mehrstufigen Zufallsexperimenten}
+  Wir geben Ausgänge von mehrstufigen Zufallsexperimenten als \emph{Tupel} an; das sind einfach sortierte Mengen: Würfeln wir mit einem normalen Würfel zuerst eine $1$ und dann eine $2$, so ist der Ausgang $(1,2)$. Wir können hier die Mengenschreibweise deswegen nicht verwenden, weil der Ausgang $(2,1)$ ein ganz anderer als $(1,2)$ sein kann. Die Mengenschreibweise beachtet diese Ordnung nicht.
+\end{bla}
+
+\begin{bla}{Zweifaches Würfeln, Baumdiagramm}
+  Wir spielen Monopoly und werfen zwei Würfel. Wie hoch ist die Wahrscheinlichkeit,
+  dass die Augensumme 2 (oder 7,\dots) beträgt?
+  \\
+  Offensichtlich beeinflussen sich die Würfel nicht gegenseitig, also können wir
+  auch einfach gedanklich einen Würfel zweimal werfen, das Ergebnis ist dasselbe.
+  Wir haben nun ein zweistufiges Experiment vorliegen und wollen dieses als
+  Baumdiagramm darstellen.
+  \\
+  Den Ursprung des Baumes nennen wir die \emph{Wurzel}, von ihr gehen die \emph{Äste}
+  zu den \emph{Knoten} des Baumes. Gehen von einem Knoten keine Äste ab, so nennen wir ihn
+  ein \emph{Blatt} des Baumes. Ein Weg vom Knoten zu einem Blatt nennt man einen \emph{Pfad}.
+
+  \begin{marginfigure}[-10em]
+    \begin{tikzpicture}[grow=down,scale=0.7]
+      % Set the overall layout of the tree
+      \tikzstyle{level 1}=[level distance=3.5cm, sibling distance=2cm]
+      \tikzstyle{level 2}=[level distance=3.5cm, sibling distance=2cm]
+    \node[bag] {\textcolor{green!60!black}{Würfelwurf}}
+        child[edge from parent/.style={orange,draw}] {
+          node[bag] {1}
+          child {
+          node[end,draw=red!70!black] {1}
+            edge from parent
+            node[edgenode] {$\frac{1}{6}$}
+          }
+          child[edge from parent/.style={black,draw}] {
+            node[end] {2}
+              edge from parent
+              node[edgenode] {$\frac{1}{6}$}
+          }
+          child[edge from parent/.style={black,draw}] {
+            node[end] {3}
+              edge from parent
+              node[edgenode] {$\frac{1}{6}$}
+          }
+          edge from parent
+          node[edgenode] {$\frac{1}{6}$}
+        }
+        child {
+          node[bag] {2}
+            edge from parent
+            node[edgenode] {$\frac{1}{6}$}
+        }
+        child {
+          node[bag] {3}
+            edge from parent
+            node[edgenode] {$\frac{1}{6}$}
+        };
+    \end{tikzpicture}
+    \caption{Das Baumdiagramm des zweifachen Würfelwurfs (zur Übersichtlichkeit mit nur einer zweiten Stufe und mit jeweils nur drei Zwischenausgängen).
+    Markiert sind die \textcolor{green!60!black}{\textbf{Wurzel}}, ein \textcolor{red!70!black}{\textbf{Blatt}},
+    sowie der \textcolor{orange}{\textbf{Pfad}} von der Wurzel zu diesem Blatt.}
+  \end{marginfigure}
+\end{bla}
+
+\begin{bla}{1. Pfadregel}
+  Die Wahrscheinlichkeit eines Blattes ist das Produkt der Kantenwahrscheinlichkeiten des Pfades zu ihm.
+  \\
+  \underline{Beispiel}: Die Wahrscheinlichkeit, bei Monopoly zwei Einsen zu würfeln, ist $P((1,1))=\frac{1}{6}*\frac{1}{6}=\frac{1}{36}$.
+\end{bla}
+
+\begin{bla}{2. Pfadregel}
+  Besteht ein Ereignis aus mehreren Ausgängen, so ist dessen Wahrscheinlichkeit die Summe der Wahrscheinlichkeiten der jeweiligen Blätter.
+  \\
+  \underline{Beispiel}: Die Wahrscheinlichkeit des Ereignisses $A=$\emph{Weniger als vier Punkte bei Monopoly würfeln}
+  ist $P(A)=\frac{3}{36}$, denn das Ereignis besteht aus den Ausgängen $(1,1)$, $(1,2)$ und $(2,1)$,
+  die jeweils die Wahrscheinlichkeit $\frac{1}{36}$ haben.
+\end{bla}

@@ -1,0 +1,187 @@
+\chapter{Funktionenscharen}
+\begin{inhalt}
+  \begin{itemize}
+    \item Funktionenscharen
+    \item Extremstellen von Funktionenscharen
+    \item Ortslinien
+  \end{itemize}
+\end{inhalt}
+
+\begin{bla}{Funktionenschar}
+  \begin{marginfigure}[4em]
+    \begin{tcolorbox}[colback=white!95!black,colframe=white!75!black,title=CAS:,arc=0mm]
+      \begin{scriptsize}
+        \textbf{Graph}: \\*
+        \hfill \( f1(x) = \{ 1, 2, 3 \}x^2 \) \\*
+        \( \leadsto \) Graphen von \( x^2 \), \( 2x^2 \) und \( 3x^2 \)
+      \end{scriptsize}
+    \end{tcolorbox}
+  \end{marginfigure}
+  Eine \emph{Funktionenschar} ist eine Funktion, die zusätzlich zu $x$ noch einen weiteren Parameter $k$ enthält (man schreibt $f_k(x)$). Setzt man für $k$ einen Wert ein, so erhält man eine Funktion aus der unendlich großen Funktionenschar.
+\end{bla}
+
+\begin{bla}{Beispiel: eine Funktionenschar}
+  Wir betrachten die Funktionenschar $f_k(x)=\frac{1}{k}*x^2$. Wir setzen ein paar Werte für $k$ ein:
+  \begin{itemize}
+    \item $f_1(x)=x^2$
+    \item $f_{-2}(x)=-\frac{1}{2}*x^2$
+    \item $f_3(x)=\frac{1}{3}*x^2$
+  \end{itemize}
+
+  \begin{marginfigure}
+    \begin{tikzpicture}[
+        scale=0.7,
+        thick,
+        >=stealth',
+        dot/.style = {
+          draw,
+          fill = white,
+          circle,
+          inner sep = 0pt,
+          minimum size = 4pt
+        }
+      ]
+      \coordinate (O) at (0,0);
+
+      \draw[step=1cm,gray!40] (-2.9,-2.9) grid (2.9,2.9);
+
+      % Achsen
+      \draw[->] (-3,0) -- (3,0) coordinate[label = {below:$x$}] (xmax);
+      \draw[->] (0,-3) -- (0,3) coordinate[label = {right:$f(x)$}] (ymax);
+
+      % Graph f_1
+      \draw[domain=-2:2,smooth,variable=\x,red, label={right:$f$}] plot ({\x},{\x*\x});
+      \draw (2,3.5) node[red,label= {[red]below:$f_1$}] {};
+
+      % Graph f_{-2}
+      \draw[domain=-2:2,smooth,variable=\x,orange, label={right:$f$}] plot ({\x},{-0.5*\x*\x});
+      \draw (2,-0.8) node[red,label= {[orange]below:$f_{-2}$}] {};
+
+      % Graph f_3
+      \draw[domain=-2:2,smooth,variable=\x,blue, label={right:$f$}] plot ({\x},{0.33333*\x*\x});
+      \draw (2,1.2) node[red,label= {[blue]below:$f_3$}] {};
+    \end{tikzpicture}
+    \caption{Graphen der drei Funktionen aus der Funktionenschar}
+  \end{marginfigure}
+\end{bla}
+
+\begin{bla}{Bemerkung: Spiegelung an der $x$-Achse}
+  Wählt man für $k$ eine negative Zahl, so ergibt sich oft ein ganz anderer Verlauf der Funktion als für ein positives $k$. Ist dies der Fall, so müssen wir die Funktionenschar für positive und negative $k$ getrennt betrachten.
+\end{bla}
+
+
+
+\begin{bla}{Untersuchung einer Funktionenschar auf Extremstellen} \  \\
+  Wie eine Funktion kann auch eine Funktionenschar auf die üblichen Punkte und Stellen untersucht werden. Dabei wird $k$ einfach wie eine ganz normale Zahl behandelt. Man erhält also die Extremstellen/-punkte in Abhängigkeit von $k$.
+\end{bla}
+
+\begin{bla}{Beispiel: Untersuchung einer Funktionenschar auf Extrempunkte} \  \\
+  Wir betrachten die Funktionenschar $f_k(x)=k*x^2$. Wir sehen, dass für negative $k$ eine Spiegelung an der $x$-Achse auftritt. Wir betrachten also positive und negative $k$ getrennt.
+  \begin{itemize}
+    \item \textbf{Fall 1}: $k>0$. Es ist $f'_k(x)=2kx$. Wir betrachten die Nullstellen der Ableitung: \\
+    $f'_k(x)=0\  \Leftrightarrow\  2kx=0\  \Leftrightarrow\  x=0$. Also hat $f_k(x)$ für $x=0$ ein Extremum. \\
+    Die zweite Ableitung ist $f''_k(x)=2k$. Da $k>0$ ist, ist $f''_k(0)=2k>0$, also hat $f_k(x)$ für $k>0$ in $x=0$ ein Minimum.
+
+    \item \textbf{Fall 2}: $k<0$. Es ist $f'_k(x)=2kx$. Auch hier erhalten wir als Nullstelle der Ableitung $x=0$. \\
+    Die zweite Ableitung ist $f''_k(x)=2k$. Da $k<0$ ist, ist $f''_k(0)=2k<0$, also hat $f_k(x)$ für $k<0$ in $x=0$ ein Maximum.
+  \end{itemize}
+
+  \begin{marginfigure}[-25em]
+    \begin{tikzpicture}[
+        thick,
+        >=stealth',
+        dot/.style = {
+          draw,
+          fill = white,
+          circle,
+          inner sep = 0pt,
+          minimum size = 4pt
+        }
+      ]
+      \coordinate (O) at (0,0);
+
+      \draw[step=1cm,gray!40] (-2.9,-2.9) grid (2.9,2.9);
+
+      % Achsen
+      \draw[->] (-3,0) -- (3,0) coordinate[label = {below:$x$}] (xmax);
+      \draw[->] (0,-3) -- (0,3) coordinate[label = {right:$f(x)$}] (ymax);
+
+      % Graph f_k<0
+      \draw[domain=-2:2,smooth,variable=\x,red, label={right:$f$}] plot ({\x},{-0.2*\x*\x});
+      \draw[domain=-2:2,smooth,variable=\x,red, label={right:$f$}] plot ({\x},{-0.5*\x*\x});
+      \draw[domain=-1.5:1.5,smooth,variable=\x,red, label={right:$f$}] plot ({\x},{-\x*\x});
+
+      % Graph f_k>0
+      \draw[domain=-2:2,smooth,variable=\x,black!60!green, label={right:$f$}] plot ({\x},{0.2*\x*\x});
+      \draw[domain=-2:2,smooth,variable=\x,black!60!green, label={right:$f$}] plot ({\x},{0.5*\x*\x});
+      \draw[domain=-1.5:1.5,smooth,variable=\x,black!60!green, label={right:$f$}] plot ({\x},{\x*\x});
+
+      % Ursprung
+      \draw (0,0) node[dot] {};
+    \end{tikzpicture}
+    \caption{Fallunterscheidung für positive und negative $k$}
+  \end{marginfigure}
+\end{bla}
+
+\begin{bla}{Ortslinien}
+  Wir haben im letzten Beispiel gesehen, dass man Extrema von Funktionenscharen im Abhängigkeit von $k$ erhalten kann. Ist das so, so kann man eine Funktion aufstellen, die durch diese Extrema verläuft. Das ist die sogenannte \emph{Ortslinie} des Extremums.
+\end{bla}
+
+\begin{bla}{Berechnung der Ortslinie}
+  Wir werden jetzt die Ortslinie aus obiger Grafik berechnen. \\
+  Die betrachtete Funktionenschar ist $f_k(x)={(x-k)}^2+k$. Es ist $f'_k(x)=2(x-k)$. \\
+  $f'_k(x)=0\  \Leftrightarrow\  2(x-k)=0\  \Leftrightarrow\  x-k=0\  \Leftrightarrow\  x=k$.\\
+  Das bedeutet, dass $f_k(x)$ für $x=k$ ein Extremum hat. Der $y$-Wert für $x=k$ ist \\
+  $f_k(k)={(k-k)}^2+k=k$. Die Extrema liegen also auf $o(k)=k$. \\
+  Dies ist die Ortslinie der Extrema.
+
+  \begin{marginfigure}[-10em]
+    \begin{tikzpicture}[
+        scale=0.7,
+        thick,
+        >=stealth',
+        dot/.style = {
+          draw,
+          fill = white,
+          circle,
+          inner sep = 0pt,
+          minimum size = 4pt
+        }
+      ]
+      \coordinate (O) at (0,0);
+
+      \draw[step=1cm,gray!40] (-1.9,-0.1) grid (3.9,5.9);
+
+      % Achsen
+      \draw[->] (-2,0) -- (4,0) coordinate[label = {below:$x$}] (xmax);
+      \draw[->] (0,-0.1) -- (0,6) coordinate[label = {right:$f(x)$}] (ymax);
+
+      % Graphen
+      \draw[domain=-2:2,smooth,variable=\x,gray, label={right:$f$}] plot ({\x},{(\x)^2});
+      \draw[domain=-1:3,smooth,variable=\x,gray, label={right:$f$}] plot ({\x},{(\x-1)^2+1});
+      \draw[domain=0:4,smooth,variable=\x,gray, label={right:$f$}] plot ({\x},{(\x-2)^2+2});
+
+      % Ortslinie
+      \draw[dashed, red] (-0.3,-0.3) -- (3.5,3.5);
+
+
+      % Extrema
+      \draw (0,0) node[dot] {};
+      \draw (1,1) node[dot] {};
+      \draw (2,2) node[dot] {};
+
+    \end{tikzpicture}
+    \caption{Ein paar Funktionen und die Ortslinie von $f_k(x)={(x-k)}^2+k$.}
+  \end{marginfigure}
+\end{bla}
+
+\begin{bla}{Gemeinsame Punkte}
+  In Abbildung 7.2 haben alle Funktionen der Funktionenschar einen gemeinsamen Punkt ($P(0|0)$).
+  Möchte man die gemeinsamen Punkte von zwei Funktionen der Funktionenschar bestimmen, so geht man so vor:
+  \begin{enumerate}
+    \item Wir nehmen $t_1 \neq t_2$ und stellen für diese beiden Variablen die zugehörigen Funktionen der Funktionenschar auf, also $f_{t_1}(x)$ und $f_{t_2}(x)$.
+    \item Wir setzen die beiden Funktionen gleich: $f_{t_1}(x)=f_{t_2}(x)$
+    \item Wir lösen die Gleichung für $x$.
+    item Wir setzen die erhaltenen $x$-Werte (sie hängen in der Regel von $t_1$ und $t_2$ ab) in die Gleichung der Funktionenschar ein und erhalten so die gemeinsamen Punkte von $f_{t_1}(x)$ und $f_{t_2}(x)$. 
+  \end{enumerate}
+\end{bla}

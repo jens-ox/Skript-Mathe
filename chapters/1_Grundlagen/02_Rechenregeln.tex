@@ -1,0 +1,68 @@
+\chapter{Rechenregeln}
+
+\begin{inhalt}
+  Wichtige Rechenregeln, die man können muss:
+  \begin{itemize}
+    \item KlaHoPS
+    \item Brüche
+    \item Wurzeln
+    \item Potenzen
+    \item Logarithmen
+  \end{itemize}
+\end{inhalt}
+
+\begin{bla}{KlaHoPS}
+  Die wohl fundamentalste Regel ist die Reihenfolge, in der man Rechenoperationen durchführt. Es gilt:
+  \begin{enumerate}
+    \item Inhalt der innersten Klammer ausrechnen (hier gilt natürlich auch diese Rechenreihenfolge)
+    \item Hochzahlen ausrechnen
+    \item Punkt vor Strich
+  \end{enumerate}
+  Man merkt sich: \textbf{Klammer, Hochzahl, Punkt vor Strich}, kurz \textbf{KlaHoPS} (ja, das hört sich komisch an).
+\end{bla}
+
+\begin{bla}{Brüche}
+  \begin{itemize}
+    \item \textbf{Kürzen}: Beim Kürzen eines Bruchs versucht man, Zähler und Nenner möglichst klein zu machen. Das macht man, indem man Zähler und Nenner jeweils durch dieselbe Zahl teilt: $ \frac{9}{3}=\frac{9:3}{3:3}=\frac{3}{1}=3$
+    \item \textbf{Erweitern}: Erweitern ist Kürzen rückwärts: statt Zähler und Nenner durch eine Zahl zu teilen multipliziert man sie mit derselben Zahl: $\frac{2}{5}=\frac{2*2}{5*2}=\frac{4}{10}$
+    \item \textbf{Auf gleichen Nenner bringen}: Hat man zwei Brüche gegeben und möchte sie auf denselben Nenner bringen, so erweitert man beide Brüche so, dass sie denselben Nenner haben. Man kann beispielsweise den ersten Bruch mit dem Nenner vom zweiten Bruch und den zweiten Bruch mit dem Nenner vom ersten Bruch erweitern: \\ $\frac{2}{3}=\frac{2*4}{3*4}=\frac{8}{12} \qquad \frac{3}{4}=\frac{3*3}{4*3}=\frac{9}{12}$
+    \item \textbf{Addieren}: Man addiert Brüche, indem man sie auf denselben Nenner bringt und dann ihre Zähler addiert: $\frac{a}{b}+\frac{c}{d} = \frac{a*d}{b*d}+\frac{c*b}{b*d} = \frac{a*d+c*b}{b*d}$
+    \item \textbf{Subtrahieren}: Man subtrahiert Brüche, indem man sie auf denselben Nenner bringt und dann ihre Zähler subtrahiert: $\frac{a}{b}-\frac{c}{d} = \frac{a*d}{b*d}-\frac{c*b}{b*d} = \frac{a*d-c*b}{b*d}$
+    \item \textbf{Multiplizieren}: Man multipliziert Brüche, indem man jeweils die Zähler und die Nenner miteinander multipliziert: $\frac{a}{b}*\frac{c}{d}=\frac{a*c}{b*d}$
+    \item \textbf{Dividieren}: Man dividiert Brüche, indem man den ersten Bruch mit dem Kehrwert des zweiten Bruchs multipliziert: $\frac{a}{b}:\frac{c}{d}=\frac{a}{b}*\frac{d}{c}=\frac{a*d}{b*c}$
+  \end{itemize}
+\end{bla}
+
+\begin{bla}{Wurzeln}
+  \begin{itemize}
+    \item \textbf{Multiplikationsregel}: $\sqrt{a*b}=\sqrt{a}*\sqrt{b}$
+    \item \textbf{Divisionsregel}: $\sqrt{\frac{a}{b}}=\frac{\sqrt{a}}{\sqrt{b}}$
+    \item \textbf{Teilweise Wurzel ziehen}: Manchmal kann man eine Wurzel teilweise ziehen, indem man die Multiplikationsregel anwendet: $\sqrt{32*x^2}=\sqrt{32}*\sqrt{x^2}=\sqrt{16*2}*\sqrt{x^2}=4*\sqrt{2}*\sqrt{x^2}=4*|x|*\sqrt{2}$. Der Betrag kommt daher, dass $x^2$ für jedes $x$ positiv ist, deswegen ist $\sqrt{x^2}$ auch wieder positiv.
+  \end{itemize}
+\end{bla}
+
+\begin{bla}{Potenzgesetze}
+  \begin{itemize}
+    \item $a^0=1$
+    \item $a^{-r}=\frac{1}{a^r}$
+    \item $a^{\frac{1}{n}}=\sqrt[n]{a}$, insbesondere $a^{\frac{1}{2}}=\sqrt{a}$
+    \item $a^{r+s}=a^r*a^s$
+    \item $a^{r-s}=a^{r+(-s)}=a^r*a^{-s}=a^r*\frac{1}{a^s}=\frac{a^r}{a^s}$
+    \item ${(a*b)}^r=a^r*b^r$
+    \item ${(\frac{a}{b})}^r=\frac{a^r}{b^r}$
+    \item ${(a^r)}^s=a^{r*s}$
+  \end{itemize}
+\end{bla}
+
+\begin{bla}{Logarithmengesetze}
+  Mehr zum Umgang mit dem Logarithmus und der natürlichen Exponentialfunktion findet ihr im Kapitel zu Exponentialfunktionen.
+  \begin{itemize}
+    \item $\ln(u*v)=\ln(u)+\ln(v)$
+    \item $\ln(\frac{u}{v})=\ln(u)-\ln(v)$
+    \item $\ln(u^k)=k*\ln(u)$
+  \end{itemize}
+  $\ln(x)$ steht hierbei für den natürlichen Logarithmus, also den Logarithmus zur Basis $e$ ($\log_e(x)$). Eine weitere oft verwendete Basis ist $10$ (das bedeutet, dass $\log_{10}(10^x)=x$). Mann kann von einer Basis $a$ zu einer Basis $b$ wechseln:
+  \begin{equation*}
+    \log_b(x)=\frac{\log_a(x)}{\log_a(b)}
+  \end{equation*}
+\end{bla}

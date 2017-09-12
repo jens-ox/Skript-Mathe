@@ -1,0 +1,197 @@
+\chapter{Matrixschreibweise}
+\begin{inhalt}
+  \begin{itemize}
+    \item LGS als Matrix darstellen
+    \item LGS-Umformungen bei der Matrixschreibweise
+  \end{itemize}
+\end{inhalt}
+
+\leqnomode
+
+\begin{bla}{Matrixschreibweise}
+Eine Methode, die viele Schreibarbeit zu umgehen, ist die sogenannte Matrixschreibweise.
+\begin{alignat*}{5}
+  \LIN{I}{1}{2}{3}{4}{}
+  \LIN{II}{5}{6}{7}{8}{}
+  \LIN[0pt]{III}{1}{2}{4}{5}{}
+\end{alignat*}
+Dieses LGS kann man kurz schreiben als:
+\begin{align*}
+  \begin{pmatrix}
+    1 & 2 & 3 \\
+    5 & 6 & 7 \\
+    1 & 2 & 4 \\
+  \end{pmatrix}
+  *
+  \begin{pmatrix}
+    x\\y\\z\\
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    4\\8\\5
+  \end{pmatrix}
+\end{align*}
+Man lässt also die Koeffizienten und das Ergebnis an den gleichen Stellen stehen und schreibt dazwischen die Variablen als Vektor.
+
+Wenn man diese Matrix wieder als LGS schreiben möchte, muss man bedenken, dass die Variablen nicht zu den Zeilen gehören, sondern dass man den Vektor wieder kippen muss.
+\end{bla}
+
+
+\begin{bla}{Erweiterte Matrixschreibweise}
+Noch schöner zum Rechnen ist die erweiterte Matrixdarstellung, bei der die Variablen einfach weggelassen werden:
+\begin{align*}
+  \left(\left.\begin{matrix}
+    1 & 2 & 3 \\
+    5 & 6 & 7 \\
+    1 & 2 & 4 \\
+  \end{matrix}\right|
+  \begin{matrix}
+    4\\8\\5\\
+  \end{matrix}\right)
+\end{align*}
+Die erlaubten Umformungen kann man übersichtlich in den einzelnen Zeilen durchführen.
+\end{bla}
+
+
+\section{Lösungen}
+
+\begin{bla}{Lösungsmenge}
+  Löst man ein LGS, dann gibt man das Ergebnis als \emph{Menge} an.
+  Man schreibt dazu alle Werte als Vektor in geschweifte Klammern und nennt das ganze \emph{Lösungsmenge L}:
+  \begin{eqnarray*}
+    L = \left\{
+    \begin{pmatrix}
+      x \\y \\ z
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+      2 \\ 1 \\ \frac{1}{2}
+    \end{pmatrix}
+    \right\}
+    =
+    \left\{\begin{pmatrix}
+    2 \\ 1 \\ \frac{1}{2}
+    \end{pmatrix}\right\}
+  \end{eqnarray*}
+
+\end{bla}
+
+\begin{bla}{Nicht-eindeutige Lösungen}
+  Die Lösung eines LGS muss nicht immer eindeutig sein, auch unendlich viele oder gar keine Lösungen können vorkommen.
+
+  Betrachtet man zum Beispiel die Gleichungen
+  \begin{align*}
+    x + y &= 1 \tag{I}\\
+    x + y &= 0 \tag{II}\\
+  \end{align*}
+  dann gibt es keine Lösungen.
+  Man sagt die Lösungsmenge ist \emph{leer} und schreibt $L = \{\}$.
+
+  Ein Beispiel für ein LGS mit unendlich vielen Lösungen ist
+  \begin{align*}
+    x - y = 0 \tag{I} \\
+    2x - 2y = 0 \tag{II} \\
+  \end{align*}
+  Die Lösung dieser Gleichungen ist $x=y$, also gibt es unendlich viele $x$ und $y$, die das System lösen.
+  Man nennt die Lösungsmenge \emph{unendlich} und schreibt sie als
+  \begin{eqnarray*}
+    L =
+    \left\{ \begin{pmatrix}
+      1 \\ 1
+    \end{pmatrix} * k \text{, mit $k\in\R$} \right\}
+  \end{eqnarray*}
+  Im Teil "`Analytische Geometrie"' werden wir lernen, was das bedeutet und wie man diese Menge aufschreibt.
+
+  Wenn man eine eindeutige Lösung sucht, dann braucht man mindestens soviele Gleichungen wie man Variablen hat.
+
+\end{bla}
+
+\begin{bla}{Stufenform: Keine Lösung}
+  Ist ein LGS nicht lösbar, dann kann man das einfach an der Stufenform erkennen.
+
+  Hat ein LGS keine Lösung, dann liegt das daran, dass zwei Gleichungen gegensätzliche Dinge aussagen:
+  \begin{alignat*}{5}
+    \LIN{Ia}{0}{1}{25}{10}{}
+    \LIN[0pt]{IIa}{0}{1}{25}{99}{}
+  \end{alignat*}
+  als Matrix geschrieben ergibt sich:
+  \begin{align*}
+    \left(\left.\begin{matrix}
+      1 & 25 \\
+      1 & 25 \\
+    \end{matrix}\right|
+    \begin{matrix}
+      10\\99\\
+    \end{matrix}\right)
+    &\text{ also folgt }
+    \left(\left.\begin{matrix}
+      1 & 25 \\
+      0 & 0 \\
+    \end{matrix}\right|
+    \begin{matrix}
+      10\\89\\
+    \end{matrix}\right)\\
+    \intertext{Die zweite Zeile entspricht der Gleichung}
+    0*y + 0*z = 89
+  \end{align*}
+  Die Gleichung ist offensichtlich falsch, also gibt es keine Lösung.
+\end{bla}
+
+\begin{bla}{Stufenform: Unendliche Lösungen}
+  Falls beim Lösen eines LGS weniger Gleichungen als Variablen übrig bleiben, kann man das LGS nicht mehr eindeutig lösen. So zum Beispiel:
+  \begin{align*}
+    \left(\left.
+    \begin{matrix}
+      1 & 0 & 2 \\
+      0 & 1 & 1 \\
+      1 & 1 & 3 \\
+    \end{matrix}
+    \right|
+    \begin{matrix}
+      5\\4\\9\\
+    \end{matrix}
+    \right)
+    &\text{- umgeformt:}
+    \left(\left.
+    \begin{matrix}
+      1 & 0 & 2 \\
+      0 & 1 & 1 \\
+      0 & 0 & 0 \\
+    \end{matrix}
+    \right|
+    \begin{matrix}
+      5\\4\\0\\
+    \end{matrix}
+    \right)\\
+    \intertext{Die letzte Gleichung, $0=0$ stimmt zwar immer, bringt uns aber nichts. Uns bleiben also nur zwei Gleichungen für drei Variablen:}
+    x    + 2z &= 5\\
+       y +  z &= 4\\
+    \intertext{Dieses Problem ist zwar nicht eindeutig lösbar, aber sobald man $z$ kennt kann man $x$ und $y$ problemlos bestimmen - das kann man aber ausnutzen:}
+    x    &= 5 - 2z\\
+       y &= 4 -  z\\
+    \intertext{Für irgendwelche $z$ kann man jetzt also $x$ und $y$ finden.
+    Um die Lösung schön aufzuschreiben führt man jetzt ein $t = z$ ein:}
+    x &= 5 - 2t\\
+    y &= 4 -  t\\
+    z &= t\\
+    \intertext{Jetzt kann man die Lösungsmenge einfach mit unbekanntem $t$ aufschreiben}
+    L &= \left\{
+    \begin{pmatrix}
+      x\\y\\z
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+      5-2t\\4-t\\t
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+      5\\4\\0
+    \end{pmatrix}
+    +t*
+    \begin{pmatrix}
+      -2\\-1\\1
+    \end{pmatrix}
+    \right\}
+  \end{align*}
+\end{bla}
+\reqnomode

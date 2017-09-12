@@ -1,0 +1,117 @@
+%\leqnomode
+%\begin{alignat*}{5}
+%       Tag,  x,    y,    z,    Ergebnis, Operation
+%  \LIN {1}   {-1}  {-1}  {-1}  {1}       {+3 * I}
+%\end{alignat*}
+%\reqnomode
+%
+%OUTPUT:\tag BLA ax & \: \: +/nix & by & \: \: +/nix & cz/0 & && = d && \quad \text{| e} \\[Länge]
+\newcommand{\globalX}{x}
+\newcommand{\globalY}{y}
+\newcommand{\globalZ}{z}
+\newlength{\textlaenge}
+
+\newcommand{\changeX}[1]{
+  \global\def\globalX{#1}%
+}
+
+\newcommand{\changeY}[1]{
+  \global\def\globalY{#1}%
+}
+
+\newcommand{\changeZ}[1]{
+  \global\def\globalZ{#1}%
+}
+
+
+\newcommand{\coefficientAndVar}[2]{
+  \ifthenelse{#1=0} {
+  }
+  {
+    \ifthenelse{#1=1} {
+    }
+    {
+      \ifthenelse{#1=-1}{
+        -
+      }
+      {
+        #1
+      }
+    }
+    #2
+  }
+}
+
+\newcommand{\plusMinusCheck}[1]{\ifthenelse{#1<0}{ }{+}}
+
+\newcommand{\leftplus}[3]{
+\ifthenelse{#2=0 \AND #3=0 \OR #1=0} {
+}
+{
+  %Sondercommand für den Fall 1-0-1:
+  \ifthenelse{#2=0}{ }{\plusMinusCheck{#2}}
+}
+}
+
+\newcommand{\rightplus}[3]{
+\ifthenelse{#1=0 \AND #2=0 \OR #3=0} {
+}
+{
+  \plusMinusCheck{#3}
+}
+%\text{ plus }
+}
+
+%-------------------------------------------------------------------------------
+
+%LG-erzeugende Funktion
+\newcommand{\LIN}[7][1pt]{
+  %Input: Tag, x, y, z, Ergebnis, Operation
+  %
+  %Hier wird entweder ein Tag oder keiner erzeugt
+  \settowidth{\textlaenge}{#2}
+  \ifdim\textlaenge=0pt
+    \notag
+  \else
+    \tag{#2}
+  \fi
+  %
+  % x-Koeffizient und das Plus
+  \coefficientAndVar{#3}{\globalX}
+  &
+  \:\:
+  \leftplus{#3}{#4}{#5}
+  &
+  %
+  %
+  %y-Koeffizient und das Plus
+  \coefficientAndVar{#4}{\globalY}
+  &
+  \:\:
+  \rightplus{#3}{#4}{#5}
+  &
+  %
+  %
+  %z-Koeffizient
+  \coefficientAndVar{#5}{\globalZ}
+  \ifthenelse{#3=0 \AND #4=0 \AND #5=0}{0}{}
+  &
+  %
+  %
+  %Ergebnis der Gleichung
+  && = #6 &&  \quad
+  %
+  %
+  %Rechnung/Anmerkung
+  \settowidth{\textlaenge}{#7}
+  \ifdim\textlaenge=0pt
+  \else
+    \text{| #7}
+  \fi
+  %
+  %
+  \ifdim#1=0pt
+  \else
+    \\[#1]
+  \fi
+}

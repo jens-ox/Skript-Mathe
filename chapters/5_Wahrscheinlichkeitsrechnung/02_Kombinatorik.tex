@@ -1,0 +1,55 @@
+\chapter{Kombinatorik}
+\begin{inhalt}
+  \begin{itemize}
+    \item Multiplikationsformel
+    \item Urnenmodelle
+  \end{itemize}
+\end{inhalt}
+\section{Multiplikationsformel}
+
+\begin{bla}{Fakultät}
+  \begin{marginfigure}
+    \begin{tcolorbox}[colback=white!95!black,colframe=white!75!black,title=CAS:,arc=0mm]
+      \begin{scriptsize}
+        \textbf{Calculator}: \\*
+        \menu{Menü > Wahrscheinlichkeit > Fakultät}
+      \end{scriptsize}
+    \end{tcolorbox}
+  \end{marginfigure}
+  Für $n\in\mathbb{N}$ ist $n!=n*(n-1)*\dots *1$.
+\end{bla}
+
+\begin{bla}{Multiplikationsformel}
+  Die Multiplikationsformel stellt die Basis der Kombinatorik dar. Sie sagt aus:
+  \\
+  Möchte man $n$ Dinge auf $k$ Stellen verteilen, so gibt es für die erste Stelle
+  $n$ Möglichkeiten, für die zweite $n-1$ Möglichkeiten,\dots und für die letzte $n-k$
+  Möglichkeiten.
+  \\
+  \textbf{Beispiel}: Möchte man seine $7$ Sockenpaare auf die $7$ Plätze für Socken
+  im Schrank verteilen, so gibt es dafür $7*6*5*4*3*2*1=7!=5040$ Möglichkeiten.
+  Insbesondere gilt also, dass es $n! $ Möglichkeiten gibt, $n$ Dinge anzuordnen.
+\end{bla}
+
+\clearpage
+
+\section{Urnenmodell}
+
+Um kombinatorische Zusammenhänge veranschaulichen zu können werden häufig
+\emph{Urnenmodelle} verwendet.
+
+\begin{bla}{Ziehen mit vs.\ ohne Zurücklegen}
+  Wir stellen uns eine Urne vor, also ein undurchsichtiges Gefäß, in dem
+  verschiedenfarbige Kugeln sind (bei uns werden sie meistens schwarz und rot sein).
+  Wir haben zwei Möglichkeiten, wie wir ihr Kugeln entnehmen können:
+  \begin{itemize}
+    \item \textbf{Ziehen mit Zurücklegen}: Wir ziehen eine Kugel, merken uns ihre
+    Farbe und legen sie wieder zurück. Diesen Vorgang können wir dann beliebig
+    oft wiederholen. Hier beeinflussen sich die einzelnen Ziehungen offensichtlich nicht.
+
+    \item \textbf{Ziehen ohne Zurücklegen}: Wir ziehen eine Kugel, merken uns ihre
+    Farbe und legen sie beiseite. Diesen Vorgang kann man nur so oft wiederholen wie
+    Kugeln in der Urne sind. Man kann übrigens alternativ auch mehrere Kugeln auf einmal
+    ziehen (das ist identisch zum Ziehen ohne Zurücklegen). Offensichtlich beeinflussen sich die einzelnen Ziehungen gegenseitig.
+  \end{itemize}
+\end{bla}

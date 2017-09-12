@@ -1,0 +1,88 @@
+%%
+% Book metadata
+\title{Mathe-Crashkurs 2017}
+\author[Lukas König, Jens Ochsenmeier]{}
+\publisher{Lukas König, Jens Ochsenmeier}
+
+% -- GRAPHICX SETUP
+%\setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio}
+\graphicspath{{assets/img/}}
+
+% -- FONT SETUP
+\fvset{fontsize=\normalsize}
+
+% Generates the index
+\makeindex
+
+
+% Define styles for bags and leafs
+\tikzstyle{bag} = [text width=4em, text centered]
+\tikzstyle{end} = [fill=white, circle, draw=black]
+
+\usepackage[default]{sourcesanspro}
+\usepackage[T1]{fontenc}
+
+\makeatletter
+
+\newcommand{\xeq}[2][]{\ensuremath{\overset{
+  {\scriptscriptstyle{#2}}}{\underset{\mathclap{#1}}{=}}}}
+\newcommand{\xleq}[2][]{\ensuremath{\overset{
+  {\scriptscriptstyle{#2}}}{\underset{\mathclap{#1}}{\leq}}}}
+%Tags nach links
+\newcommand{\leqnomode}{\tagsleft@true\let\veqno\@@leqno}
+\newcommand{\reqnomode}{\tagsleft@false\let\veqno\@@eqno}
+\makeatother
+
+\newcommand{\thistheoremname}{}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+
+\newcommand{\ot}{\leftarrow}
+\newcommand{\To}{\implies}
+
+\newcommand{\e}{\text{\rmfamily e}}
+\renewcommand{\i}{\text{\rmfamily i}}
+
+%Nutzen in {alignat}{5}:{NR}{K1}{K2}{K3}{Ergebnis}
+\newcommand{\LGL}[5]{#2 x\quad &+&  #3 y\quad &+&  #4 z\quad &&& = #5 \tag{#1}  && \quad}
+
+
+%Malpunkte
+\mathcode`\*="8000
+{\catcode`\*\active\gdef*{\cdot}}
+%Punkte zu Kommata
+\DeclareMathSymbol{.}{\mathord}{letters}{"3B}
+
+\swapnumbers
+\theoremstyle{definition}
+\newtheorem{df}{Definition}[chapter]
+\newtheorem{sz}[df]{Satz}
+\newtheorem{genericthm}[df]{\thistheoremname}
+\newtheorem{bsp}[df]{Beispiel}
+\newenvironment{bw}[1][\textbf{Beweis}]{\begin{proof}[#1]}{\end{proof}}
+
+%Bedienung: \begin{bla}{Satz von Horst}
+\newenvironment{bla}[1]
+{\renewcommand{\thistheoremname}{#1}\begin{genericthm}\setlength\parindent{0em}~\par}{\end{genericthm}}
+
+
+\tikzset{stage/.style = {draw,minimum width=15mm,minimum height=7mm},
+      edgenode/.style = {font=\small,near start,fill=white}}
+
+\setcounter{tocdepth}{1}
+\setcounter{secnumdepth}{2}
+
+\titleformat{\chapter}%
+  [display]% shape
+  {\relax\ifthenelse{\NOT\boolean{@tufte@symmetric}}{\begin{fullwidth}}{}}% format applied to label+text
+  {}% label
+  {0pt}% horizontal separation between label and title body
+  {\huge\itshape}% before the title body
+  [\ifthenelse{\NOT\boolean{@tufte@symmetric}}{\end{fullwidth}}{}]% after the title body
+
+\newenvironment{inhalt}
+  {\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,title=In diesem Abschnitt:,arc=0mm]}{\end{tcolorbox}}
+
+\newenvironment{koch}
+  {\begin{tcolorbox}[colback=green!5!white,colframe=green!75!black,title=Kochrezept,arc=0mm]}{\end{tcolorbox}}

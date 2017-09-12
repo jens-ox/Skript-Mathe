@@ -1,0 +1,184 @@
+\chapter{Lineare Gleichungssysteme}
+\begin{inhalt}
+  \begin{itemize}
+    \item Was sind lineare Gleichungssysteme?
+    \item Umformen und Lösen von LGS
+    \item Fehlerquellen
+  \end{itemize}
+\end{inhalt}
+\leqnomode
+
+\begin{bla}{Lineare Gleichungssysteme}
+   \begin{marginfigure}[5em]
+    \begin{tcolorbox}[colback=white!95!black,colframe=white!75!black,title=CAS:,arc=0mm]
+      \begin{scriptsize}
+        \textbf{Calculator}: \\*
+          \menu{Menü > Algebra > GLS lösen > GLS lösen > Anz. d. Gleichungen und Variablen eingeben}
+      \end{scriptsize}
+    \end{tcolorbox}
+  \end{marginfigure}
+  In diesem Kapitel betrachten wir Gleichungen der Art
+  \begin{alignat*}{5}
+    \LIN[0pt]{A}{2}{-3}{2}{0}{}
+  \end{alignat*}
+  Solche Gleichungen nennt man \emph{linear}, wenn Variablen nur als $x^1$ oder $x$, aber nicht als $x^2, \sqrt{x}$ oder $x^y$ vorkommen.
+
+  Aus ihr erhält man für die drei Variablen keine eindeutige Lösung wie $x=3$, $y=2$ und $z=275$ - dafür müsste pro Variable eine
+  Gleichung vorhanden sein.
+  Fügen wir nun zwei weitere Gleichungen hinzu, so erhält man beispielsweise:
+  \begin{alignat*}{5}
+    \LIN{I}{2}{-3}{2}{0}{}
+    \LIN{II}{5}{6}{-2}{5}{}
+    \LIN[0pt]{III}{-12}{3}{-1}{0}{}
+  \end{alignat*}
+  Die verwendeten Variablen sollen natürlich in allen drei Gleichungen denselben Wert haben.
+  Man spricht hierbei von einem \emph{linearen Gleichungssystem} oder \emph{LGS}.
+\end{bla}
+
+\clearpage
+
+\section{Rechnen mit LGS}
+
+Natürlich möchte man gerne wissen, welchen Wert die Variablen haben, dazu muss man es also \emph{lösen}:
+
+\begin{bla}{Stufenform}
+  Sehr einfach zu lösen sind LGS, die \emph{Stufenform} haben, also zum Beispiel:
+  \begin{alignat*}{5}
+    \LIN{I}{2}{-3}{7}{3}{}
+    \LIN{II}{0}{5}{-2}{5}{}
+    \LIN[0pt]{III}{0}{0}{-1}{0}{}
+  \end{alignat*}
+  In Stufenform kann man eine Variable sofort ablesen, die anderen ergeben sich dann durch Einsetzen.
+
+  Im LGS oben würde man zum Beispiel sehen, dass $z=0$ sein muss.
+  In Gleichung II setzt man das ein und formt zu $y = 1$ um.
+  Diese zwei bekannten Zahlen setzt man dann in die erste Gleichung ein und es ergibt sich $x=3$.
+\end{bla}
+
+\begin{bla}{Erlaubte Rechnungen}
+  Um ein LGS in Stufenform zu bringen, hat man folgende Möglichkeiten:
+  \begin{itemize}
+    \item {\bfseries Multiplikation mit Zahlen}
+    \\
+      In einer Gleichung werden alle Terme mit einer Zahl multipliziert.
+      Diese Zahl darf nicht die Null sein! (siehe "`\ref{LA:LGS:Fehlerquellen} Fehlerquellen"')
+    \item {\bfseries Addition/Subraktion von Gleichungen}
+    \\
+      Zu einer Gleichung wird eine der anderen Gleichungen addiert oder subtrahiert.
+    \item {\bfseries Vertauschen von Gleichungen}
+    \\
+      Aus Schönheitsgründen kann man die Reihenfolge der Gleichungen ändern.
+  \end{itemize}
+  Diese Umformungen sind recht einfach, daher gibt es auch nur wenige gefährliche Fehler, die man beim Lösen machen kann.
+\end{bla}
+
+\begin{bla}{Fehlerquellen}
+\label{LA:LGS:Fehlerquellen}
+Es ist wichtig, beim Umformen keine Informationen zu verhäckseln!
+Schlechte Ideen sind:
+
+\begin{itemize}
+  \item \textbf{Multiplikation mit Null:}
+    \begin{alignat*}{5}
+      \LIN{Ia}{1}{0}{0}{1}{}
+      \LIN[10pt]{IIa}{1}{1}{0}{0}{Das ist einfach!}
+    \hline
+      \tag{Ib} 0*x &&&&&&& = 0 && \quad \text{| Ib = 0 * Ia}\\
+      \LIN[0pt]{IIb}{1}{1}{0}{0}{}
+    \end{alignat*}
+      Ib und IIb haben plötzlich keine eindeutige Lösung mehr.
+  \item \textbf{Verlieren einer Gleichung:}
+    \begin{alignat*}{5}
+      \LIN{Ia}{1}{0}{0}{1}{}
+      \LIN{IIa}{0}{1}{0}{1}{}
+      \LIN[10pt]{IIIa}{0}{0}{1}{1}{Dieses LGS ist gelöst!}
+    \hline
+      \LIN{Ia}{1}{0}{0}{1}{}
+      \LIN{IIa}{0}{1}{0}{1}{}
+      \LIN[0pt]{IIIb}{1}{1}{0}{2}{IIIb = Ia + IIa}
+    \end{alignat*}
+      Die Information von Gleichung IIIa ist in der zweiten Hälfte verloren gegangen, die eindeutige Lösung vom Anfang damit auch, weil $z$ nicht mehr bestimmt werden kann.
+  \item \textbf{Ungeschicktes Addieren von Gleichungen:}
+    \begin{alignat*}{5}
+      \LIN{Ia}{0}{1}{0}{1}{}
+      \LIN[10pt]{IIa}{0}{0}{1}{1}{Die Lösung ist noch eindeutig}
+      \hline
+      \LIN{Ib}{0}{1}{1}{2}{Ib = Ia + IIa}
+      \LIN[0pt]{IIb}{0}{1}{1}{2}{IIb = Ia + IIa}
+    \end{alignat*}
+    Dieses LGS hat plötzlich keine eindeutige Lösung mehr.
+    Um diesen Fehler zu vermeiden, muss man ein Bisschen aufpassen.
+
+    Wenn man sauber rechnet, macht man immer nur einen Umformungsschritt und schreibt dann das ganze neue LGS einmal auf.
+    Mit den neuen Gleichungen wird dann weitergerechnet.
+
+    Beim Rechnen hat natürlich niemand Zeit, so viel zu schreiben, deswegen muss man auf diesen Fehler achten.
+
+    Im Beispiel oben wurde zuerst folgendes gemacht: Ib = Ia + IIa.
+    Wenn man jetzt ganz ausführlich weitermacht, schreibt man das neue LGS auf, also die Gleichungen Ib und IIa.
+    Versucht man jetzt die zweite Umformung, IIb = Ia + IIa, bemerkt man, dass
+    die Gleichung Ia gar nicht mehr im LGS steht.
+    Man darf also nur noch mit Ib weiterrechnen.
+
+    \textbf{Einfache Lösung:} Die Gleichungen nach jeder Rechnung umbenennen (Ia $\to$ Ib) und im Kopf behalten, dass man ab dann nichts mehr mit Ia rechnen darf.
+\end{itemize}
+\end{bla}
+
+\clearpage
+
+\begin{bsp}
+  Ein vorgegebenes LGS soll gelöst werden. Eine Methode die auf jeden Fall zu einem Ergebnis führt ist die folgende:
+  \begin{alignat*}{5}
+  \intertext{Zuerst wird der x-Koeffizient in Ia zu einer Eins gemacht:}
+    \LIN{Ia}{2}{-1}{4}{5}{Ib $=$ Ia$*\frac{1}{2}$}
+    \LIN{IIa}{5}{2}{-10}{7}{}
+    \LIN{IIIa}{12}{-9}{-8}{11}{}
+  \intertext{Damit werden die anderen x-Terme aus der Gleichung subtrahiert:}
+    \tag{Ib} x &\:\:& -\frac{1}{2}y &\:\:+& 2z &&&= \frac{5}{2} &&	\\[0pt]
+    \LIN{IIa}{5}{2}{-10}{7}{IIb $=$ IIa$ - 5 * $Ib}
+    \LIN{IIIa}{12}{-9}{-8}{11}{IIIb $=$ IIIa$ - 12 * $Ib}
+  \intertext{Beachte, dass wir hier zwei Dinge gleichzeitig tun. Fehlergefahr!}
+  \intertext{Im Folgenden werden die letzten beiden Gleichungen getauscht und ein y-Koeffizient zu einer Eins gemacht}
+    \tag{Ib} x &\:\:& -\frac{1}{2}y &\:\:+& 2z &&&= \frac{5}{2} &&\\[0pt]
+    \tag{IIb}  &\:\:& \frac{9}{2}y &\:\:& -20z &&&= -\frac{11}{2} &&\quad\text{| IIc $= - \frac{1}{3} * $IIIb}\\[0pt]
+    \tag{IIIb}  &\:\:& -3y &\:\:& -32z &&&= -19 &&\quad\text{| IIIc = IIb}\\[0pt]
+  \intertext{Mit dieser Gleichung kann man jetzt das andere y schön entfernen}
+    \tag{Ib} x &\:\:& -\frac{1}{2}y &\:\:+& 2z &&&= \frac{5}{2} &&\\[0pt]
+    \tag{IIc}  &\:\:& y &\:\:+& \frac{32}{3}z &&&= \frac{19}{3} &&\\[0pt]
+    \tag{IIIc}  &\:\:& \frac{9}{2}y &\:\:& -20z &&&= -\frac{11}{2} && \quad\text{| IIId $=$ IIIc $ - \frac{9}{2} * $ IIc}\\[0pt]
+  \intertext{Hier kann man $z$ einfach ablesen (teile IIId durch $-86$).}
+    \tag{Ib} x &\:\:& -\frac{1}{2}y &\:\:+& 2z &&&= \frac{5}{2} &&\\[0pt]
+    \tag{IIc}  &\:\:& y &\:\:+& \frac{32}{3}z &&&= \frac{19}{3} &&\\[0pt]
+    \tag{IIId} &\:\:&   &\:\: & -68z &&&= -34 && \\[0pt]
+  \end{alignat*}
+
+  
+  
+  Also ist $z = \frac{1}{2}$, damit liefert Gleichung IIc:
+  \[
+  y + \frac{32}{3} * \frac{1}{2} = \frac{19}{3}
+  \]
+  Es folgt: $y=1$, damit liefert Gleichung Ib:
+  \[
+  x - \frac{1}{2} +\frac{2}{2} = \frac{5}{2}
+  \]
+  Damit ist $x=2$ und die Lösungsmenge:
+  %
+  %\tag{IIa} ax &\:\:+& by &\:\:+& cz &&&= d &&\quad\text{| e}\\[0pt]
+  %\changeX{*\frac{5}{29}}
+
+  \begin{eqnarray*}
+    L = \left\{
+    \begin{pmatrix}
+      2 & 1 & \frac{1}{2}
+    \end{pmatrix}
+    \right\}
+    \\
+    \hline
+  \changeX{x}
+  \changeY{y}
+  \changeZ{z}
+\end{eqnarray*}
+\end{bsp}
+
+\reqnomode

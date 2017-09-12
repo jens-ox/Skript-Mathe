@@ -1,0 +1,257 @@
+\chapter{Graphen und Funktionen analysieren}
+\begin{inhalt}
+  \begin{itemize}
+    \item Symmetrie von Graphen
+    \item gebrochenrationale Funktionen: Polstellen, Asymptoten
+    \item Funktionen erkennen und zeichnen
+  \end{itemize}
+\end{inhalt}
+
+ \begin{bla}{Punktsymmetrie}
+   \begin{marginfigure}
+    \begin{tcolorbox}[colback=white!95!black,colframe=white!75!black,title=CAS:,arc=0mm]
+      \begin{scriptsize}
+        \textbf{Calculator}: \\*
+        \hfill \( f(x) := \ \sim \) \\*
+        \hfill \( f(x) = -f(-x) \leadsto \) \emph{true} \\* \hfill \( \Rightarrow \) \textbf{punktsymmetrisch} \\*
+        \hfill \( f(x) = f(-x) \leadsto \) \emph{true} \\* \hfill \( \Rightarrow \) \textbf{achsensymmetrisch}
+      \end{scriptsize}
+    \end{tcolorbox}
+  \end{marginfigure}
+  In der Regel betrachtet man in der Schule nur die Punktsymmetrie zum Ursprung (also zu $(0|0)$). \\
+  Eine Funktion heißt \emph{punktsymmetrisch zum Ursprung}, wenn $f(-x)=-f(x)$ für alle $x$ gilt. Diesen Zusammenhang kann man graphisch leicht nachvollziehen.
+ \end{bla}
+
+ \begin{marginfigure}
+   \begin{tikzpicture}[
+       scale=0.7,
+       thick,
+       >=stealth',
+       dot/.style = {
+         draw,
+         fill = white,
+         circle,
+         inner sep = 0pt,
+         minimum size = 4pt
+       }
+     ]
+     \coordinate (O) at (0,0);
+
+     \draw[step=1cm,gray!40] (-2.9,-2.9) grid (2.9,2.9);
+
+     % Achsen
+     \draw[->] (-3,0) -- (3,0) coordinate[label = {below:$x$}] (xmax);
+     \draw[->] (0,-3) -- (0,3) coordinate[label = {right:$f(x)$}] (ymax);
+
+     % Graph
+     \draw[domain=-2.5:2.5,smooth,variable=\x,red, label={right:$f$}] plot ({\x},{0.2*(\x^3)});
+     \draw (2.4,2.6) node[red,label= {[red]right:$f$}] {};
+
+     % f(x_0)
+     \draw[dotted] (2, 1.6) -- (-0.1,1.6) node[label = {left:$f(x_0)$}] {};
+
+     % f(-x_0)
+     \draw[dotted] (-2,-1.6) -- (0.1, -1.6) node[label = {right:$f(-x_0)$}] {};
+
+
+     % x_0
+     \draw[dotted] (2,1.6) -- (2,-0.1) node[label = {below:$x_0$}] {};
+
+     % -x_0
+     \draw[dotted] (-2,-1.6) -- (-2,0.1) node[label = {above:$-x_0$}] {};
+
+   \end{tikzpicture}
+   \caption{Veranschaulichung: Punktsymmetrie zum Ursprung}
+ \end{marginfigure}
+
+\begin{bla}{Achsensymmetrie}
+  In der Regel betrachtet man die Achsensymmetrie zur $y$-Achse. \\
+  Eine Funktion heißt \emph{achsensymmetrisch zur $y$-Achse}, wenn $f(-x)=f(x)$ für alle $x$ gilt.
+\end{bla}
+
+\begin{marginfigure}
+  \begin{tikzpicture}[
+      scale=0.7,
+      thick,
+      >=stealth',
+      dot/.style = {
+        draw,
+        fill = white,
+        circle,
+        inner sep = 0pt,
+        minimum size = 4pt
+      }
+    ]
+    \coordinate (O) at (0,0);
+
+    \draw[step=1cm,gray!40] (-2.9,-2.9) grid (2.9,2.9);
+
+    % Achsen
+    \draw[->] (-3,0) -- (3,0) coordinate[label = {below:$x$}] (xmax);
+    \draw[->] (0,-3) -- (0,3) coordinate[label = {right:$f(x)$}] (ymax);
+
+    % Graph
+    \draw[domain=-2.5:2.5,smooth,variable=\x,red, label={right:$f$}] plot ({\x},{0.4*(abs(\x)^2)});
+    \draw (2.4,2.6) node[red,label= {[red]right:$f$}] {};
+
+    % f(x_0), f(-x_0)
+    \draw[dotted] (-2, 1.6) -- (-0.1,1.6) node[midway, fill=white] {$f(\pm x_0)$};
+    \draw[dotted] (2, 1.6) -- (-0.1,1.6);
+
+
+
+    % x_0
+    \draw[dotted] (2,1.6) -- (2,-0.1) node[label = {below:$x_0$}] {};
+
+    % -x_0
+    \draw[dotted] (-2,1.6) -- (-2,-0.1) node[label = {below:$-x_0$}] {};
+
+  \end{tikzpicture}
+  \caption{Veranschaulichung: Achsensymmetrie zur $y$-Achse}
+\end{marginfigure}
+
+\section{gebrochenrationale Funktionen}
+
+\begin{bla}{ganzrationale vs. gebrochenrationale Funktionen}
+  \begin{itemize}
+    \item[]
+    \item \textbf{ganzrationale Funktion}: Eine ganzrationale Funktion ist eine Funktion, bei der der Funktionsterm umgeformt werden kann zu
+    \begin{equation*}
+       f(x)=a_n*x^n+a_{n-1}*x^{n-1}+\cdots +a_1*x+a_0.
+     \end{equation*}
+     Dies ist bei allen Funktionstermen, die durch endlich viele Additionen, Substraktionen und Multiplikationen (keine Divisionen!) entstehen, der Fall.
+    \item \textbf{gebrochenrationale Funktion}: Eine gebrochenrationale Funktion kann in folgende Form gebracht werden:
+    \begin{equation*}
+      f(x)=\frac{g(x)}{h(x)},
+    \end{equation*}
+    wobei $g(x)$ und $h(x)$ ganzrationale Funktionen sind.
+  \end{itemize}
+\end{bla}
+
+\begin{bla}{Teilen durch Null}
+  Teilt man eine Zahl durch Null, so ist kein Ergebnis definiert. Nahe dieser Teilung durch Null können komische Dinge passieren, weswegen der Grenzwert untersucht werden muss.
+\end{bla}
+
+\begin{bla}{Polstelle, senkrechte Asymptote}
+  $x_0$ ist eine Polstelle der gebrochenrationalen Funktion $f(x)=\frac{g(x)}{h(x)}$, wenn $h(x_0)=0$ ist. Das bedeutet, dass an einer Polstelle $f(x)$ nicht definiert ist. Wird die Funktion für Werte in der Nähe der Polstelle sehr groß/klein, so hat die Funktion dort eine \emph{senkrechte Asymptote}.
+\end{bla}
+
+\begin{marginfigure}
+  \begin{tikzpicture}[
+      scale=0.7,
+      thick,
+      >=stealth',
+      dot/.style = {
+        draw,
+        fill = white,
+        circle,
+        inner sep = 0pt,
+        minimum size = 4pt
+      }
+    ]
+    \coordinate (O) at (0,0);
+
+    \draw[step=1cm,gray!40] (-2.9,-2.9) grid (2.9,2.9);
+
+    % Achsen
+    \draw[->] (-3,0) -- (3,0) coordinate[label = {below:$x$}] (xmax);
+    \draw[->] (0,-3) -- (0,3) coordinate[label = {right:$f(x)$}] (ymax);
+
+    % Graph
+    \draw[domain=0:0.75,smooth,variable=\x,red] plot ({\x},{\x/(\x-1)});
+    \draw[domain=1.25:2.5,smooth,variable=\x,red] plot ({\x},{0.5*\x/(\x-1)});
+
+    % Polstelle
+    \draw[domain=-2.5:2.5,dashed,black!60!green,variable=\y] plot ({1},{\y});
+  \end{tikzpicture}
+  \caption{$f(x)=\frac{x}{x-1}$ hat eine Polstelle bei $x=1$, da $1-1=0$.}
+\end{marginfigure}
+
+\begin{bla}{Verhalten für $x \rightarrow \pm \infty$ - waagerechte Asymptote}
+  Wir betrachten die Funktion $f(x)=\frac{x^2-2}{(x+3)(x-5)}$. Wie verhält sich diese Funktion für $x \rightarrow \pm \infty$?
+  Wir wenden folgende Schritte an:
+  \begin{enumerate}
+    \item Je nach Funktionsterm müssen wir zuerst die Klammern durch Ausmultiplizieren auflösen: $f(x)=\frac{x^2-2}{(x+3)(x-5)}=\frac{x^2-2}{x^2-5x+3x-15}=\frac{x^2-2}{x^2-2x-15}$
+    \item Wir multiplizieren den Bruch mit $\frac{\tfrac{1}{x}}{\tfrac{1}{x}}=1$ (das verändert nichts, da wir den Bruch ja mit $1$ multiplizieren). Dadurch werden die Potenzen von $x$ in Zähler und Nenner um $1$ kleiner.
+    \item Wir wiederholen Schritt 2 so oft, bis \textbf{entweder} in Zähler \textbf{oder} Nenner $x$ steht --- oder in keinem der beiden: $f(x)=\frac{x^2-2}{x^2-2x-15}=\frac{x-\tfrac{2}{x}}{x-2-\tfrac{15}{x}}=\frac{1-\tfrac{2}{x^2}}{1-\tfrac{2}{x}-\tfrac{15}{x^2}}$
+    \item Terme der Form $\frac{1}{x^n}$ gehen für beliebige $n$ gegen $0$ und können deswegen vernachlässigt werden: $f(x)=\frac{1-\tfrac{2}{x^2}}{1-\tfrac{2}{x}-\tfrac{15}{x^2}} \approx \frac{1-0}{1-0-0}=1$. Wir erhalten den Grenzwert der Funktion für $x \rightarrow \pm \infty$. Dieser Grenzwert ist die waagerechte Asymptote dieser Funktion.
+  \end{enumerate}
+\end{bla}
+
+\begin{bla}{Verhalten für $x \rightarrow \pm \infty$ - schiefe Asymptote}
+  Bleibt beim Suchen nach einer waagerechten Asymptote ein $x$ in entweder Zähler oder Nenner übrig, so geht die Funktion für $x \rightarrow \pm \infty$ gegen $\infty$, $-\infty$ (je nach Vorzeichen von $x$) oder $0$:
+  \begin{itemize}
+    \item \textbf{$x$ bleibt im Zähler übrig.} Bleibt nach dem letzten Schritt der Suche nach einer waagerechten Asymptote ein Term wie $\frac{x-2}{2}$ übrig, so geht $f(x)$ für $x \rightarrow \pm \infty$ gegen $\infty$ oder $-\infty$ (je nach Vorzeichen von $x$, hier gegen $\infty$).
+    \item \textbf{$x$ bleibt im Nenner übrig.} Hier geht $f(x)$ für $x \rightarrow \pm \infty$ gegen $0$.
+  \end{itemize}
+  Der übriggebliebene Term ist die \emph{schiefe Asymptote} der Funktion.
+\end{bla}
+
+
+
+\section{Krasse Funktionen}
+
+Viele Funktionen sind weder rational noch gebrochenrational, zum Beispiel $f(x)=e^x$.
+
+\begin{bla}{Polstellen, senkrechte Asymptoten}
+  Polstellen/senkrechte Asymptoten werden genau wie bei gebrochenrationalen Funktionen analysiert.
+\end{bla}
+
+\begin{bla}{Verhalten für $x \rightarrow \pm \infty$}
+  \begin{itemize}
+    \item \textbf{Nicht-zusammengesetzte Funktion.} Hier sind nur Variationen von $f(x)=e^x$ relevant. Ist eine Funktion wie $f(x)=-e^{-x}+3$ zu analysieren, so geht man wie folgt vor:
+    \begin{enumerate}
+      \item Gehe von der Basisfunktion aus, also $e^x$. Das Verhalten für $x \rightarrow \pm \infty$ ist im Kapitel zur Exponentialfunktion nachzulesen.
+      \item Füge Schritt für Schritt eine Rechenoperation zur $e^x$ hinzu und behalte dabei stets ein Bild vom Graphen der aktuellen Funktion im Kopf (oder am besten auf Papier). Am Ende kannst du das Verhalten der Funktion einfach vom Graphen ablesen.
+    \end{enumerate}
+    \item \textbf{Zusammengesetzte Funktion.} Hier werden in der Regel nur einfache Funktionen behandelt, beispielsweise $f(x)=\frac{e^x}{x^2}$. Man muss sich nur merken, dass Varianten von $e^x$ immer schneller gegen ihren Grenzwert gehen als $x^n$-Varianten. Das bedeutet, dass $x^{1000}e^{-x}$ für $x \rightarrow \infty$ gegen $0$ geht. $f(x)=\frac{e^x}{x^2}$ geht also für $x \rightarrow \infty$ gegen $\infty$.
+  \end{itemize}
+\end{bla}
+
+\clearpage
+
+\begin{koch}
+  \textbf{Funktion zeichnen.}
+  \begin{enumerate}
+    \item Bestimme die erste und zweite Ableitung der Funktion.
+    \item Ermittle möglichst viele Eigenschaften der Funktion:
+    \begin{itemize}
+      \item Nullstellen
+      \item Extrempunkte
+      \item Wendepunkte
+      \item Asymptoten
+    \end{itemize}
+    \item Zeichne die gefundenen Stellen und Punkte in ein Koordinatensystem ein.
+    \item Skizziere den Graphen der Funktion. Sollte es in einem Intervall unklar sein, wo der Graph verläuft, dann berechne einen Funktionswert in diesem Intervall.
+  \end{enumerate}
+\end{koch}
+
+\clearpage
+
+\begin{koch}
+  \textbf{Funktion erkennen.}
+  \begin{enumerate}
+    \item Von welchem Funktionstyp ist der Graph?
+    \begin{itemize}
+      \item \textbf{Trigonometrische Funktion}: \\
+      Ansatz: $f(x)=a*\sin(b*(x-c))+d$
+      \item \textbf{Exponentialfunktion}: \\
+      Ansatz: $f(x)=\pm a*e^{\pm x-b}+c$
+      \item \textbf{Normale Funktion}: Welchen Grad könnte die Funktion haben? Ist beispielsweise der Grad $3$, so setze an: \\
+      $f(x)=ax^3+bx^2+cx+d$. Stelle außerdem schonmal die erste und zweite Ableitung allgemein auf (hier also $f'(x)=3ax^2+2bx+c$ und $f''(x)=6ax+2b$).
+    \end{itemize}
+    \item Welche Informationen sind in der Grafik enthalten?
+    \begin{itemize}
+      \item \textbf{Trigonometrische Funktion}: Verschiebung, Periode, Amplitude
+      \item \textbf{Exponentialfunktion}: Grenzwerte für $x \rightarrow \pm \infty$ liefern Vorzeichen von $a$ und $x$ sowie die Verschiebung. Betrachtung von $f(0)$ und $f(1)$ der \emph{unverschobenen Funktion} liefern $a$.
+      \item \textbf{Normale Funktion}: Finde möglichst viele charakteristische Stellen der Funktion (Stellen, an denen der Funktionswert bekannt ist (beispielsweise $f(0)$), Extremstellen, Wendestellen, Nullstellen,\dots). Liegt zum Beispiel in $x_0$ eine Wendestelle vor, so ist $f''(x_0)=6ax+2b=0$. Wir erhalten so verschiedene Gleichungen, die wir zu einem \textbf{LGS} zusammenfassen.
+    \end{itemize}
+    \item Bestimmen des Funktionsterms
+    \begin{itemize}
+      \item \textbf{Trigonometrische Funktion}: Einsetzen der gefundenen Eigenschaften in den Ansatz (zuerst Verschiebung!) liefert den Funktionsterm.
+      \item \textbf{Exponentialfunktion}: Einsetzen der gefundenen Eigenschaften in den Ansatz liefert den Funktionsterm.
+      \item \textbf{Normale Funktion}: Lösen des aufgestellten LGS wie im Abschnitt zu LGS beschrieben liefert die Parameter für den Ansatz. Durch Einsetzen erhält man den Funktionsterm.
+    \end{itemize}
+    \item \textbf{Stimmt das Ergebnis?} Testen, ob für bestimmte $x$-Werte der Wert des Funktionsterms mit dem Wert des Graphen übereinstimmt.
+  \end{enumerate}
+\end{koch}

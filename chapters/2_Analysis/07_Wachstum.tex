@@ -1,0 +1,118 @@
+\chapter{Wachstum}
+\begin{inhalt}
+  \begin{itemize}
+    \item exponentielles und beschränktes Wachstum
+  \end{itemize}
+\end{inhalt}
+
+\section{Exponentielles Wachstum}
+
+Etwas wächst \emph{exponentiell}, wenn es von einem zum nächsten Schritt um einen bestimmten Faktor wächst:
+\begin{equation*}
+  f(x+1)=b*f(x).
+\end{equation*}
+Wir modellieren einen exponentiellen Wachstumsprozess mit einer \emph{Exponentialfunktion}.
+
+\begin{bla}{Startwert}
+  Der \emph{Startwert} gibt an, welchen Wert der Wachstumsprozess am Anfang, also in $f(0)$ hat. Es ist $e^0=1$, also ist $a*e^0=k*1=a$. Also hat die Funktion $f(x)=a*e^x$ den Startwert $a$.
+\end{bla}
+
+\begin{bla}{Wachstumskonstante}
+  Die \emph{Wachstumskonstante} gibt an, wie schnell das exponentielle Wachstum ist. Wie zur Änderung der Periode bei trigonometrischen Funktionen bekommt auch hier $x$ einen Faktor, der für eine Streckung/Stauchung des Graphen sorgt: $f(x)=a*e^{kx}$ hat den Startwert $a$ und die Wachstumskonstante $k$.
+\end{bla}
+
+\begin{bla}{Bedeutung der Wachstumskonstante}
+  Wir haben gesagt, dass bei einem exponentiellen Wachstumsprozess $f(x+1)=b*f(x)$ ist. Also ist
+  \begin{align*}
+    f(x+1) &= f(x)*b \\
+    f(x+2) &= f(x+1)*b = f(x)*b^2 \\
+    f(x+3) &= f(x+2)*b = f(x)*b^3 \\
+    \cdots
+  \end{align*}
+  Also ist $f(x)=f(0)*b^x=f(0)*e^{\ln(b)x}$ mit Startwert $f(0)$.
+\end{bla}
+
+\begin{bla}{Bestimmen des Wachstumsfaktors}
+  Ist eine Datenmenge gegeben, so kann man jeweils den Wachstumsfaktor von einem Schritt zum anderen bestimmen:
+  \begin{equation*}
+    f(x+1)=b*f(x) \Leftrightarrow b=\frac{f(x+1)}{f(x)}.
+  \end{equation*}
+\end{bla}
+
+\begin{bla}{Bestimmen des Startwerts}
+  Ist eine Datenmenge gegeben, so ist der Startwert der Datenwert an der Nullstelle.
+\end{bla}
+
+\begin{bla}{Verdoppelungs-/Halbwertszeit}
+  \begin{itemize}
+    \item \textbf{Verdoppelungszeit.} Die Verdoppelungszeit ist die Zeit $x_0$, für die $f(x_0)=2*f(0)$ gilt. Man erhält sie durch Auflösen dieser Gleichung nach $x_0$.
+    \item \textbf{Halbwertszeit.} Die Halbwertszeit ist die Zeit $x_0$, für die $f(x_0)= \tfrac{1}{2}*f(0)$ gilt. Man erhält sie durch Auflösen dieser Gleichung nach $x_0$.
+  \end{itemize}
+\end{bla}
+
+\section{Beschränktes Wachstum}
+
+Wächst etwas, aber mit zunehmender Zeit immer langsamer, so liegt \emph{beschränktes Wachstum} vor. Wichtig ist hier vor allem die
+
+\begin{bla}{Schranke}
+  Ein beschränkt wachsender Bestand ist nach oben durch eine \emph{Schranke} $S$ beschränkt.
+\end{bla}
+
+\begin{bla}{Beschränktes Wachstum}
+  Ein beschränktes Wachstum kann beschrieben werden durch $f(x)=S-ce^{-kx}$. $S$ ist die Schranke, $c=S-f(0)$ ist der angepasste Startwert und $k=-\ln(b)$ der angepasste Wachstumsfaktor. Beim beschränkten Wachstum ist $0<a<1$.
+\end{bla}
+
+\begin{marginfigure}
+  \begin{tikzpicture}[
+      scale=0.7,
+      thick,
+      >=stealth',
+      dot/.style = {
+        draw,
+        fill = white,
+        circle,
+        inner sep = 0pt,
+        minimum size = 4pt
+      }
+    ]
+    \coordinate (O) at (0,0);
+
+    \draw[step=1cm,gray!40] (-0.1,-0.1) grid (3.9,3.9);
+
+    % Achsen
+    \draw[->] (-0.2,0) -- (4,0) coordinate[label = {below:$x$}] (xmax);
+    \draw[->] (0,-0.1) -- (0,4) coordinate[label = {right:$f(x)$}] (ymax);
+
+    % Graph
+    \draw[domain=-0.2:4.2,smooth,variable=\x,red, label={right:$f$}] plot ({\x},{3-2.5*exp(-0.7*\x)});
+
+    % Schranke
+    \draw[domain=-0.1:4.5,dashed,black!60!green] plot ({\x},{3});
+  \end{tikzpicture}
+  \caption{Der Graph von $f(x)=3-2.5e^{-0.7x}$.}
+\end{marginfigure}
+
+\begin{bla}{Modellierung einer Wachstumsfunktion bei gegebenen Daten}
+  $f(x)=S-ce^{-kx}$ mit
+  \begin{enumerate}
+    \item \textbf{Schranke}: Diese muss man häufig schätzen. Sind die Werte am Ende der Tabelle zum Beispiel $298.5 - 299.3 - 299.6 - 299.7 - \dots$, so ist $300$ wahrscheinlich die gesuchte obere Schranke.
+    \item \textbf{c}: $c$ erhält man, in dem man den Startwert von $S$ abzieht: $c=S-f(0)$.
+    \item \textbf{k}: $k$ erhält man, in dem man (wie beim exponentiellen Wachstum) $b$ berechnet. Dafür berechnet man $\frac{f(x+1)}{f(x)}$ für jedes angegebene $x$ und erhält so die durchschnittliche Wachstumskonstante $b$. Dann ist $k=-\ln(b)$.
+  \end{enumerate}
+\end{bla}
+
+\begin{koch}
+  \textbf{Modellierung eines exponentiellen Wachstums.} \\
+  $f(x)=f(0)*e^{\ln(b)x}$ mit
+  \begin{itemize}
+    \item Startwert $f(0)$,
+    \item Wachstum pro Schritt $b$.
+  \end{itemize}
+  \textbf{Modellierung eines beschränkten Wachstums.} \\
+  \( f(x) = S - ce^{-kx} \) mit
+  \begin{itemize}
+    \item Schranke \( S \)
+    \item ``Startwert'' \( c = S - f(0) \)
+    \item angepasster Wachstumsfaktor \( k = -\ln(b) \) (\( b \) berechnet sich wie beim exponentiellen Wachstum)
+  \end{itemize}
+\end{koch}

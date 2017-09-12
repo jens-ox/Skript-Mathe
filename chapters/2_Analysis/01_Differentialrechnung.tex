@@ -1,0 +1,447 @@
+\chapter{Differentialrechnung}
+\begin{inhalt}
+  Bestimmen von
+  \begin{itemize}
+    \item Änderungsraten
+    \item Ableitungen
+    \item Tangenten
+    \item Normalen
+  \end{itemize}
+\end{inhalt}
+
+\section{Änderungsrate}
+
+\begin{marginfigure}
+  \begin{tikzpicture}[
+      scale=0.5,
+      thick,
+      >=stealth',
+      dot/.style = {
+        draw,
+        fill = white,
+        circle,
+        inner sep = 0pt,
+        minimum size = 4pt
+      }
+    ]
+    \coordinate (O) at (0,0);
+
+    \draw[step=1cm,gray!40] (-0.1,-0.1) grid (7.9,4.9);
+
+    % Achsen
+    \draw[->] (-0.3,0) -- (8,0) coordinate[label = {below:$x$}] (xmax);
+    \draw[->] (0,-0.3) -- (0,5) coordinate[label = {right:$f(x)$}] (ymax);
+
+    % Pfade
+    \path[name path=x] (0.3,0.5) -- (6.7,4.7);
+    \path[name path=y] plot[smooth] coordinates {(-0.3,2) (2,1.5) (4,2.8) (6,5)};
+
+    \scope[name intersections = {of = x and y, name = i}]
+
+      % Steigungsdreieck
+      \fill[gray!20] (i-1) -- (i-2 |- i-1) -- (i-2) -- cycle;
+
+      % durchschnittliche Steigung
+      \draw[black!60!green]      (0.3,0.5) -- (6.7,4.7) node[pos=0.8, below right] {};
+
+      % Graph
+      \draw[red] plot[smooth] coordinates {(-0.3,1) (2,1.5) (4,2.8) (6,5)};
+
+      % Knoten
+      \draw (i-1) node[dot, label = {}] (i-1) {} -- node[left]
+        {} (i-1 |- O) node[label = {below:$x_0$}] {};
+      \path (i-2) node[dot, label = {}] (i-2) {} -- (i-2 |- i-1)
+        node[dot] (i-12) {};
+
+      % y-Werte
+      \draw (i-1) -- (i-1 -| 0, 0) node[thin, label = {left:$f(x_0)$}] {};
+      \draw (i-2) -- (i-2 -| 0, 0) node[thin, label = {left:$f(x_0+h)$}] {};
+
+      \draw           (i-12) -- (i-12 |- O) node[label = {below:$x_0 + h$}] {};
+      \draw[blue, <->] (i-2) -- node[right] {$f(x_0 + h) - f(x_0)$}
+                                (i-12);
+      \draw[blue, <->] (i-1) -- node[below] {$h$} (i-12);
+
+    \endscope
+  \end{tikzpicture}
+  \caption{Die \textcolor{black!60!green}{Gerade} beschreibt die Steigung des \textcolor{red}{Graphen} auf dem Intervall $[x_0,x_0+h]$.}
+\end{marginfigure}
+
+\begin{bla}{Durchschnittliche Änderungsrate}
+Betrachtet man den Abschnitt einer Funktion auf einem Intervall $[x_0,x_0+h]$, so ist in diesem Intervall eine durchschnittliche Steigung feststellbar, welche durch eine Gerade durch $(x_0, f(x_0))$ und $(x_0+h, f(x_0+h))$ dargestellt werden kann. Die Steigung dieser Geraden wird \emph{durchschnittliche Änderungsrate} des Intervalls $[x_0, x_0+h]$ genannt und kann durch $\frac{f(x_0+h)-f(x_0)}{h}$ berechnet werden.
+\end{bla}
+
+\section{Ableitung}
+
+\begin{marginfigure}
+  \begin{tikzpicture}[
+      scale=0.5,
+      thick,
+      >=stealth',
+      dot/.style = {
+        draw,
+        fill = white,
+        circle,
+        inner sep = 0pt,
+        minimum size = 4pt
+      }
+    ]
+    \coordinate (O) at (0,0);
+
+    \draw[step=1cm,gray!40] (-0.1,-0.1) grid (7.9,4.9);
+
+    % Achsen
+    \draw[->] (-0.3,0) -- (8,0) coordinate[label = {below:$x$}] (xmax);
+    \draw[->] (0,-0.3) -- (0,5) coordinate[label = {right:$f(x)$}] (ymax);
+
+    % Graph
+    \draw[domain=0:5,smooth,variable=\x,red, label={right:$f$}] plot ({\x},{0.2*\x*\x});
+    \draw (5,6) node[red,label= {[red]below:$f$}] {};
+
+    % Tangente
+    \draw[domain=2.2:5, variable=\x, black!60!green] plot ({\x},{1.6*(\x-4)+3.2});
+
+    % y-Wert
+    \draw (4,3.2) -- (-0.1, 3.2) node[label = {left:\quad\enspace\ $f(x_0)$}] {};
+
+    % x-Wert und marker
+    \draw (4,3.2) node[dot] {} -- (4,-0.1) node[label = {below:$x_0$}] {};
+  \end{tikzpicture}
+  \caption{Die Steigung der grünen Geraden ist die Ableitung von $f$ bei $x_0$. Sie ist die \textbf{Tangente} an $(x_0,f(x_0))$.}
+\end{marginfigure}
+
+\begin{bla}{Ableitung}
+  \begin{marginfigure}
+    \begin{tcolorbox}[colback=white!95!black,colframe=white!75!black,title=CAS:,arc=0mm]
+      \begin{scriptsize}
+        \textbf{Calculator}: \\*
+        \menu{Menü > Analysis > Ableitung} \\*
+        \hfill \( \tfrac{\partial}{\partial x}(x^2) \leadsto 2*x \)
+      \end{scriptsize}
+    \end{tcolorbox}
+  \end{marginfigure}
+  Die \emph{Ableitung} der Funktion $f$ an der Stelle $x=x_0$ ist gegeben durch den Grenzwert $\lim\limits_{h \to 0}\frac{f(x_0+h)-f(x_0)}{h}$, was bedeutet, dass wir die Länge des Intervalls, auf dem wir die Änderungsrate ermitteln, immer kleiner wird. Dieser Wert wird auch als $f'(x_0)$ bezeichnet. \\ Bildlich entspricht dieser Wert der Steigung des Graphen bei $x_0$.
+\end{bla}
+
+\clearpage
+
+\begin{bla}{Tangente}
+  \begin{marginfigure}
+    \begin{tcolorbox}[colback=white!95!black,colframe=white!75!black,title=CAS:,arc=0mm]
+      \begin{scriptsize}
+        \textbf{Calculator}: \\*
+        \menu{Menü > Analysis > Tangententerm} \\*
+        \hfill \textsc{tangentLine}(\( x^2 \), \( x \), 1) \( \leadsto 2*x-1 \) \\*
+        (der dritte Parameter ist der \( x \)-Wert, bei dem eine Tangente angelegt werden soll)
+      \end{scriptsize}
+    \end{tcolorbox}
+  \end{marginfigure}
+  \begin{marginfigure}
+    \begin{tikzpicture}[
+        scale=0.5,
+        thick,
+        >=stealth',
+        dot/.style = {
+          draw,
+          fill = white,
+          circle,
+          inner sep = 0pt,
+          minimum size = 4pt
+        }
+      ]
+      \coordinate (O) at (0,0);
+
+      \draw[step=1cm,gray!40] (-0.1,-0.1) grid (7.9,4.9);
+
+      % Achsen
+      \draw[->] (-0.3,0) -- (8,0) coordinate[label = {below:$x$}] (xmax);
+      \draw[->] (0,-0.3) -- (0,5) coordinate[label = {right:$f(x)$}] (ymax);
+
+      % Graph
+      \draw[domain=0:5,smooth,variable=\x,red, label={right:$f$}] plot ({\x},{0.2*\x*\x});
+      \draw (5,5.75) node[red,label= {[red]below:$f$}] {};
+
+      % Konstruktion 1
+      \draw[domain=-0.1:4, variable=\x, orange] plot ({\x},{\x});
+
+      % Konstruktion 2
+      \draw[domain=-0.1:3, variable=\x, brown] plot ({\x},{1.6*\x});
+
+      % Konstruktion 3
+      \draw[domain=-0.1:1.5, variable=\x, blue] plot ({\x},{1.6*\x+3.2});
+
+      % Tangente
+      \draw[domain=2.5:5, variable=\x, black!60!green] plot ({\x},{1.6*(\x-4)+3.2});
+
+      % y-Wert
+      \draw (4,3.2) -- (-0.1, 3.2) node[label = {left:$f(x_0)$}] {};
+
+      % x-Wert und marker
+      \draw (4,3.2) node[dot] {} -- (4,-0.1) node[label = {below:$x_0$}] {};
+    \end{tikzpicture}
+    \caption{Schritte bis zur \textcolor{black!60!green}{Tangenten}}
+  \end{marginfigure}
+
+  Die grüne Gerade im letzten Absatz ist die sogenannte \emph{Tangente} an $f$ im Punkt $(x_0, f(x_0))$. Um sie als Funktion ausdrücken zu können benötigen wir:
+  \begin{itemize}
+    \item die Ableitung von $f$ in $x_0$ (= $f'(x_0)$) und
+    \item den Funktionswert von $f$ in $x_0$ (= $f(x_0)$).
+  \end{itemize}
+  Wir konstruieren die Funktion nun Stück für Stück:
+  \begin{itemize}
+    \item \textbf{Vorbereitung}: Die Tangente ist eine Gerade. Die einfachste Gerade ist \textcolor{orange}{$t_0(x)=x$}.
+    \item \textbf{Steigung}: Die Steigung der Tangenten an $(x_0, f(x_0))$ ist $f'(x_0)$, also braucht unsere Gerade diese Steigung:\\ \textcolor{brown}{$t_1(x)=f'(x_0)*x$}
+    \item \textbf{Nach oben/unten verschieben}: Wir verschieben nun die Tangente auf die richtige Höhe, nämlich $f(x_0)$: \\ \textcolor{blue}{$t_2(x)=f'(x_0)*x+f(x_0)$}
+    \item \textbf{Nach links/rechts verschieben}: Nun müssen wir sie nur seitlich zu $(x_0, f(x_0))$ verschieben, indem wir in der Funktionsgleichung $x_0$ von $x$ abziehen: \\ \textcolor{black!60!green}{$t(x)=f'(x_0)*(x-x_0)+f(x_0)$} \\ Dies ist die fertige Tangente.
+  \end{itemize}
+  Die Gleichung von $t(x)$ oben wird auch \emph{allgemeine Tangentengleichung} genannt.
+\end{bla}
+
+\begin{bla}{Normale}
+  \begin{marginfigure}[15em]
+    \begin{tikzpicture}[
+        scale=0.5,
+        thick,
+        >=stealth',
+        dot/.style = {
+          draw,
+          fill = white,
+          circle,
+          inner sep = 0pt,
+          minimum size = 4pt
+        }
+      ]
+      \coordinate (O) at (0,0);
+
+      \draw[step=1cm,gray!40] (-0.1,-0.1) grid (7.9,4.9);
+
+      % Achsen
+      \draw[->] (-0.3,0) -- (8,0) coordinate[label = {below:$x$}] (xmax);
+      \draw[->] (0,-0.3) -- (0,5) coordinate[label = {right:$f(x)$}] (ymax);
+
+      % Graph
+      \draw[domain=0:5,smooth,variable=\x,red, label={right:$f$}] plot ({\x},{0.2*\x*\x});
+      \draw (1,1.2) node[red,label= {[red]below:$f$}] {};
+
+      % Tangente
+      \draw[domain=2.2:5, variable=\x, black!60!green] plot ({\x},{1.6*(\x-4)+3.2});
+
+      % Normale
+      \draw[domain=2:6, variable=\x, orange] plot ({\x},{-0.625*(\x-4)+3.2});
+
+      % y-Wert
+      \draw (4,3.2) -- (-0.1, 3.2) node[label = {left:$f(x_0)$}] {};
+
+      % x-Wert und marker
+      \draw (4,3.2) node[dot] {} -- (4,-0.1) node[label = {below:$x_0$}] {};
+    \end{tikzpicture}
+    \caption{Tangente und Normale in $(x_0,f(x_0))$}
+  \end{marginfigure}
+  \begin{marginfigure}
+    \begin{tcolorbox}[colback=white!95!black,colframe=white!75!black,title=CAS:,arc=0mm]
+      \begin{scriptsize}
+        \textbf{Calculator}: \\*
+        \menu{Menü > Analysis > Normalenterm} \\*
+        \hfill \textsc{normalLine}(\( x^2 \), \( x \), 1) \( \leadsto -\tfrac{1}{2}x+\tfrac{3}{2} \)
+      \end{scriptsize}
+    \end{tcolorbox}
+  \end{marginfigure}
+  Zusätzlich zur Tangente an $(x_0,f(x_0))$ kann man auch die sogenannte \emph{Normale} konstruieren. Diese steht senkrecht zur Tangente. \\
+  Die Normalengleichung ist logischerweise bis auf die Steigung identisch mit der Tangentengleichung: \\
+  $n(x)=-\frac{1}{f'(x_0)}*(x-x_0)+f(x_0)$
+\end{bla}
+
+\begin{koch}
+  \textbf{Tangente/Normale in einem Punkt $P(x_0|f(x_0))$ bestimmen}: \\
+  \begin{itemize}
+    \item \textbf{Tangente}: $t(x)=f'(x_0)*(x-x_0)+f(x_0)$
+    \item \textbf{Normale}: $n(x)=\frac{1}{f'(x_0)}*(x-x_0)+f(x_0)$
+  \end{itemize}
+\end{koch}
+
+
+
+\begin{bla}{Tangente durch einen Punkt anlegen}
+  Gegeben ist eine Funktion (beispielsweise $f(x)=\tfrac{1}{4}*x^2$) und ein Punkt, der \emph{nicht} auf dem Graphen liegt (beispielsweisei $P(\tfrac{3}{2}|-1)$). Gesucht ist eine Tangente an $f(x)$, die durch $P$ geht.
+  \begin{enumerate}
+    \item Wähle beliebigen Berührpunkt von Tangente und Funktion: $B(x_0|f(x_0))$ (dieser liegt logischerweise auf der Funktion).
+    \item Die Steigung der Tangenten ist
+    \begin{enumerate}
+      \item $f'(x_0)$
+      \item Die Steigung im Steigungsdreieck: $\frac{f(x_0)-(-1)}{x_0-\tfrac{3}{2}}$
+    \end{enumerate}
+    \item Wir berechnen die Ableitung von $f(x)$ (wie das geht steht im nächsten Kapitel): $f'(x)=\tfrac{1}{2}*x$
+    \item Wir setzen die Steigungen gleich und erhalten so $x_0$:
+    \begin{equation*}
+      f'(x_0)=\tfrac{1}{2}*x_0=\frac{f(x_0)-(-1)}{x_0-\tfrac{3}{2}} \Leftrightarrow {x_0}^2-3x_0-4=0
+    \end{equation*}
+    Mit der Mitternachtsformel erhalten wir $x_{0_1}=-1$ und $x_{0_2}=4$. Durch Einsetzen in die Funktion erhalten wir die Berührpunkte $B_1(-1|\tfrac{1}{4})$ und $B_2(4|4)$. Mit der allgemeinen Tangentengleichung erhalten wir jeweils die Tangente:
+    \begin{equation*}
+      t_1(x)=-\tfrac{1}{2}x- \tfrac{1}{4}
+    \end{equation*}
+    und
+    \begin{equation*}
+      t_2(x)=2x-4
+    \end{equation*}
+  \end{enumerate}
+\end{bla}
+
+\begin{bla}{Ableitungsfunktion}
+  Wir haben oben gesehen, dass man für jedes $x_0$ die Steigung von $f$ in $x_0$ berechnen kann (bis auf Ausnahmen, aber darauf wollen wir hier noch nicht eingehen). Diese haben wir $f'(x_0)$ genannt. Wir verallgemeinern das und nennen $f'(x)$ die \emph{Ableitung} von $f$. Sie ordnet jedem $x_0$ die Steigung $f'(x_0)$ zu.
+\end{bla}
+
+
+
+\begin{bla}{Beispiel: Ableitungsfunktion berechnen}
+  \begin{marginfigure}
+    \begin{tikzpicture}[
+        scale=0.7,
+        thick,
+        >=stealth',
+        dot/.style = {
+          draw,
+          fill = white,
+          circle,
+          inner sep = 0pt,
+          minimum size = 4pt
+        }
+      ]
+      \coordinate (O) at (0,0);
+
+      \draw[step=1cm,gray!40] (-2.9,-2.9) grid (2.9,2.9);
+
+      % Achsen
+      \draw[->] (-3,0) -- (3,0) coordinate[label = {below:$x$}] (xmax);
+      \draw[->] (0,-3) -- (0,3) coordinate[label = {right:$f(x)$}] (ymax);
+
+      % Graph
+      \draw[domain=-2:2,smooth,variable=\x,red] plot ({\x},{\x*\x});
+      \draw (2,2.5) node[red,label={[red]below:$x^2$}] {};
+
+      % Ableitung
+      \draw[domain=-1.5:2,variable=\x,black!60!green] plot ({\x},{2*\x});
+      \draw (-1,-0.5) node[label={[black!60!green]below:$2x$}] {};
+    \end{tikzpicture}
+    \caption{$f(x)=x^2$ und $f'(x)=2x$}
+  \end{marginfigure}
+
+  Wir möchten nun die Ableitungsfunktion von $f(x)=x^2$ berechnen. Diese wird wie die Ableitung an einem Punkt berechnet: \\
+  \begin{equation*}
+    \begin{split}
+      f'(x) & = \lim\limits_{h \to 0}\frac{f(x+h)-f(x)}{h} = \lim\limits_{h \to 0}\frac{{(x+h)}^2-x^2}{h} = \lim\limits_{h \to 0}\frac{x^2+2xh+h^2-x^2}{h} \\
+      & = \lim\limits_{h \to 0}\frac{2xh+h^2}{h} = \lim\limits_{h \to 0}(2xh+h)\xrightarrow{h\rightarrow 0}2x
+    \end{split}
+  \end{equation*}
+\end{bla}
+
+
+
+\begin{bla}{Ableitungsregeln}
+  Damit man nicht immer mühsam den Grenzwert bestimmen muss, um die Ableitungsfunktion zu erhalten, gibt es einige \emph{Ableitungsregeln} ($r$ ist eine beliebige Zahl):
+  \begin{itemize}
+    \item \textbf{Konstantenregel}: Die Steigung einer Konstanten ($f(x)=a$ für eine Zahl $a$) ist überall Null, also gilt für ihre Ableitung: $f'(x)=0$.
+    \item \textbf{Potenzregel}: $f(x)=x^r \Rightarrow f'(x)=r*x^{r-1}$ \\
+    Beispiel: $f(x)=x^2 \Rightarrow f'(x)=2*x^{2-1}=2*x$
+
+    \item \textbf{Faktorregel}: $f(x)=r*g(x) \Rightarrow f'(x)=r*g'(x)$ \\
+    Beispiel: $f(x)=2x=2x^1 \Rightarrow f'(x)=2*1*x^{1-1}=2*x^0=2*1=2$
+    % TODO verstehen die das? Eventuell leichteres Beispiel ergänzen
+
+    \item \textbf{Summenregel}: $f(x)=g(x)+h(x) \Rightarrow f'(x)=g'(x)+h'(x)$ \\
+    Beispiel: $f(x)=x^2+2x \Rightarrow f'(x)=2x+2$
+
+    \item \textbf{Produktregel}: $f(x)=g(x)*h(x) \Rightarrow f'(x)=g'(x)*h(x)+g(x)*h'(x)$ \\
+    Beispiel: $f(x)=(x^2)*(2x) \Rightarrow f'(x)=(2x)*(2x)+(x^2)*(2)=4x^2+2x^2=6x^2$
+
+    \item \textbf{Quotientenregel}: $f(x)=\frac{g(x)}{h(x)} \Rightarrow f'(x)=\frac{g'(x)*h(x)-g(x)*h'(x)}{h(x)*h(x)}$ \\
+    Beispiel: $f(x)=\frac{x^2}{2x} \Rightarrow f'(x)=\frac{(2x)*(2x)-(x^2)*(2)}{(2x)*(2x)}=\frac{4x^2-2x^2}{4x^2}=\frac{2x^2}{4x^2}=\frac{1}{2}$. Das ist klar, da $\frac{x^2}{2x}=\frac{1}{2}x$.
+
+    \item \textbf{Kettenregel}: $f(x)=g(h(x)) \Rightarrow f'(x)=g'(h(x))*h'(x)$ \\
+    Beispiel: $f(x)={(2x)}^2 \Rightarrow f'(x)=(2*(2x))*(2)=4*2x=8x$ \\
+    Bemerkung: Zwei Funktionen werden verkettet, indem man für jedes $x$ in der äußeren Funktion (hier also $g(x)$) die innere Funktion (hier $h(x)$) einsetzt: \\ $g(x)=x^2, h(x)=2x \rightarrow g(h(x))={(2x)}^2$
+  \end{itemize}
+\end{bla}
+
+
+
+% TODO trigonometrische Funktionen erklären
+\begin{bla}{Ableitungen von trigonometrischen Funktionen}
+  Es gilt:
+  \begin{itemize}
+    \item $f(x)=\sin(x)\ \Rightarrow\  f'(x)=\cos(x)$
+    \item $f(x)=\cos(x)\ \Rightarrow\ f'(x)=-\sin(x)$
+  \end{itemize}
+\end{bla}
+
+\begin{bla}{Beispiel: mehrere Regeln anwenden}
+  In den meisten Fällen reicht es nicht aus, nur eine Ableitungsregel zu benutzen, um die Ableitung einer Funktion zu bestimmen. Beispielsweise kann es sich um eine verkettete Funktion handeln, bei der die innere Funktion eine Summe aus zwei Funktionen ist: \\
+  \begin{equation*}
+    f(x)=\sqrt{2x+1}={(2x+1)}^\frac{1}{2}
+  \end{equation*}
+  \begin{equation*}
+  \begin{split}
+      f'(x) & = \frac{1}{2}*{(2x+1)}^{-\frac{1}{2}}*2 \\
+      & = {(2x+1)}^{-\frac{1}{2}}  \\
+      & = \frac{1}{\sqrt{2x+1}}
+    \end{split}
+  \end{equation*}
+\end{bla}
+
+\section{Höhere Ableitungen}
+  \begin{marginfigure}
+    \begin{tcolorbox}[colback=white!95!black,colframe=white!75!black,title=CAS:,arc=0mm]
+      \begin{scriptsize}
+        \textbf{Calculator}: \\*
+        \hfill \( \tfrac{\partial}{\partial x}\left( \tfrac{\partial}{\partial x}(x^2) \right) \leadsto 2 \)
+      \end{scriptsize}
+    \end{tcolorbox}
+  \end{marginfigure}
+
+
+\begin{bla}{Höhere Ableitungen und ihre Bedeutung}
+  Man kann die Ableitung einer Funktion erneut ableiten und erhält so die \emph{zweite Ableitung}, $f''(x)$.
+  \begin{enumerate}
+    \item \textbf{Erste Ableitung}: Die erste Ableitung stellt die Steigung der Urpsrungsfunktion dar.
+    \item \textbf{Zweite Ableitung}: Die zweite Ableitung stellt die Geschwindigkeit, mit der sich die Steigung der Urpsprungsfunktion ändert, dar.
+  \end{enumerate}
+  \textbf{Beispiel}: $f(x)=x^2, f'(x)=2x, f''(x)=2$. Wir erkennen:
+  \begin{itemize}
+    \item: $2x$ ist kleiner als Null für negative $x$, also ist die Steigung von $x^2$ für $x<0$ negativ (genau gleich sieht man, dass die Steigung von $x^2$ für $x>0$ positiv ist, für $x=0$ ist die Steigung von $x^2$ Null).
+    \item $f''(x)=2$ ist 2 für alle $x$, also nimmt die Steigung von $x^2$ immer zu (schaut euch dazu nochmal den Graphen von $x^2$ an!).
+  \end{itemize}
+\end{bla}
+
+\begin{bla}{Links- und Rechtskurven}
+  Wir haben im letzten Absatz gesehen, dass die Steigung von $x^2$ stets zunimmt (da $f''(x)=2$ immer positiv ist). Wir nennen einen Abschnitt von $f$, auf dem $f''$ positiv ist, \textbf{Linkskurve} und einen Abschnitt, auf dem $f''$ negativ ist, \textbf{Rechtskurve}.
+\end{bla}
+
+\begin{marginfigure}
+  \begin{tikzpicture}[
+      scale=0.7,
+      thick,
+      >=stealth',
+      dot/.style = {
+        draw,
+        fill = white,
+        circle,
+        inner sep = 0pt,
+        minimum size = 4pt
+      }
+    ]
+    \coordinate (O) at (0,0);
+
+    \draw[step=1cm,gray!40] (-2.9,-2.9) grid (2.9,2.9);
+
+    % Achsen
+    \draw[->] (-3,0) -- (3,0) coordinate[label = {below:$x$}] (xmax);
+    \draw[->] (0,-3) -- (0,3) coordinate[label = {right:$f(x)$}] (ymax);
+
+    % Graph Teil1
+    \draw[domain=0:1.5,smooth,variable=\x,red] plot ({\x},{\x*\x*\x});
+
+    % Graph Teil 2
+    \draw[domain=-1.5:0,smooth,variable=\x,black!60!green] plot ({\x},{\x*\x*\x});
+
+  \end{tikzpicture}
+  \caption{$f(x)=x^3$ ist vor $0$ eine Rechts- und danach eine Linkskurve. Ihr könnt euch vorstellen, dass ihr von $-\infty$ nach $\infty$ auf dem Graphen entlangfahrt.}
+\end{marginfigure}

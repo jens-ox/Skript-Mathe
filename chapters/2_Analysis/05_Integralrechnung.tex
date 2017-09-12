@@ -1,0 +1,558 @@
+\chapter{Integralrechnung}
+\begin{inhalt}
+  \begin{itemize}
+    \item Stammfunktionen und Integrale
+    \item Integrale bestimmen: Annäherung und Hauptsatz
+    \item Uneigentliche Integrale
+    \item Mittelwert
+    \item Von Graphen beschränkte Flächen und Rotationskörper
+  \end{itemize}
+\end{inhalt}
+
+In diesem Kapitel werden wir uns mit der sogenannten \emph{Integralrechnung} beschäftigen. Ein wichtiges Hilfsmittel wird sein, Funktionen nicht nur ab-, sondern auch \textbf{aufleiten} zu können. Diese Aufleitungen nennen wir \emph{Stammfunktionen}.
+
+\section{Stammfunktionen}
+
+\begin{bla}{Stammfunktion}
+  \begin{marginfigure}
+    \begin{tcolorbox}[colback=white!95!black,colframe=white!75!black,title=CAS:,arc=0mm]
+      \begin{scriptsize}
+        \textbf{Calculator}: \\*
+        \menu{Menü > Analysis > Integral} \\*
+        \hfill \( \int_{\Box}^{\Box}x^2 dx \leadsto \tfrac{x^3}{3} \)
+      \end{scriptsize}
+    \end{tcolorbox}
+  \end{marginfigure}
+  Eine Stammfunktion $F$ zu einer gegebenen Funktion $f$ ist eine Funktion, sodass $F'(x)=f(x)$ gilt. $f$ ist also die Ableitung von $F$. Um eine Stammfunktion zu $f$ zu konstruieren, müssen wir $f$ aufleiten.
+\end{bla}
+
+\begin{bla}{Aufleitungsregeln}
+  Das Aufleiten funktioniert genau wie das Ableiten, nur rückwärts. Zur Vereinfachung gibt es ein paar Regeln:
+  \begin{itemize}
+    \item \textbf{Potenzregel}: $f(x)=x^r\ \Rightarrow\ F(x)=\frac{1}{n+1}x^{n+1}$.\\
+    Dass diese Regel gilt sieht man leicht ein, indem man $F$ ableitet und $f$ erhält (dies gilt auch für alle anderen Regeln).
+
+    \item \textbf{Summenregel}: $f(x)=g(x)+h(x)\ \Rightarrow\ F(x)=G(x)+H(x)$
+
+    \item \textbf{Faktorregel}: $f(x)=c*g(x)\  \Rightarrow\  F(x)=c*G(x)$
+
+    \item \textbf{Kettenregel}: $f(x)=g(cx+d)\ \Rightarrow\ F(x)=\frac{1}{c}G(cx+d)$ ($c$ und $d$ sind Zahlen).
+  \end{itemize}
+\end{bla}
+
+\begin{bla}{Stammfunktionen zu speziellen Funktionen}
+  Viele Funktionen können mit den vier Regeln nicht aufgeleitet werden. Es gibt aber noch einige Funktionen, deren Stammfunktionen man kennen sollte:
+  \begin{itemize}
+    \item $f(x)=\frac{1}{x}\ \Rightarrow\  F(x)=\ln(x)$
+
+    \item $f(x)=a^x\  \Rightarrow\  F(x)=\frac{a^x}{\ln(a)}$
+
+    \item $f(x)=\sin(x)\  \Rightarrow\  F(x)=-\cos(x)$
+
+    \item $f(x)=\cos(x)\  \Rightarrow\  F(x)=\sin(x)$
+  \end{itemize}
+  Man sieht diese Regeln leicht ein, in dem man die Ableitungen der Stammfunktionen bildet.
+\end{bla}
+
+\section{Integrale}
+
+\begin{bla}{Orientierter Flächeninhalt}
+  Wir werden im Folgenden den Flächeninhalt zwischen einem Funktionsgraphen und der $x$-Achse betrachten. Es gilt zu beachten, dass hierbei der Flächeninhalt unterhalb der $x$-Achse als negativ betrachtet wird.
+\end{bla}
+
+\begin{marginfigure}
+  \begin{tikzpicture}[
+      scale=0.7,
+      thick,
+      >=stealth',
+      dot/.style = {
+        draw,
+        fill = white,
+        circle,
+        inner sep = 0pt,
+        minimum size = 4pt
+      }
+    ]
+    \coordinate (O) at (0,0);
+
+    \draw[step=1cm,gray!40] (-3.9,-1.4) grid (3.9,1.4);
+
+    % Flächeninhalt oberhalb
+    \fill[green!30,domain=0:3.141592] (0,0) -- plot({\x},{sin(deg(\x))}) -- (3.141592,0) -- cycle;
+
+    % Flächeninhalt unterhalb
+    \fill[red!20,domain=-3.141592:0] (-3.141592,0) -- plot({\x},{sin(deg(\x))}) -- (0,0) -- cycle;
+
+    % Achsen
+    \draw[->] (-4,0) -- (4,0) coordinate[label = {below:$x$}] (xmax);
+    \draw[->] (0,-1.5) -- (0,1.5) coordinate[label = {right:$f(x)$}] (ymax);
+
+    % Graph
+    \draw[domain=-3.8:3.8,smooth,variable=\x,red] plot ({\x},{sin(deg(\x))});
+    \draw (3.4,1) node[red,label={[red]below:$sin(x)$}] {};
+
+    % Nullstellen
+    \draw[-] (-3.141592,-0.1) -- (-3.141592,0.1) node[label={above:$-\pi$}] {};
+    \draw[-] (3.141592,-0.1) -- (3.141592,0.1) node[label={below:$\pi$}] {};
+  \end{tikzpicture}
+  \caption{\textcolor{red}{Negativer} und \textcolor{black!20!green}{positiver} Flächeninhalt von $f(x)=\sin(x)$ auf $[-\pi,\pi]$. Die Summe des Flächeninhaltes der beiden Flächen beträgt Null!}
+\end{marginfigure}
+
+\begin{bla}{Bemerkung: Berechnung der Fläche unter einer Kurve durch Approximation}
+  Anschaulich kann man den Flächeninhalt unter einer Kurve berechnen, indem man Rechtecke unter die Kurve zeichnet. Macht man diese Rechtecke immer dünner, so wird die Annäherung immer genauer.
+
+  \begin{marginfigure}
+    \begin{tikzpicture}[
+        scale=0.7,
+        thick,
+        >=stealth',
+        dot/.style = {
+          draw,
+          fill = white,
+          circle,
+          inner sep = 0pt,
+          minimum size = 4pt
+        }
+      ]
+      \coordinate (O) at (0,0);
+
+      \draw[step=1cm,gray!40] (-0.1,-0.1) grid (5.9,2.9);
+
+      % Rechteck 1
+      \draw[-,black!60!green] (0,0) -- (1,0) -- (1,0.7071) -- (0,0.7071) -- cycle;
+      \fill[green!30] (0,0) -- (1,0) -- (1,0.7071) -- (0,0.7071) -- cycle;
+
+      % Rechteck 2
+      \draw[-,black!60!green] (1,0) -- (2,0) -- (2,1.2247) -- (1,1.2247) -- cycle;
+      \fill[green!30] (1,0) -- (2,0) -- (2,1.2247) -- (1,1.2247) -- cycle;
+
+      %Rechteck 3
+      \draw[-,black!60!green] (2,0) -- (3,0) -- (3,1.5811) -- (2,1.5811) -- cycle;
+      \fill[green!30] (2,0) -- (3,0) -- (3,1.5811) -- (2,1.5811) -- cycle;
+
+      % Rechteck 4
+      \draw[-,black!60!green] (3,0) -- (4,0) -- (4,1.8708) -- (3,1.8708) -- cycle;
+      \fill[green!30] (3,0) -- (4,0) -- (4,1.8708) -- (3,1.8708) -- cycle;
+
+      % Rechteck 5
+      \draw[-,black!60!green] (4,0) -- (5,0) -- (5,2.1213) -- (4,2.1213) -- cycle;
+      \fill[green!30] (4,0) -- (5,0) -- (5,2.1213) -- (4,2.1213) -- cycle;
+
+      % Achsen
+      \draw[->] (-0.1,0) -- (6,0) coordinate[label = {below:$x$}] (xmax);
+      \draw[->] (0,-0.1) -- (0,3) coordinate[label = {right:$f(x)$}] (ymax);
+
+      % Graph
+      \draw[domain=0:5.8,smooth,variable=\x,red] plot ({\x},{sqrt(\x)});
+      \draw (3.4,2.8) node[red,label={[red]below:$\sqrt{x}$}] {};
+
+      % Marker
+      \draw[-] (1,-0.1) -- (1,0.1) node[label={below:$1$}] {};
+      \draw[-] (2,-0.1) -- (2,0.1) node[label={below:$2$}] {};
+      \draw[-] (3,-0.1) -- (3,0.1) node[label={below:$3$}] {};
+      \draw[-] (4,-0.1) -- (4,0.1) node[label={below:$4$}] {};
+      \draw[-] (5,-0.1) -- (5,0.1) node[label={below:$5$}] {};
+
+    \end{tikzpicture}
+    \caption{Annäherung des Flächeninhalts unter $f(x)=\sqrt{x}$ auf dem Intervall $[0,5]$}
+  \end{marginfigure}
+  Durch diese Annäherung erhält man die Formel:
+  \begin{equation*}
+    \int_a^b f(x)dx = \lim\limits_{n \to \infty}\sum_{k=1}^n f(x_k)*\frac{b-a}{n}
+  \end{equation*}
+\end{bla}
+
+\begin{bla}{Hauptsatz der Differential- und Integralrechnung}
+  \begin{marginfigure}
+    \begin{tcolorbox}[colback=white!95!black,colframe=white!75!black,title=CAS:,arc=0mm]
+      \begin{scriptsize}
+        \textbf{Calculator}: \\*
+        \menu{Menü > Analysis > Integral} \\*
+        \hfill \( \int_0^{2\pi}\sin(x) dx \leadsto 2 \) \\* \ \\*
+        \textbf{Graph}: \\*
+        \menu{Menü > Graph anal. > Integral > Punkte/Schnitte auswählen}
+      \end{scriptsize}
+    \end{tcolorbox}
+  \end{marginfigure}
+  Mit der vorherigen Bemerkung wird nicht gerechnet, sie ist viel zu aufwändig. \\
+  Es gilt:
+  \begin{equation*}
+    \int_a^b f(x)dx={[F(x)]}_a^b=F(b)-F(a)
+  \end{equation*}
+  So kann man das Integral einer Funktion $f(x)$ auf einem Intervall $[a,b]$ leicht berechnen, sobald man eine Stammfunktion $F(x)$ von $f(x)$ gefunden hat.
+\end{bla}
+
+\begin{bla}{Integral mit dem Hauptsatz berechnen}
+  Wir berechnen hier die Stammfunktion von $x^2$ mithilfe der \emph{Potenzregel}.
+  \begin{equation*}
+    \int_{-1}^2 x^2={\left[\frac{1}{3}x^3\right]}_{-1}^2=\left(\frac{1}{3}*2^3\right)-\left(\frac{1}{3}*{(-1)}^3\right)=3
+  \end{equation*}
+
+  \begin{marginfigure}
+    \begin{tikzpicture}[
+        scale=0.7,
+        thick,
+        >=stealth',
+        dot/.style = {
+          draw,
+          fill = white,
+          circle,
+          inner sep = 0pt,
+          minimum size = 4pt
+        }
+      ]
+      \coordinate (O) at (0,0);
+
+      \draw[step=1cm,gray!40] (-2.4,-1.4) grid (2.4,4.4);
+
+      % Flächeninhalt oberhalb
+      \fill[green!30,domain=-1:2] (-1,0) -- plot({\x},{(\x)^2}) -- (2,0) -- cycle;
+
+      % Achsen
+      \draw[->] (-2.5,0) -- (2.5,0) coordinate[label = {below:$x$}] (xmax);
+      \draw[->] (0,-1.5) -- (0,4.5) coordinate[label = {right:$f(x)$}] (ymax);
+
+      % Graph
+      \draw[domain=-1.5:2.2,smooth,variable=\x,red] plot ({\x},{(\x)^2});
+      \draw (-1.5,1.5) node[red,label={[red]below:$x^2$}] {};
+
+      % Nullstellen
+      \draw[-] (-1,-0.1) -- (-1,0.1) node[label={below:$-1$}] {};
+      \draw[-] (2,-0.1) -- (2,0.1) node[label={below:$2$}] {};
+    \end{tikzpicture}
+    \caption{Der in obigem Beispiel berechnete Flächeninhalt unter $x^2$}
+  \end{marginfigure}
+\end{bla}
+
+\begin{bla}{Rechenregeln für Integrale}
+  Diese Regeln ergeben sich aus den Regeln zum Bestimmen einer Stammfunktion:
+  \begin{enumerate}
+    \item $\int_a^b c*f(x)dx = c*\int_a^b f(x)dx$
+    \item $\int_a^b (f(x)+g(x))dx = \int_a^b f(x)dx + \int_a^b g(x)dx$
+  \end{enumerate}
+\end{bla}
+
+\begin{bla}{Mittelwert einer Funktion}
+  Möchte man den Mittelwert von Zahlen bestimmen, so rechnet man $\overline{m}=\frac{1}{n}(z_1+z_2+\dots+z_n)$. Bei einer Funktion geht das sehr ähnlich, man bestimmt den Mittelwert der Fläche unter jedem Punkt des Intervalls:
+  \begin{equation*}
+    \overline{m} = \frac{1}{b-a}\int_a^b f(x)dx
+  \end{equation*}
+\end{bla}
+
+
+
+\begin{bla}{Uneigentliche Integrale, Integralfunktion}
+  Ein \emph{uneigentliches Integral} ist ein Integral, bei dem mindestens eine Integrationsgrenze nicht eine Zahl, sondern eine Variable ist, also beispielsweise über das Intervall $[-2,k]$ integriert wird. Der Flächeninhalt unter dem Graphen der Funktion lässt sich deswegen hier nur in Abhängigkeit von $k$ darstellen. Deswegen spricht man hier auch häufig von einer \emph{Integralfunktion}.
+\end{bla}
+
+\begin{bla}{Bemerkung: Uneigentliche Integrale mit zwei variablen Integrationsgrenzen}
+  Sind beide Integrationsgrenzen eines Integrals variabel (also z.B. $a$ und $b$), so wählt man eine Zahl und zerteilt das Integral an der Stelle in zwei Teile:
+  \begin{equation*}
+    \int_a^b x^2 =\int_a^0 x^2 + \int_0^b x^2
+  \end{equation*}
+  So kann man ein doppelt uneigentliches Integral zu zwei einfach uneigentlichen Integralen machen. Deswegen werden wir im Folgenden nur mit einfach uneigentlichen Integralen arbeiten.
+\end{bla}
+
+\begin{bla}{Uneigentliche Integrale: Grenzwerte}
+  \begin{marginfigure}[5em]
+    \begin{tcolorbox}[colback=white!95!black,colframe=white!75!black,title=CAS:,arc=0mm]
+      \begin{scriptsize}
+        \textbf{Calculator}: \\*
+        \hfill \( \lim_{k \to \infty} \left( \int_0^k \tfrac{1}{e^x} dx \right) \)
+      \end{scriptsize}
+    \end{tcolorbox}
+  \end{marginfigure}
+  Oft betrachtet man uneigentliche Integrale, bei denen die variable Integrationsgrenze gegen $\pm \infty$ gehen soll. Dazu berechnet man den Flächeninhalt in Abhängigkeit der variablen Integrationsgrenze und analysiert dann die Entwicklung der Funktion für $x\rightarrow\pm\infty$.
+\end{bla}
+
+\clearpage
+
+\begin{bla}{Beispiel: Uneigentliches Integral}
+  Wir betrachten das uneigentliche Integral
+  \begin{equation*}
+    \int_1^k e^{-x} dx\text{:}
+  \end{equation*}
+  \begin{equation*}
+    \int_1^k e^{-x} dx = {[-e^{-x}]}_1^k=\left(-e^{-k}\right)-\left(-e^{-1}\right)=e^{-k}+e^{-1}
+  \end{equation*}
+  Es ist $\lim\limits_{k \to \infty} e^{-k}=0$, also $\lim\limits_{k \to \infty}\left(e^{-k}+e^{-1}\right)=0+e^{-1}=\tfrac{1}{e}$. Wir schreiben:
+  \begin{equation*}
+    \int_1^\infty e^{-x} = \tfrac{1}{e}\text{.}
+  \end{equation*}
+\end{bla}
+
+\begin{marginfigure}[-15em]
+  \begin{tikzpicture}[
+      scale=0.7,
+      thick,
+      >=stealth',
+      dot/.style = {
+        draw,
+        fill = white,
+        circle,
+        inner sep = 0pt,
+        minimum size = 4pt
+      }
+    ]
+    \coordinate (O) at (0,0);
+
+    \draw[step=1cm,gray!40] (-1.4,-1.4) grid (3.9,3.9);
+
+    % Flächeninhalt oberhalb
+    \fill[green!30,domain=1:3.5] (1,0) -- plot({\x},{exp(-\x)}) -- (3.5,0) -- cycle;
+
+    % Achsen
+    \draw[->] (-1.5,0) -- (4,0) coordinate[label = {below:$x$}] (xmax);
+    \draw[->] (0,-1.5) -- (0,4) coordinate[label = {right:$f(x)$}] (ymax);
+
+    % Graph
+    \draw[domain=-1:4,smooth,variable=\x,red] plot ({\x},{exp(-\x)});
+    \draw (-1,1.8) node[red,label={[red]below:$e^{-x}$}] {};
+
+    % Nullstellen
+    \draw[-] (1,-0.1) -- (1,0.1) node[label={below:$1$}] {};
+    \draw[-] (3.5,-0.1) -- (3.5,0.1) node[label={below:$k$}] {};
+  \end{tikzpicture}
+  \caption{Das uneigentliche Integral $\int_1^k e^{-x}$}
+\end{marginfigure}
+
+
+
+\begin{bla}{Rotationskörper}
+  Einen \emph{Rotationskörper} erhält man, indem man den Graph einer Funktion um die $x$-Achse rotiert (die Funktion $f(x)=1$ ergibt beispielsweise einen Zylinder mit dem Radius $r=1$).
+\end{bla}
+
+\begin{bla}{Berechnung des Volumens eines Rotationskörpers}
+  Wir erinnern uns: Der Flächeninhalt unter einem Funktionsgraphen haben wir bestimmt, indem wir ihn mit Rechtecken angenähert haben. Bei der Rotation des Graphen um die $x$-Achse macht man also einfach dasselbe mit den Rechtecken und sie werden zu Zylindern, deren Volumen wir durch $V_{Zylinder}=\pi*r^2*h$ berechnen können. Wir setzen den Radius $r=f(x_p)$, also die Höhe des Rechtecks und für die Höhe $h=\frac{b-a}{n}$, also die Breite des Rechtecks (man muss vielleicht ein bisschen darüber nachdenken, um das nachvollziehen zu können). \\
+  Nun summieren wir anstatt des Flächeninhalts der Rechtecke die Volumina der Zylinder zusammen. Wir erhalten:
+  \begin{equation*}
+     V_{Rotationskörper}=\pi \int_a^b {(f(x))}^2dx
+  \end{equation*}
+  Da das eine relativ umfangreiche Formel ist, sieht man ihre Funktionsweise vielleicht am besten an einem
+\end{bla}
+
+\begin{bla}{Beispiel}
+  Wir berechnen das Volumen des Rotationskörpers von $f(x)=x(x-1)$ auf dem Intervall $[0,1]$:
+  \begin{align*}
+    & \pi*\int_0^1 (x(x-1))^2dx=\pi*{\left[\tfrac{1}{5}x^5- \tfrac{1}{2}x^4+ \tfrac{1}{3}x^3\right]}_0^1 \\
+    =&\  \pi*\left(\tfrac{1}{5}- \tfrac{1}{2}+ \tfrac{1}{3}\right) \\
+    =&\  \frac{\pi}{30}
+  \end{align*}
+\end{bla}
+
+\begin{marginfigure}[-25em]
+  \begin{tikzpicture}[
+    thick,
+    >=stealth',
+    dot/.style = {
+      draw,
+      fill = white,
+      circle,
+      inner sep = 0pt,
+      minimum size = 4pt
+    }
+    ]
+  % The axes
+  \draw[->] (xyz cs:x=-1.5) -- (xyz cs:x=4.5) node[above] {$x$};
+  \draw[->] (xyz cs:y=-1.5) -- (xyz cs:y=1.5) node[right] {$f(x)$};
+  \draw[<-] (xyz cs:z=-2.5) -- (xyz cs:z=2.5) node[above] {};
+  % ticks - x
+  \foreach \coo in {-1,0,...,4}
+  {
+    \draw (\coo,-1.5pt) -- (\coo,1.5pt);
+  }
+
+  % ticks - y
+  \foreach \coo in {-1,0,1}
+  {
+    \draw (-1.5pt,\coo) -- (1.5pt,\coo);
+  }
+
+  % Ticks - z
+  \foreach \coo in {-2,-1,...,2}
+  {
+    \draw (xyz cs:y=-0.1pt,z=\coo) -- (xyz cs:y=0.1pt,z=\coo);
+  }
+
+  % Rotation
+  \draw[domain=0:3.8,smooth,variable=\x,red!20] plot ({\x},{0.95*sin(deg(\x))});
+  \draw[domain=0:3.8,smooth,variable=\x,red!20] plot ({\x},{0.85*sin(deg(\x))});
+  \draw[domain=0:3.8,smooth,variable=\x,red!20] plot ({\x},{0.7*sin(deg(\x))});
+  \draw[domain=0:3.8,smooth,variable=\x,red!20] plot ({\x},{0.5*sin(deg(\x))});
+  \draw[domain=0:3.8,smooth,variable=\x,red!20] plot ({\x},{0.25*sin(deg(\x))});
+
+  \draw[domain=0:3.8,smooth,variable=\x,red!20] plot ({\x},{-0.95*sin(deg(\x))});
+  \draw[domain=0:3.8,smooth,variable=\x,red!20] plot ({\x},{-0.85*sin(deg(\x))});
+  \draw[domain=0:3.8,smooth,variable=\x,red!20] plot ({\x},{-0.7*sin(deg(\x))});
+  \draw[domain=0:3.8,smooth,variable=\x,red!20] plot ({\x},{-0.5*sin(deg(\x))});
+  \draw[domain=0:3.8,smooth,variable=\x,red!20] plot ({\x},{-0.25*sin(deg(\x))});
+  \draw[domain=0:3.8,smooth,variable=\x,red!20] plot ({\x},{-sin(deg(\x))});
+
+  % Graph
+  \draw[domain=0:3.8,smooth,variable=\x,red] plot ({\x},{sin(deg(\x))});
+  \draw (3.4,1) node[red,label={[red]below:$sin(x)$}] {};
+
+  % Ticks
+  \draw[-] (3.141592,0.1) -- (3.141592,-0.1) node[label={below:$\pi$}] {};
+  \end{tikzpicture}
+  \caption{Angedeutet: Rotationskörper von $f(x)=\sin(x)$ auf $[0,\pi]$}
+\end{marginfigure}
+
+
+
+\section{Flächeninhalte mit Integralen berechnen}
+
+Dass man mithilfe von Integralen Flächeninhalte berechnen kann sollte inzwischen klar sein. Hier wollen wir beispielsweise zeigen, wie man den Flächeninhalt zwischen zwei Funktionen berechnet.
+
+\begin{bla}{Vorsicht: orientierter Flächeninhalt}\  \\
+  Vorsicht! Berechnet man die Fläche zwischen einer Funktion und der $x$-Achse, so erhält man den \emph{orientierten Flächeninhalt}. Das bedeutet, dass dieser negativ ist, wenn die Funktion unterhalb der $x$-Achse verläuft. Will man also den \emph{Flächeninhalt} zwischen einer Funktion und der $x$-Achse berechnen, so muss man, wenn die Funktion mindestens teilweise unter dieser verläuft, gegebenenfalls in mehreren Schritten arbeiten:
+\end{bla}
+
+\begin{bla}{Tricky Flächeninhalt --- Teil I}
+  Wir wollen den Flächeninhalt zwischen diesem Graphen und der $x$-Achse berechnen:
+
+  \begin{marginfigure}
+    \begin{tikzpicture}[
+        scale=0.7,
+        thick,
+        >=stealth',
+        dot/.style = {
+          draw,
+          fill = white,
+          circle,
+          inner sep = 0pt,
+          minimum size = 4pt
+        }
+      ]
+      \coordinate (O) at (0,0);
+
+      \draw[step=1cm,gray!40] (-3.9,-1.4) grid (3.9,1.4);
+
+      % Flächeninhalt
+      \fill[green!30,domain=0:1.57079] (0,0) -- plot({\x},{sin(deg(\x))}) -- (1.57079,0) -- cycle;
+      \fill[green!30,domain=-1.57079:0] (-1.57079,0) -- plot({\x},{sin(deg(\x))}) -- (0,0) -- cycle;
+
+
+      % Achsen
+      \draw[->] (-4,0) -- (4,0) coordinate[label = {below:$x$}] (xmax);
+      \draw[->] (0,-1.57079) -- (0,1.57079) coordinate[label = {right:$f(x)$}] (ymax);
+
+      % Graph
+      \draw[domain=-2.2:2.2,smooth,variable=\x,red] plot ({\x},{sin(deg(\x))});
+
+      % Nullstellen
+      \draw[-] (-1.57079,-0.1) -- (-1.57079,0.1) node[label={above:$-\frac{\pi}{2}$}] {};
+      \draw[-] (1.57079,-0.1) -- (1.57079,0.1) node[label={below:$\frac{\pi}{2}$}] {};
+    \end{tikzpicture}
+    \caption{Der Flächeninhalt der grünen Fläche soll berechnet werden.}
+  \end{marginfigure}
+
+  Die rote Kurve ist der Graph von $f(x)=\sin(x)$. \\
+  \begin{itemize}
+    \item \textbf{orientierter Flächeninhalt}: Der orientierte Flächeninhalt ist logischerweise
+    \begin{equation*}
+      \begin{split}
+        & \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} \sin(x)dx = {[-\cos(x)]}_{-\frac{\pi}{2}}^{\frac{\pi}{2}} \\
+          &= \left( -\cos \left( \frac{\pi}{2} \right) \right) - \left( -\cos \left( -\frac{\pi}{2} \right) \right)
+          \stackrel{(1)}{=} \left( -\cos \left( \frac{\pi}{2} \right) \right) - \left( -\cos \left( \frac{\pi}{2} \right) \right) \\
+          &= \cos \left( \frac{\pi}{2} \right) - \cos \left( \frac{\pi}{2} \right) \\
+          &= 0
+      \end{split}
+    \end{equation*}
+    Wir nutzen hierbei bei $(1)$ die Punktsymmetrie zum Ursprung von $\cos(x)$ aus. \\
+    Das Ergebnis überrascht nicht, schließlich ist die Fläche unterhalb der $x$-Achse genauso groß wie die darüber.
+
+    \item \textbf{tatsächlicher Flächeninhalt}: Wir wollen nun den Flächeninhalt der grünen Fläche berechnen. Hierbei meinen wir mit \emph{Flächeninhalt} den tatsächlichen Flächeninhalt, also die Größe der Fläche, die grün ist, ohne Berücksichtigung, was über und was unter der $x$-Achse liegt. Dazu berechnen wir eine der beiden Teilflächen und verdoppeln das Ergebnis, da die beiden Flächen ja gleich groß sind:
+    \begin{equation*}
+      \begin{split}
+        & 2*\int_{0}^{\frac{\pi}{2}} \sin(x)dx = 2*{[-\cos(x)]}_{0}^{\frac{\pi}{2}} \\
+        &= 2*( (-\cos(\frac{\pi}{2})) - (-\cos(0)) ) = 2*( (-0)-(-1) ) \\
+        &= 2*1=2
+      \end{split}
+    \end{equation*}
+  \end{itemize}
+\end{bla}
+
+
+
+\begin{bla}{Fläche zwischen Kurven}
+  Möchte man anstatt der Fläche zwischen einem Graphen und der $x$-Achse die Fläche zwischen zwei Graphen bestimmen, so geht man wie folgt vor:
+  \begin{enumerate}
+    \item Flächeninhalt zwischen der $x$-Achse und dem oberen Graphen bestimmen ($=A$)
+    \item Flächeninhalt zwischen der $x$-Achse und dem unteren Graphen bestimmen ($=B$)
+    \item $A-B$ berechnen
+  \end{enumerate}
+  Die Flächen sind rechts veranschaulicht.
+
+  \begin{marginfigure}
+    \begin{tikzpicture}[
+        scale=0.7,
+        thick,
+        >=stealth',
+        dot/.style = {
+          draw,
+          fill = white,
+          circle,
+          inner sep = 0pt,
+          minimum size = 4pt
+        }
+      ]
+      \coordinate (O) at (0,0);
+
+      \draw[step=1cm,gray!40] (-3.9,-1.4) grid (3.9,2.4);
+
+      % Flächeninhalt 1
+      \fill[color=green!60,domain=0:1.57079] (0,0) -- plot({\x},{0.5*cos(deg(\x))+1.5}) -- (1.57079,0) -- cycle;
+
+      % Flächeninhalt 2
+      \fill[pattern=north west lines, pattern color=blue,domain=0:1.57079] (0,0) -- plot({\x},{sin(deg(\x))}) -- (1.57079,0) -- cycle;
+
+
+      % Achsen
+      \draw[->] (-4,0) -- (4,0) coordinate[label = {below:$x$}] (xmax);
+      \draw[->] (0,-1.57079) -- (0,2.57079) coordinate[label = {right:$f(x)$}] (ymax);
+
+      % Graphen
+      \draw[domain=-2.2:2.2,smooth,variable=\x,red] plot ({\x},{sin(deg(\x))});
+      \draw[domain=-2.2:2.2,smooth,variable=\x,black!60!green] plot ({\x},{0.5*cos(deg(\x))+1.5});
+
+      % Labels
+      \draw (3.2,1) node[label={[red]below:$\sin(x)$}] {};
+      \draw (3.4,2) node[label={[black!60!green]below:$\frac{\cos(x)}{2}+\frac{3}{2}$}] {};
+
+      % Nullstellen
+      \draw[-] (1.57079,-0.1) -- (1.57079,0.1) node[label={below:$\frac{\pi}{2}$}] {};
+    \end{tikzpicture}
+    \caption{Der Flächeninhalt zwischen dem grünen und dem roten Graphen soll auf dem angegebenen Intervall berechnet werden.}
+  \end{marginfigure}
+
+  \begin{enumerate}
+    \item \textbf{Große Fläche berechnen}:
+    \begin{equation*}
+      \begin{split}
+        & \int_{0}^{\frac{\pi}{2}} \frac{\cos(x)}{2}+\frac{3}{2}dx = \frac{1}{2} \int_{0}^{\frac{\pi}{2}} \cos(x)dx + \frac{3}{2} \int_{0}^{\frac{\pi}{2}} 1dx \\
+        &= \frac{1}{2}{[\sin(x)]}_{0}^{\frac{\pi}{2}}+\frac{3}{2} {[x]}_{0}^{\frac{\pi}{2}} \\
+        &= \frac{1}{2}\left( \sin\left(\frac{\pi}{2}\right) - \sin(0) \right) + \frac{3}{2} \left( \frac{\pi}{2} - 0 \right) \\
+        &= \frac{1}{2} + \frac{3\pi}{4}
+      \end{split}
+    \end{equation*}
+
+    \item \textbf{Kleine Fläche berechnen}: Das haben wir oben schon gemacht und haben $1$ erhalten.
+
+    \item \textbf{Kleine Fläche von großer Fläche abziehen}:
+    \begin{equation*}
+      \left(\frac{1}{2}+\frac{3\pi}{4}\right) - (1) = \frac{3\pi}{4}-\frac{1}{2}
+    \end{equation*}
+  \end{enumerate}
+  Fertig! \\
+  \textbf{Anmerkung}: Man kann das ganze auch in einem Schritt machen. Ist $f(x)$ die Funktion des oberen Graphen und $g(x)$ die des unteren, so ist die Fläche zwischen ihnen auf dem Intervall vom $a$ nach $b$: $\int_{a}^{b} f(x)dx - \int_{a}^{b} g(x)dx = \int_{a}^{b} f(x)-g(x)dx$. Dieses Integral kann man auch in die Formel für Rotationskörper einsetzen.
+\end{bla}
+
+\begin{koch}
+  Flächen bestimmen:
+  \begin{enumerate}
+    \item \textbf{Intervall bestimmen}: Auf welchem Intervall soll die Fläche bestimmt werden? Sind keine festen Grenzen gegeben, so müssen beispielsweise noch Nullstellen einer Funktion berechnet werden.
+    \item \textbf{Obere und untere Schranke bestimmen}: Was beschränkt die Fläche nach oben und was nach unten? Das kann zum Beispiel eine Funktion oder die $x$-Achse sein. Wechselt eine der beiden Schranken auf dem Intervall, so berechne diese Wechselstellen und unterteile das Integral in kleinere Integrale, sodass die Schranken immer eindeutig sind.
+    \item \textbf{Integrale berechnen}: Berechne die Integrale. Ist die Fläche nach oben und unten jeweils durch eine Funktion beschränkt, so ziehe die Fläche unter der unteren Schranke von der Fläche unter der oberen Schranke ab.
+  \end{enumerate}
+\end{koch}

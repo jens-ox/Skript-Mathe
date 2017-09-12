@@ -1,0 +1,98 @@
+\chapter{Hypothesentests}
+\begin{inhalt}
+  \begin{itemize}
+    \item Was sind Hypothesentests?
+    \item Einseitige Hypothesentests
+  \end{itemize}
+\end{inhalt}
+
+\begin{bla}
+  {Hypothesentests}
+  Für ein gegebenes Bernoulli-Experiment stellt sich in der echten Welt oft die Frage, wie hoch die Wahrscheinlichkeit $p$ für einen Treffer wirklich ist.
+  Nachprüfen kann man dazu allerdings nur in stichprobenartigen Tests.
+
+  Da so ein Experiment aber zufällig verläuft, kann das Ergebnis von dem Erwartungswert abweichen (zum Beispiel kann beim Münzwurf tausendmal nacheinander Kopf fallen, auch wenn die Münze mit $p=0.5$ perfekt funktioniert), also kann man aus einer kleinen Stichprobe nicht garantiert auf die Wahrscheinlichkeit der echten Welt schließen.
+  Im Fall der Münze könnte man aber vermuten, dass sie kaputt ist.
+  Das Ziel ist es deswegen, eine Aussage zu machen, von der man sich sehr sicher ist: ``Ich bin mir sehr sicher ($95\%$), dass ich mit mehr als \( 50\% \) Kopf werfe.''
+
+  Mathematisch ist also gesucht:
+  Ein alternative Vermutung für die Trefferwahrscheinlichkeit (hier $p>0.5$), und zusätzlich die Wahrscheinlichkeit, dass man falsch liegt und die echte Welt doch anders aussieht (hier $\sigma = 0.05$), das nennt man das Signifikanzniveau.
+\end{bla}
+
+\begin{bla}{Nullhypothese und Alternative}
+  Mathematisch baut man das so auf:
+  Man beginnt mit der sogenannten Nullhypothese $H_0$ und nimmt zunächst einmal für das Experiment feste Werte an.
+  Dabei wird auch eine Wahrscheinlichkeit für Treffer angenommen, z.B. $p=0.5$, damit man überhaupt etwas ausrechnen kann.
+
+  Dann formuliert man die \emph{Alternative} $H_1$, zum Beispiel die Vermutung $p>0.5$.
+\end{bla}
+
+\begin{bla}
+{Testen: Testumfang, Annahme- und Ablehnungsbereich}
+  Man möchte sich jetzt entscheiden, ob die Welt so funktioniert wie die Nullhypothese es aussagt, oder eben nicht.
+
+  Dazu führt man einen Test mit einem gewissen \emph{Testumfang} $n$ durch.
+
+  Dann rechnet man: Wenn das System funktionieren würde, wie in $H_0$ behauptet, kann man einen Bereich an Ergebnissen finden, der sehr unwahrscheinlich getroffen wird (Zum Beispiel mehr als \( 530 \) Mal `Kopf' von \( 1000 \) Münzwürfen ist seltener als \( 3 \% \)).
+
+  Wenn das Experiment jetzt also mehr als \( 530 \) Köpfe liefert, kann man mit hoher Wahrscheinlichkeit (\( 97 \% \)) sagen, dass die Münze nicht richtig funktioniert.
+  Man nennt den Bereich, in dem Ergebnisse liegen müssen, damit man die Nullhypothese verwirft, den \emph{Ablehnungsbereich}, der Rest ist der \emph{Annahmebereich}.
+\end{bla}
+
+\section{Einseitiger Hypothesentest}
+
+\begin{bla}{Beispiel --- rechtsseitiger Hypothesentest}
+  \begin{marginfigure}
+    \begin{tcolorbox}[colback=white!95!black,colframe=white!75!black,title=CAS:,arc=0mm]
+      \begin{scriptsize}
+        \textbf{1. Calculator}: \\*
+        \menu{Menü > Wskt > Verteilung > binomCdf} \\*
+        \( \leadsto f(x) := \) \\* \hfill \( \text{\textsc{binomCdf}}(300, \tfrac{1}{6}, 0, \text{\textsc{int}}(x)) \) \\*
+        (\textsc{int} rundet \( x \) auf die nächste ganze Zahl herab, weil wir ja nur ganze Male würfeln können) \\*
+        \ \\*
+        \textbf{2. Graph}: \\*
+        \( f1(x) = f(x) \) liefert den gesuchten Graph, \\*
+        \menu{Menü > Tabelle > Tabelle mit \dots} \ die gesuchte Tabelle
+      \end{scriptsize}
+    \end{tcolorbox}
+  \end{marginfigure}
+  Wir haben einen normalen Würfel, vermuten aber, dass er mehr Sechsen würfelt als er sollte.
+  \begin{enumerate}
+    \item \textbf{Nullhypothese}: $H_0: p=\tfrac{1}{6}$, \textbf{Alternative}: $H_1: p>\tfrac{1}{6}$
+    \item \textbf{Signifikanzniveau}: Wir legen ein Signifikanzniveau von $5\%$ fest.
+    \item \textbf{Stichprobenumfang}: Wir werfen den Würfel $n=300$ mal.
+    \item \textbf{Annahmebereich}: Der Annahmebereich ist $A=[0,b]$. $b$ ist die kleinste Zahl, für die noch $P(X \leq b)>95\%$ ist ($X$ ist die Zahl der Sechsen bei $n$ Würfen). Wir lassen hierfür vom CAS den Graphen von
+    \begin{equation*}
+      \text{\textsc{binomPdf}}\left( 300, \tfrac{1}{6}, 0, \text{\textsc{int}}(x) \right)
+    \end{equation*}
+    zeichnen und anschließend die Wertetabelle angeben. Nun können wir $b$ einfach ablesen.
+    \item \textbf{Irrtumswahrscheinlichkeit}: Die Irrtumswahrscheinlichkeit ist die Wahrscheinlichkeit, dass der Ausgang im abgelehnten Bereich liegt. Dieser ist hier $(b,300]$, also ist die Irrtumswahrscheinlichkeit $P(X > b)=P(X \geq (b+1))$.
+  \end{enumerate}
+  Wir erhalten $b=61$ und eine Irrtumswahrscheinlichkeit von $P(X \geq 62)=0.0402=4.02\%$. Würfelt man also bei einem Test $65$ Sechsen, so wird die Hypothese abgelehnt.
+\end{bla}
+
+\begin{bla}{Beispiel --- linksseitiger Hypothesentest}
+  \begin{marginfigure}
+    \begin{tcolorbox}[colback=white!95!black,colframe=white!75!black,title=CAS:,arc=0mm]
+      \begin{scriptsize}
+        \textbf{1. Calculator}: \\*
+        \menu{Menü > Wskt > Verteilung > binomCdf} \\*
+        \( \leadsto f(x) := \) \\* \hfill \( \text{\textsc{binomCdf}}(300, \tfrac{1}{6}, \text{\textsc{int}}(x), 300) \) \\*
+        \ \\*
+        \textbf{2. Graph}: \\*
+        \( f1(x) = f(x) \) liefert den gesuchten Graph, \\*
+        \menu{Menü > Tabelle > Tabelle mit \dots} \ die gesuchte Tabelle
+      \end{scriptsize}
+    \end{tcolorbox}
+  \end{marginfigure}
+  Wir haben einen normalen Würfel, vermuten aber, dass er weniger Sechsen würfelt als er sollte.
+  \begin{enumerate}
+    \item \textbf{Nullhypothese}: $H_0: p=\tfrac{1}{6}$, \textbf{Alternative}: $H_1: p<\tfrac{1}{6}$
+    \item \textbf{Signifikanzniveau}: Wir legen ein Signifikanzniveau von $5\%$ fest.
+    \item \textbf{Stichprobenumfang}: Wir werfen den Würfel $n=300$ mal.
+    \item \textbf{Annahmebereich}: Der Annahmebereich ist $A=[b,300]$. Hier ist $b$ die kleinste Zahl, für die noch $P(X \leq b) > 5\%$ ist. Wir ermitteln diese wieder mit dem Taschenrechner.
+  \end{enumerate}
+  Wir erhalten mit dem Taschenrechner $b=40$ und eine Irrtumswahrscheinlichkeit von $P(X \leq 39)=0.0486=4.86\%$. Würfelt man also bei einem Test $35$ Sechsen, so wird die Hypothese abgelehnt.
+\end{bla}
+
+Ende.

@@ -1,0 +1,54 @@
+\chapter{Von Treffern und Nieten}
+\begin{inhalt}
+  \begin{itemize}
+    \item Bernoulli-Versuche und -Ketten
+    \item Binomialverteilung
+  \end{itemize}
+\end{inhalt}
+
+\begin{bla}{\textsc{Bernoulli}-Versuch}
+  Ein Bernoulli-Versuch ist ein Zufallsexperiment, bei dem es nur die beiden Ausgänge $0$ und $1$ gibt (sie werden oft als \emph{Treffer} und \emph{Niete} bezeichnet).
+\end{bla}
+
+\begin{bla}{Bernoulli-Kette}
+  Führt man einen Bernoulli-Versuch $n$ mal hintereinander (und unabhängig voneinander!) durch, so liegt eine \emph{Bernoulli-Kette} vor.
+\end{bla}
+
+\begin{bla}{Binomialkoeffizient}
+  \begin{marginfigure}[4em]
+    \begin{tcolorbox}[colback=white!95!black,colframe=white!75!black,title=CAS:,arc=0mm]
+      \begin{scriptsize}
+        \textbf{Calculator}: \\*
+        \menu{Menü > Wskt > Kombination} \\*
+        \( \leadsto \) \textsc{nCr}\( (2, 2) \leadsto 1 \)
+      \end{scriptsize}
+    \end{tcolorbox}
+  \end{marginfigure}
+  Um Schreibaufwand zu sparen schreiben wir
+  \begin{equation*}
+    \begin{pmatrix} n \\ r \end{pmatrix} = \frac{n!}{r!*(n-r)!}\text{.}
+  \end{equation*}
+  Wir nennen diese Zahl den \emph{Binomialkoeffizienten}. Er gibt an, auf wieviele Arten man $r$ Dinge aus einer Menge von $n$ Dingen auswählen kann.
+\end{bla}
+
+\begin{bla}{Binomialverteilung}
+  \begin{marginfigure}
+    \begin{tcolorbox}[colback=white!95!black,colframe=white!75!black,title=CAS:,arc=0mm]
+      \begin{scriptsize}
+        \textbf{Calculator}: \\*
+        \menu{Menü > Wskt > Verteilungen > binPdf} \\*
+        \( \leadsto \) Werte eintragen \\*
+        \textbf{kumuliert}: \\*
+        \menu{Menü > Wskt > Verteilungen > binCdf}
+      \end{scriptsize}
+    \end{tcolorbox}
+  \end{marginfigure}
+  Gegeben sind folgende Informationen:
+  \begin{itemize}
+    \item die \emph{Trefferwahrscheinlichkeit} $p$ (damit erhält man auch die Nietenwahrscheinlichkeit $1-p$),
+    \item die Länge $n$ der Bernoulli-Kette.
+  \end{itemize}
+  Mit diesen Informationen können wir berechnen, wie wahrscheinlich eine bestimmte Anzahl $r$ an Treffern in der Bernoulli-Kette aufgetreten ist. Sie berechnet sich durch $B_{n,p}(r)=\left( \begin{smallmatrix} n \\ r \end{smallmatrix} \right)*p^r*(1-p)^{n-r}$. Der Erwartungswert ist $\mu=n*p$.
+  \\
+  \textbf{Anmerkung}: $B_{n,p}(r)$ beschreibt die Wahrscheinlichkeit und ist eine Funktion. Wir nennen Beschreibungen einer Wahrscheinlichkeit durch eine Funktion eine \emph{Wahrscheinlichkeitsverteilung}.
+\end{bla}
