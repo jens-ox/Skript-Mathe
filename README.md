@@ -1,3 +1,5 @@
+![Titelbild](https://user-images.githubusercontent.com/5368029/30338990-d727b776-97ed-11e7-81a0-ef1d16917881.png)
+
 # Matheskript
 
 Dieses Skript behandelt den Stoff des Mathematikunterrichts in der Jahrgangsstufe 1 und 2 
