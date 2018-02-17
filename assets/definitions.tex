@@ -58,7 +58,7 @@
 \theoremstyle{definition}
 \newtheorem{df}{Definition}[chapter]
 \newtheorem{sz}[df]{Satz}
-\newtheorem{genericthm}[df]{\thistheoremname}
+\newtheorem{genericthm}[subsection]{\thistheoremname}
 \newtheorem{bsp}[df]{Beispiel}
 \newenvironment{bw}[1][\textbf{Beweis}]{\begin{proof}[#1]}{\end{proof}}
 
@@ -72,6 +72,9 @@
 
 \setcounter{tocdepth}{1}
 \setcounter{secnumdepth}{2}
+\makeatletter
+\@addtoreset{chapter}{part}
+\makeatother
 
 \titleformat{\chapter}%
   [display]% shape
@@ -80,6 +83,13 @@
   {0pt}% horizontal separation between label and title body
   {\huge\itshape}% before the title body
   [\ifthenelse{\NOT\boolean{@tufte@symmetric}}{\end{fullwidth}}{}]% after the title body
+
+\titleformat{\section}
+  [hang]
+  {\LARGE}
+  {\thesection\ }
+  {0pt}
+  {}
 
 \newenvironment{inhalt}
   {\begin{tcolorbox}[colback=red!5!white,colframe=red!75!black,title=In diesem Abschnitt:,arc=0mm]}{\end{tcolorbox}}
