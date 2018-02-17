@@ -74,20 +74,14 @@ Natürlich möchte man gerne wissen, welchen Wert die Variablen haben, dazu muss
 
 \begin{bla}{Fehlerquellen}
 \label{LA:LGS:Fehlerquellen}
-Es ist wichtig, beim Umformen keine Informationen zu verhäckseln!
+Es ist wichtig, beim Umformen keine Informationen zu verlieren!\\
 Schlechte Ideen sind:
 
 \begin{itemize}
-  \item \textbf{Multiplikation mit Null:}
-    \begin{alignat*}{5}
-      \LIN{Ia}{1}{0}{0}{1}{}
-      \LIN[10pt]{IIa}{1}{1}{0}{0}{Das ist einfach!}
-    \hline
-      \tag{Ib} 0*x &&&&&&& = 0 && \quad \text{| Ib = 0 * Ia}\\
-      \LIN[0pt]{IIb}{1}{1}{0}{0}{}
-    \end{alignat*}
-      Ib und IIb haben plötzlich keine eindeutige Lösung mehr.
-  \item \textbf{Verlieren einer Gleichung:}
+  \item \textbf{FEHLER: Multiplikation mit Null:} %Beispiel entfernt, da schlecht verständlich..
+    Eine Gleichung eines linearen Gleichungssystems darf niemals mit $0$ multipliziert werden, da dabei sämtliche Informationen der Gleichung verloren gehen würden. Man würde effektiv ein Gleichungssystem mit drei Gleichungen in eins mit zwei verwandeln, doch damit kann man nicht mehr nach allen Variablen auflösen.
+  \item \textbf{FEHLER: Verlieren einer Gleichung:}
+    Sei zum Beispiel dieses einfache Gleichungssystem gegeben:
     \begin{alignat*}{5}
       \LIN{Ia}{1}{0}{0}{1}{}
       \LIN{IIa}{0}{1}{0}{1}{}
@@ -97,8 +91,8 @@ Schlechte Ideen sind:
       \LIN{IIa}{0}{1}{0}{1}{}
       \LIN[0pt]{IIIb}{1}{1}{0}{2}{IIIb = Ia + IIa}
     \end{alignat*}
-      Die Information von Gleichung IIIa ist in der zweiten Hälfte verloren gegangen, die eindeutige Lösung vom Anfang damit auch, weil $z$ nicht mehr bestimmt werden kann.
-  \item \textbf{Ungeschicktes Addieren von Gleichungen:}
+    Hierbei sind sämtliche Informationen über $z$ verloren gegangen, die eindeutige Lösung vom Anfang damit auch, weil $z$ nicht mehr bestimmt werden kann!
+  \item \textbf{FEHLER: Ungeschicktes Addieren von Gleichungen:}
     \begin{alignat*}{5}
       \LIN{Ia}{0}{1}{0}{1}{}
       \LIN[10pt]{IIa}{0}{0}{1}{1}{Die Lösung ist noch eindeutig}
@@ -107,7 +101,7 @@ Schlechte Ideen sind:
       \LIN[0pt]{IIb}{0}{1}{1}{2}{IIb = Ia + IIa}
     \end{alignat*}
     Dieses LGS hat plötzlich keine eindeutige Lösung mehr.
-    Um diesen Fehler zu vermeiden, muss man ein Bisschen aufpassen.
+    Um diesen Fehler zu vermeiden, muss man etwas aufpassen.
 
     Wenn man sauber rechnet, macht man immer nur einen Umformungsschritt und schreibt dann das ganze neue LGS einmal auf.
     Mit den neuen Gleichungen wird dann weitergerechnet.
@@ -152,8 +146,8 @@ Schlechte Ideen sind:
     \tag{IIId} &\:\:&   &\:\: & -68z &&&= -34 && \\[0pt]
   \end{alignat*}
 
-  
-  
+
+
   Also ist $z = \frac{1}{2}$, damit liefert Gleichung IIc:
   \[
   y + \frac{32}{3} * \frac{1}{2} = \frac{19}{3}
