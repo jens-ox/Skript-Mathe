@@ -78,41 +78,15 @@ Es ist wichtig, beim Umformen keine Informationen zu verhäckseln!\\
 Schlechte Ideen sind:
 
 \begin{itemize}
-  \item \textbf{FEHLER: Multiplikation mit Null:} %Beispiel entfernt, da schlecht verständlich..
+  \item \textbf{Multiplikation mit Null:} %Beispiele entfernt, da schlecht verständlich..
     Eine Gleichung eines linearen Gleichungssystems darf niemals mit $0$ multipliziert werden, da dabei sämtliche Informationen der Gleichung verloren gehen würden. Man würde effektiv ein Gleichungssystem mit drei Gleichungen in eins mit zwei verwandeln, doch damit kann man nicht mehr nach allen Variablen auflösen.
-  \item \textbf{FEHLER: Verlieren einer Gleichung:}
-    Sei zum Beispiel dieses einfache Gleichungssystem gegeben:
-    \begin{alignat*}{5}
-      \LIN{Ia}{1}{0}{0}{1}{}
-      \LIN{IIa}{0}{1}{0}{1}{}
-      \LIN[10pt]{IIIa}{0}{0}{1}{1}{Dieses LGS ist gelöst!}
-    \hline
-      \LIN{Ia}{1}{0}{0}{1}{}
-      \LIN{IIa}{0}{1}{0}{1}{}
-      \LIN[0pt]{IIIb}{1}{1}{0}{2}{IIIb = Ia + IIa}
-    \end{alignat*}
-    Hierbei sind sämtliche Informationen über $z$ verloren gegangen, die eindeutige Lösung vom Anfang damit auch, weil $z$ nicht mehr bestimmt werden kann!
-  \item \textbf{FEHLER: Ungeschicktes Addieren von Gleichungen:}
-    \begin{alignat*}{5}
-      \LIN{Ia}{0}{1}{0}{1}{}
-      \LIN[10pt]{IIa}{0}{0}{1}{1}{Die Lösung ist noch eindeutig}
-      \hline
-      \LIN{Ib}{0}{1}{1}{2}{Ib = Ia + IIa}
-      \LIN[0pt]{IIb}{0}{1}{1}{2}{IIb = Ia + IIa}
-    \end{alignat*}
-    Dieses LGS hat plötzlich keine eindeutige Lösung mehr.
-    Um diesen Fehler zu vermeiden, muss man etwas aufpassen.
-
+  \item \textbf{Verlieren einer Gleichung:}
+    Man muss aufpassen, durch Umformungsschritte oder Gleichsetzungen keine Variable komplett zu verlieren, da damit eine eindeutige Lösung verloren gehen kann.
+  \item \textbf{Ungeschicktes Addieren von Gleichungen:}
     Wenn man sauber rechnet, macht man immer nur einen Umformungsschritt und schreibt dann das ganze neue LGS einmal auf.
     Mit den neuen Gleichungen wird dann weitergerechnet.
 
-    Beim Rechnen hat natürlich niemand Zeit, so viel zu schreiben, deswegen muss man auf diesen Fehler achten.
-
-    Im Beispiel oben wurde zuerst folgendes gemacht: Ib = Ia + IIa.
-    Wenn man jetzt ganz ausführlich weitermacht, schreibt man das neue LGS auf, also die Gleichungen Ib und IIa.
-    Versucht man jetzt die zweite Umformung, IIb = Ia + IIa, bemerkt man, dass
-    die Gleichung Ia gar nicht mehr im LGS steht.
-    Man darf also nur noch mit Ib weiterrechnen.
+    Beim Rechnen hat natürlich niemand Zeit, so viel zu schreiben, deswegen muss man darauf achten, keine Gleichung zu verwenden die in einem Schritt vorher verändert wurde.
 
     \textbf{Einfache Lösung:} Die Gleichungen nach jeder Rechnung umbenennen (Ia $\to$ Ib) und im Kopf behalten, dass man ab dann nichts mehr mit Ia rechnen darf.
 \end{itemize}
@@ -126,7 +100,7 @@ Schlechte Ideen sind:
   \intertext{Zuerst wird der x-Koeffizient in Ia zu einer Eins gemacht:}
     \LIN{Ia}{2}{-1}{4}{5}{Ib $=$ Ia$*\frac{1}{2}$}
     \LIN{IIa}{5}{2}{-10}{7}{}
-    \LIN{IIIa}{12}{-9}{-8}{11}{}
+    \LIN{IIIa}{12}{-9}{-8}{11}{}#
   \intertext{Damit werden die anderen x-Terme aus der Gleichung subtrahiert:}
     \tag{Ib} x &\:\:& -\frac{1}{2}y &\:\:+& 2z &&&= \frac{5}{2} &&	\\[0pt]
     \LIN{IIa}{5}{2}{-10}{7}{IIb $=$ IIa$ - 5 * $Ib}

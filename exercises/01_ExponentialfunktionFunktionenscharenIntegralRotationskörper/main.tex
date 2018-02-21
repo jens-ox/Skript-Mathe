@@ -1,0 +1,174 @@
+\input{../master/layout}
+\chead{\Large Übungsblatt 1}
+
+\begin{document}
+\begin{inhalt}
+	\item Exponentialfunktion, Funktionenscharen
+  \item Integral, Rotationskörper
+\end{inhalt}
+
+
+\aufgabe{Schnittpunkte von Funktionen: } In welchen Punkten schneiden sich die Funktionen?
+\begin{multicols}{3}
+  \begin{enumerate}
+    \item $f(x) = x^2$, $g(x) = 2x$
+    \item $f(x) = \frac 1 2 x^4$, $g(x) = x^2+4$
+  \end{enumerate}
+\end{multicols}
+
+\begin{lsg}{}
+  \begin{multicols}{2}
+    \begin{enumerate}
+      \item \begin{align*}
+        x^2 &= 2x\\
+        x^2-2x &= 0\\
+        \intertext{Mit der Mitternachtsformel: }
+        x_1 &= 0, x_2 =2\\
+        \intertext{Bestimmung der Werte der Stellen: }
+        f(0) &= 0, f(2) = 4\\
+        \LM &= \left\{\ (0|0),(2|4) \ \right\}
+      \end{align*}
+
+      \columnbreak
+      \item
+      \begin{align*}
+        \frac 1 2 x^4 &= x^2+4\\
+        \frac 1 2 x^4 -x^2 -4 &= 0\\
+      \end{align*}
+      Substitution $x^2=u$
+      \begin{align*}
+        \frac 1 2& u^2 -u -4 = 0\\
+        u_{1,2}&=\frac{1\pm\sqrt{1-4*0.5*(-4)}}{1}\\
+        &= 1\pm\sqrt{9}\\
+        &u_1 = 4\quad u_2=-2\\
+      \end{align*}
+      Resubstitution von $u_1$ ($u_2 < 0 \rightarrow $ nicht reelles Ergebnis):
+      \begin{align*}
+        x^2=4\\
+        x_1 = -2, x_2 = 2\\
+        \intertext{Bestimmung der Werte der Stellen: }
+        g(-2)=8, g(2)=8\\
+        \LM = \left\{\ (-2|8),(2|8) \ \right\}
+      \end{align*}
+    \end{enumerate}
+  \end{multicols}
+\end{lsg}
+
+\aufgabe{Exponentialfunktion}
+\begin{enumerate}
+	\item Geben Sie $f(x)=25^x$ als natürliche Exponentialfunktion an.
+	\item	Wie unterscheidet sich der Graph von $-\e^{-x}$ von $\e^x$? Formulieren Sie ihre Erklärung schrittweise.
+\end{enumerate}
+
+
+
+\aufgabe{Differentialrechnung: }
+\begin{enumerate}
+	\item Gegeben sei folgende Funktion: $F(x,y)=2x^3-5y+x^2+10x-10$. Bestimmen Sie die Ableitung der durch $F(x,y)=0$ implizit gegebenen Funktion $y=h(x)$.
+	\item Gegeben sind die Funktionen:
+	$f(x) = (u \circ v)(x)$ und $g(x) = (u* v)(x)$
+	Bestimme die Ableitungen von $f$ und $g$ für $u(x)=x^2$ und $v(x)=\sin(2x)$
+	\item Bestimme jeweils $f'(3)$!
+	\begin{itemize}
+		\item $f(x) = (x+5)^2$
+		\item $g(x) = \frac{1}{(x-5)^2}$
+	\end{itemize}
+\end{enumerate}
+
+\aufgabe{Tangenten: }\cas
+\begin{enumerate}
+	\item Eine Landzunge wird durch die Funktion $f(x)=-0.008x^3+x^2$ beschrieben. Sie sitzen auf einem Rettungsboot und bewegen sich in negativer $x$-Richtung an dieser Landzunge vorbei. Sie befinden sich im Punkt $P(15|30)$. Sie wissen, dass die Küstenwache bei $K(5|f(5))$ einen Außenposten hat. In welchem Punkt dürfen Sie ihre letze Signalfackel frühestens zünden, dass sie eine möglichst lange Zeit von der Küste aus sichtbar ist?
+  \item
+\end{enumerate}
+
+\aufgabe{Vermischtes: }
+\begin{enumerate}
+	\item Beschreiben Sie in Worten, wie sich der Graph von $g(x)=3\sin(3(x+1))-3$ von $\sin(x)$ unterscheidet.
+	\item Die Gerade $y=x$ und die $x$-Achse begrenzen zusammen mit den Geraden $x=2$ und $x=u$ mit $u>2$ eine Fläche. Bestimmen Sie einen Wert für $u$ so, dass $f(x)=x-\frac{8}{x^2}$ diese Fläche in zwei inhaltsgleiche Teile zerlegt. \cas
+\end{enumerate}
+\begin{lsg}{}
+  \begin{enumerate}
+		\item
+    \item $u\approx 3,12$
+  \end{enumerate}
+\end{lsg}
+
+
+\aufgabe{Funktionenscharen: }
+\begin{enumerate}
+  \item Berechne die Nullstellen der Funktionenscharen in Abhängigkeit von $a\in \R, a\neq 0$:
+  \begin{itemize}
+    \item $f_a(x)=x^2+2ax+9$
+    \item $g_a(x)=5ax+15a$
+    \item $h_a(x)=x^3-a^2$
+    \item $j_a(x)=(x-3a)(x+6a)$
+  \end{itemize}
+  \item Gegeben ist die Funktionenschar $f_a$ mit $f_a(x)=\frac{1}{a^2}x^3-\frac{3}{9}x^2-9x+5(a+1)$ mit $a<0$.
+  \begin{itemize}
+    \item Untersuche die Lage des Maxmimums.
+    \item Zeige, dass die Maxima aller Scharkurven auf einer Geraden liegen und gib deren Gleichung an.
+  \end{itemize}
+\end{enumerate}
+
+\aufgabe{Integral: }
+\begin{enumerate}
+	\item Welche der Auswahlmöglichkeiten können eingesetzt werden?
+	\begin{equation*}
+		\int\limits_0^5 3x^2+ \frac 1 5 x  \d x = \Box
+	\end{equation*}
+  \begin{multicols}{4}
+    \begin{itemize}
+      \item $\stf{6x + \frac{1}{5}}_0^5$
+      \item $\bigg[x^3 + 0,1 x^2\bigg]_0^5$
+  		\item $127,5$
+      \item $\stf{x^3 + \frac{1}{10} x^2}_1^6$
+  	\end{itemize}
+  \end{multicols}
+
+
+	\item Bestimmen Sie $\int\limits_0^{10} \e*x \d x$
+  \item Berechnen Sie den Gesamtinhalt der Flächen, die durch die Schaubilder der Funktionen $f$ und $g$ eingeschlossen werden:
+  \begin{itemize}
+    \item $f(x)=x^2, g(x)=2-x^2$
+    \item $f(x)=x^3, g(x)=x^2$
+    \item $f(x)=x^3, g(x)=x$
+    \item $f(x)=x^3-3x, g(x)=2x^2$
+  \end{itemize}
+\end{enumerate}
+\begin{lsg}{}
+  \begin{enumerate}
+    \item
+    \item
+    \item
+    \begin{itemize}
+      \item $\frac 8 3$
+      \item $\frac 1 {12}$
+      \item $\frac 1 2$
+      \item ?
+    \end{itemize}
+  \end{enumerate}
+\end{lsg}
+
+
+\aufgabe{Rotationskörper: }
+\begin{enumerate}
+  \item Die Fläche, welche von der $x$-Achse und dem Graphen der Funktionen vollständig eingeschlossen wird, rotiert um die $x$-Achse.
+  Berechne den Rauminhalt des entstandenen Körpers.
+  \begin{itemize}
+    \item $f(x)=x^2-2x$
+    \item $g(x)=\sqrt{x}*(x-2)$
+    \item $h(x)=\frac 1 3 x^2-x$
+    \item $j(x)=x^2-5x+4$
+  \end{itemize}
+  \item Die Fläche, welche von den Graphen der Funktionen vollständig eingeschlossen wird, rotiert um die $x$-Achse.
+  Berechne den Rauminhalt des entstandenen Körpers.
+  \begin{itemize}
+    \item $f(x)= -x^2+4, \quad g(x)= x+2$
+    \item $h(x)= x^2-x+1, \quad j(x)= 4x-3$
+  \end{itemize}
+\end{enumerate}
+
+
+
+
+\end{document}

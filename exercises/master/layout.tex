@@ -1,0 +1,100 @@
+\documentclass[a4paper, oneside]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage[top=2.5cm, bottom=3cm, outer=2.5cm, inner=2.5cm, heightrounded]{geometry}
+\usepackage{graphicx}
+\usepackage{morefloats}
+\usepackage{wrapfig}
+\usepackage{hyperref}
+\usepackage{cite}
+\usepackage{siunitx}
+\usepackage[default]{sourcesanspro}
+\usepackage[T1]{fontenc}
+\usepackage{url}
+\usepackage{marginnote}
+\usepackage[font=footnotesize]{caption}
+\usepackage{color}
+\usepackage{xcolor}
+\usepackage{multicol}
+\usepackage[fleqn]{mathtools}
+\usepackage{amssymb}
+\usepackage{wrapfig}
+\usepackage[noindentafter]{titlesec}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{comment}
+
+%% LÖSUNGEN ANZEIGEN
+\newif\ifshow
+%\showtrue
+\showfalse
+
+%%%SECTIONING
+\renewcommand*{\marginfont}{\noindent\rule{0pt}{0.7\baselineskip}\footnotesize}
+
+\newcommand{\aufgabe}[1]{\subsection{#1}}
+\newcommand{\loesung}[1]{\subsubsection{#1}}
+
+\renewcommand{\theenumi}{\alph{enumi})}
+\renewcommand{\labelenumi}{\text{\theenumi}}
+
+\newcounter{aufgabe}
+%\newenvironment{lsg}{\loesung}{}
+\ifshow
+  \newenvironment{lsg}{\loesung}{}
+\else
+  \excludecomment{lsg}
+\fi
+
+\newenvironment{inhalt}
+  {\paragraph{Inhalt des Übungsblatts:}\itemize\let\origitem\item}
+  {\enditemize\vspace{2em}}
+
+\newcommand{\R}{\ensuremath\mathbb{R}}
+\newcommand{\N}{\ensuremath\mathbb{N}}
+\newcommand{\LM}{\ensuremath\mathbb{L}}
+\newcommand{\intd}{\ensuremath\mathrm{d}}
+\newcommand{\e}{\ensuremath\mathrm{e}}
+\renewcommand{\d}{\,\mathrm{d}}
+\newcommand{\stf}[1]{\ensuremath \left[ #1 \right]}
+
+\newcommand{\cas}{\hfill (CAS)}
+
+\everymath{\displaystyle}
+
+%Malpunkte
+\mathcode`\*="8000
+{\catcode`\*\active\gdef*{\cdot}}
+
+%SECTION
+\titleformat{\section}
+{\clearpage\setcounter{aufgabe}{0}\vspace{1em}\Large\raggedright\bfseries}
+{}
+{0pt}
+{}
+
+\titleformat{\subsection}[runin]
+{\stepcounter{aufgabe}\vspace{1em}\normalfont\raggedright\bfseries}
+{A\theaufgabe: }
+{0pt}
+{\ }
+
+\titleformat{\subsubsection}[runin]
+{\normalfont\raggedright\bfseries}
+{Lösung \theaufgabe: }
+{0pt}
+{\ }
+
+
+%FANCYHDR
+\pagestyle{fancy}
+\lhead{\small Simon König\\ Joshua Fabian}
+\rhead{\small Mathecrashkurs 2018}
+\cfoot{Seite \thepage\thinspace von\thinspace\pageref{LastPage}}
+\lfoot{}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\title{Mathe-Crashkurs 2018 - Übungsblatt}
+\date{\today}
+\author{Simon König, Joshua Fabian}
