@@ -17,12 +17,6 @@
 
 \aufgabe{Gebrochenrationale Funktionen}
 \begin{enumerate}
-	\item enum
-	\item	enum
-\end{enumerate}
-
-\aufgabe{Asymptoten bestimmen}
-\begin{enumerate}
 	\item Gegeben sei die Funktion $f(x)=\frac{x}{x^2-9}$. Skizzieren Sie den Graphen und geben Sie den Definitionsbereich $D_f$ an.
 	\item	Geben Sie die Funktionsgleichungen aller waagerechter oder senkrechter Asymptoten von $f(x)=\frac{4x^2+3}{x^2+5x}$
 \end{enumerate}
@@ -61,15 +55,40 @@ Welche Temperatur hat der Milchkaffee in beiden Fällen?
 \end{lsg}
 
 \aufgabe{LGS}
-\begin{enumerate}
-	\item enum
-	\item	enum
-\end{enumerate}
+%Nutzen in {alignat}{5}:{NR}{K1}{K2}{K3}{Ergebnis}
+\newcommand{\lgslinethree}[4]{#1 x\quad &+&  #2 y\quad &+&  #3 z\quad & = #4 \\}
+\newcommand{\lgslinetwo}[3]{#1 x\quad &+&  #2 y\quad & = #3 \\}
+Berechnen Sie die Lösungsmenge $\LM\subseteq\R$ der linearen Gleichungssysteme:
+\begin{multicols}{2}
+	\begin{enumerate}
+		\item
+		\begin{alignat*}{5}
+			\lgslinethree{}{3}{}{1}
+			\lgslinethree{3}{9}{4}{5}
+			\lgslinethree{}{3}{2}{3}
+		\end{alignat*}
+		\item
+		\begin{alignat*}{4}
+			\lgslinethree{6}{}{}{31}
+			\lgslinethree{3}{1}{4\frac 1 2}{19}
+			\lgslinethree{-2}{-1}{0}{-15}
+		\end{alignat*}
+		\item
+		\begin{alignat*}{4}
+			\lgslinetwo{3}{2}{1}
+			\lgslinetwo{1}{-2}{11}
+			\lgslinetwo{-2}{}{5}
+		\end{alignat*}
+	\end{enumerate}
+\end{multicols}
+
+
 
 \aufgabe{Vektorrechnung}
 \begin{enumerate}
-	\item enum
-	\item	enum
+	\item Berechne das Skalarprodukt der beiden Vektoren:
+	\item Berechne $\alpha$ so, dass die beiden Vektoren orthogonal zueinander sind.
+	\item
 \end{enumerate}
 
 \end{document}
