@@ -148,3 +148,6 @@ pythontex-files-*/
 # endfloat
 *.ttt
 *.fff
+*.bat
+exercises/.DS_Store
+exercises/03_AbständeLageWinkelAnalGeo/.DS_Store

@@ -28,7 +28,7 @@
     \caption{Ebene, aufgespannt durch $\vec{u}$ und $\vec{v}$, stützt sich auf $\vec{p}$}
   \end{marginfigure}
   %
-  Genau so kann man auch Ebenen darstellen, nur dass man von $P$ aus in zwei Richtungen gehen kann:
+  Genauso kann man auch Ebenen darstellen, nur dass man von $P$ aus in zwei Richtungen gehen kann:
   \begin{equation*}
     \text{E: }\ \vec{x} = \vec{p} + \text{r} * \vec{u} + \text{s} * \vec{v} \text{, mit r, s} \in \R
   \end{equation*}
@@ -68,7 +68,7 @@
   Diese Darstellung ist nicht so offensichtlich aus Vektoren aufgebaut, aber sehr hilfreich um einige Aufgaben auszurechnen.
 \end{bla}
 
-\begin{bla}{Ebenen - \textsc{Hesse}sche Normalenform}
+\begin{bla}{Ebenen - \textsc{Hesse}'sche Normalenform}
   Die Gleichungen der Normalen- und Koordinatendarstellung können durch den Betrag des Normalenvektors geteilt werden:
   \begin{align*}
     \text{E: }\ \frac{ \left(n_1*x_1 + n_2*x_2 + n_3*x_3\right)}{|\vec{n}|} - \frac{c}{|\vec{n}|}
@@ -106,7 +106,7 @@ Gesucht werden im Folgenden die Ebenengleichungen wenn drei Punkte $A,B,C$ bezie
     n_1x_1 + n_2x_2 + n_3x_3 = b
   \end{equation*}
 
-  
+
 
   Setzt man jetzt zum Beispiel die Punkte $A=(1|1|0), B=(1|0|1), C=(0|0|1)$ für $\vec{x}$ ein, ergeben sich die Gleichungen:
   \begin{align*}
@@ -129,7 +129,7 @@ So konstruiert man die Koordinatengleichung, für die beiden anderen Gleichungen
   Für die Normalenform brauchen wir einen Normalenvektor $\vec{n}$, der senkrecht auf den beiden Spannvektoren steht: $\vec{n} * \vec{u} = 0$ und $\vec{n}*\vec{v} = 0$
 
   Die Spannvektoren sind bekannt, also kann man die Gleichungen ausmultiplizieren und bekommt ein LGS für $n_1, n_2$ und $ n_3$.
-  Zwei Gleichungen für drei Variablen liefern kein eindeutiges Ergebnis, also kann man am Schluss eine der drei Variablen von Hand festlegen.
+  Zwei Gleichungen für drei Variablen liefern kein eindeutiges Ergebnis, also muss man am Schluss eine der drei Variablen selbst festlegen.
 
   Stattdessen kann man auch einfach $\vec{u} \times \vec{v} = \vec{n}$ ausrechnen.
 
@@ -170,6 +170,4 @@ So konstruiert man die Koordinatengleichung, für die beiden anderen Gleichungen
     n_1v_1 + n_2v_2 + n_3v_3 &= 0
   \end{align*}
   Um nicht parallele Spannvektoren zu bekommen setzen wir oben zum Beispiel einmal $v_2 = 0, v_3 = 1$ und einmal $v_2 = 1, v_3 = 0$, lösen damit die Gleichung und erhalten zwei Spannvektoren.
-
-  >>\textsc{Dickhead}sche Formel
 \end{bla}

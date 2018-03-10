@@ -1,0 +1,94 @@
+\input{../master/layout}
+\chead{\Large Übungsblatt 2}
+
+\begin{document}
+\begin{inhalt}
+  \item Gebrochenrationale Funktionen
+	\item Wachstum
+	\item LGS-Rechnung, Vektorrechnung
+\end{inhalt}
+
+\aufgabe{Uneigentliches Flächenintegral}
+\begin{enumerate}
+	\item Berechnen Sie $\int\limits^\infty_0 e^{-x}\d x$
+	\item	Bestimmen Sie $\int\limits^\infty_0 x^a\d x$ in Abhängigkeit von $a$ mit $a < -1$.
+	\item Berechnen Sie $\lim\limits_{x\rightarrow -\infty} x^5\e^x$
+\end{enumerate}
+
+\aufgabe{Gebrochenrationale Funktionen}
+\begin{enumerate}
+	\item Gegeben sei die Funktion $f(x)=\frac{x}{x^2-9}$. Skizzieren Sie den Graphen und geben Sie den Definitionsbereich $D_f$ an.
+	\item	Geben Sie die Funktionsgleichungen aller waagerechter oder senkrechter Asymptoten von $f(x)=\frac{4x^2+3}{x^2+5x}$
+\end{enumerate}
+
+\aufgabe{Wachstum}
+\begin{enumerate}
+	\item Bakterien vermehren sich durch Teilung, wobei sich eine Bakterienzelle durchschnittlich alle 10 Minuten teilt. Zum Zeitpunkt $t=0$ sei genau eine Bakterienzelle vorhanden.
+	\begin{itemize}
+		\item Wie viele Bakterien sind dann nach 1 Stunde, 2 Stunden, 6 Stunden, 12 Stunde bzw. 24 Stunden vorhanden?
+		\item Finde eine Formel für die Anzahl $B(t)$ der Bakterien nach der Zeit $t$.
+		\item Eine Bakterienzelle hat ein Volumen von ca. $2\times10^{-18}\mathrm{m}^3$ . Wie lange dauert es, bis die Bakterienkultur ein Volumen von $1\mathrm{m}^3$ bzw. $1\mathrm{km}^3$ einnimmt? Ist das Ergebnis plausibel?
+	\end{itemize}
+	\item	Angenommen, die Weltbevölkerung vermehrt sich nach der Formel $M(t)=M_0*\e^{\delta t}$. 1960 gab es ca. 3 Milliarden Menschen, 1995 etwa 5,6 Milliarden.
+	\begin{itemize}
+		\item Bestimme die Konstante $\delta$.
+		\item Wieviel Prozent beträgt das jährliche Wachstum der Weltbevölkerung?
+		\item Wann wird die Erde 15 Mrd. Einwohner haben, wenn die Bevölkerung im selben Tempo weiterwächst?
+	\end{itemize}
+	\item Eine Tasse kochendheißer Kaffee (100$^\circ$C) kühlt bei Zimmertemperatur (20$^\circ$C) in 10 Minuten auf 30$^\circ$C ab.
+	\begin{itemize}
+		\item Geben Sie eine Funktionsgleichung für die Temperatur des Kafffees an.
+		\item Frau M mischt den Kaffee mit der gleichen Menge Milch aus dem Kühlschrank (4$^\circ$C). Sie hat zwei Möglichkeiten: die Milch sofort dazugeben, danach 3 Minuten warten oder die Milch erst nach 3 Minuten dazugeben.\\
+Welche Temperatur hat der Milchkaffee in beiden Fällen?
+\textit{(Hinweis: Die Temperatur der Mischung ist der Mittelwert der einzelnen Temperaturen: $T=\frac{(T_1+T_2)}{2}$.)}
+	\end{itemize}
+\end{enumerate}
+
+\begin{lsg}{}
+	\begin{enumerate}
+		\item
+		\item
+		\item $0,208^\circ\mathrm{C} * \mathrm{min}^{-1}$\\
+		Erst abkühlen, dann Milch dazu: $33,44^\circ\mathrm{C}$
+		Variante 2: $37,14^\circ\mathrm{C}$
+	\end{enumerate}
+\end{lsg}
+
+\aufgabe{LGS}
+%Nutzen in {alignat}{5}:{NR}{K1}{K2}{K3}{Ergebnis}
+\newcommand{\lgslinethree}[4]{#1 x\quad &+&  #2 y\quad &+&  #3 z\quad & = #4 \\}
+\newcommand{\lgslinetwo}[3]{#1 x\quad &+&  #2 y\quad & = #3 \\}
+Berechnen Sie die Lösungsmenge $\LM\subseteq\R$ der linearen Gleichungssysteme:
+\begin{multicols}{2}
+	\begin{enumerate}
+		\item
+		\begin{alignat*}{5}
+			\lgslinethree{}{3}{}{1}
+			\lgslinethree{3}{9}{4}{5}
+			\lgslinethree{}{3}{2}{3}
+		\end{alignat*}
+		\item
+		\begin{alignat*}{4}
+			\lgslinethree{6}{}{}{31}
+			\lgslinethree{3}{1}{4\frac 1 2}{19}
+			\lgslinethree{-2}{-1}{0}{-15}
+		\end{alignat*}
+		\item
+		\begin{alignat*}{4}
+			\lgslinetwo{3}{2}{1}
+			\lgslinetwo{1}{-2}{11}
+			\lgslinetwo{-2}{}{5}
+		\end{alignat*}
+	\end{enumerate}
+\end{multicols}
+
+
+
+\aufgabe{Vektorrechnung}
+\begin{enumerate}
+	\item Berechne das Skalarprodukt der beiden Vektoren:
+	\item Berechne $\alpha$ so, dass die beiden Vektoren orthogonal zueinander sind.
+	\item
+\end{enumerate}
+
+\end{document}

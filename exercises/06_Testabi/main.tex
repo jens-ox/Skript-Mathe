@@ -1,0 +1,196 @@
+\input{../master/layout.tex}
+
+\chead{\Large Übungsblatt 6 - Probeklausur}
+\newcommand{\pts}[1]{\hfill (#1 VP)}
+\begin{document}
+
+\section{Pflichtteil}
+\aufgabe{Analysis} Bilden Sie die erste Ableitung der Funktion $f$ mit $f(x) = (2x^2+5)e^{-2x}$ \pts{2}
+\begin{lsg}{}
+Es handelt sich um ein Produkt, Anwenden der Produktregel:\\
+$u(x) = 2x^2+5 \quad u'(x)=4x$\\
+$v(x) = e^{-2x} \quad v'(x)=(-2)e^{-2x}$\\
+$\Rightarrow f'(x)=u'(x)v(x)+u(x)v'(x) = 4x\cdot e^{-2x}+(2x^2+5)\cdot(-2e^{-2x})$
+\end{lsg}
+
+\aufgabe{Analysis} Berechnen Sie das Integral \pts{2}\\
+$\int\limits_0^1(2x-1)^4 \intd x$
+\begin{lsg}{}
+Es handelt sich um eine Verkettung.
+Die äußere Funktion ist $x^4$, die innere Funktion ist $2x-1$.\\
+\begin{itemize}
+  \item  Berechnung der Stammfunktion:
+  \begin{align*}
+    F(x) &= \frac 1 5 \cdot(2x-1)^5\cdot\frac 1 2\\
+    &=\frac{1}{10}\cdot(2x-1)^5
+  \end{align*}
+  \item Integralberechnung:
+  \begin{align*}
+    &\int\limits_0^1(2x-1)^4 \intd x\\
+    =&\left[\frac{1}{10}\cdot(2x-1)^5\right]^1_0 = \frac{1}{10}-\left(-\frac{1}{10}\right) = \frac 1 5
+  \end{align*}
+\end{itemize}
+\end{lsg}
+
+\aufgabe{Analysis}Lösen Sie die Gleichung $\e^x-\frac{3}{\e^x}+2=0$ \pts{3}\\
+\begin{lsg}{}
+\begin{alignat*}{2}
+    &&\e^x-\frac{3}{\e^x}+2 &= 0\\
+    \Leftrightarrow\quad && \e^{2x}-3+2\e^x &= 0\\
+    \Leftrightarrow\quad && \e^{2x}+2\e^x-3 &= 0\\
+    \Leftrightarrow\quad && u^2+2u-3 &= 0 \quad\text{Substitution: }\e^x=u\\
+    \Rightarrow\quad && u_{1,2} &= -1\pm\sqrt{1+3}=-1\pm\sqrt{4}=-1\pm2\\
+    && u_1 &= -3 \rightarrow \e^x = -3 \quad\text{keine Lösung}\\
+    && u_2 &= 1 \rightarrow \e^x = 1 \Leftrightarrow x=0\\
+    \LM = \{0\}
+\end{alignat*}
+\end{lsg}
+
+\aufgabe{Graphanalyse} (vgl. Abitur 2007)\\
+Gegeben ist das Schaubild der Ableitung $f'$ der Funktion $f$. \pts{4}
+\begin{enumerate}
+  \item Welche Aussagen über die Funktion $f$ ergeben sich daraus im Hinblick auf Monotonie, Extremstellen, Wendestellen? Begründen Sie ihre Aussagen.
+
+  \item Es gilt $f(0)=2$. Skizzieren Sie das Schaubild von $f$.
+\end{enumerate}
+
+\begin{lsg}{}
+\end{lsg}
+
+\aufgabe{Analytische Geometrie}
+Gegeben sei die Gerade $g: \vec x=\left(\begin{array}{c} 3 \\ -3 \\ 1 \end{array}\right) + t\cdot \left( \begin{array}{c} 1 \\ 2 \\ 0 \end{array} \right)$ und die Ebene $E = 2x_1-x_2+2x_3=2$. \pts{4}
+\begin{enumerate}
+  \item Zeigen Sie, dass $E$ und $g$ parallel sind, und berechnen Sie den Abstand von $g$ und $E$.
+  \item Die Ebene $F$ ist orthogonal zu $E$ und enthält die Gerade $g$. Bestimmen Sie eine Gleichung der Schnittgeraden von $E$ und $F$.
+\end{enumerate}
+\begin{lsg}{}
+\begin{enumerate}
+  \item Für den Normalenvektor der Ebene $E$ gilt: $\vec n_E=\left(\begin{array}{c} 2\\ -1\\ 2\end{array}\right)$. Das Skalarprodukt mit dem Richtungsvektor $\vec u$ von $g$ ist
+  \begin{equation*}
+    \vec u\bullet\vec n_E = 1\cdot 2 + 2\cdot(-1) + 0\cdot 2 = 0
+  \end{equation*}
+  d.h. Gerade und Ebene sind parallel.
+  \\Der Abstand von $g$ und $E$ ist gleich dem eines beliebigen Punktes von $g$ zu $E$. Wählt man also z.B. den Stützpunkt $P(3|-3|1)$:
+  \begin{equation*}
+    \mathrm d(g,E)=\mathrm d(P,E)=\frac{|2\cdot3-(-3)+2\cdot1-2|}{3}=\frac{9}{3} = 3.
+  \end{equation*}
+  \item Da $g$ in $F$ liegt und parallel zu $E$ ist, ist die Schnittgerade $s$ parallel zu g.
+  Die Orthogonale $h$ zur Ebene $E$ durch den Stützpunkt $P(3|-3|1)$ von $g$ liegt in $F$ und schneidet $E$ in einem Punkt $S$, den man als Stützpunkt von $s$ wählen kann.
+  \begin{equation*}
+    \text{Orthognale } h:\vec x = \left(\begin{array}{c}3\\-3\\1\end{array}\right)+t\cdot\left(\begin{array}{c}2\\-1\\2\end{array}\right)
+  \end{equation*}
+  Schnit von $h$ mit $E$:
+  \begin{align*}
+    2(3+2t)-(-3-t)+2(1+2t)&=2\\
+    9t+11&=2\\
+    t&=-1
+  \end{align*}
+  Einsetzen in die Geradengleichung von $h$ ergibt den Schnittpunkt $S(1|-2|-1)$. Da $g$ und $s$ parallel sind, erhält man mit dem Richtungsvektor von $g$ und $S$ eine Gleichung für die Schnittgerade:
+  \begin{equation*}
+    s:\vec x=\left(\begin{array}{c}1\\-2\\-1\end{array}\right)+r\cdot\left(\begin{array}{c}1\\2\\0\end{array}\right)
+  \end{equation*}
+\end{enumerate}
+\end{lsg}
+
+\aufgabe{Analytische Geometrie} (vgl. Abitur 2007)\\
+Von einem Senkrechten Kegel kennt man die Koordinaten der Spitze $S$, die Koordinaten eines Punktes $P$ des Grundkreises sowie eine Koordinatengleichung der Ebene $E$, in der der Grundkreis liegt.
+\\Beschreiben Sie ein Verfahren, um den Mittelpunkt $M$ und den Radius $r$ des Grundkreises zu bestimmen.
+
+\pts{3}
+\begin{lsg}{}
+\begin{itemize}
+  \item Mit der Koordinatengleichung $ax_1+bx_2+cx_3=d$ ist der Normalenvektor $\vec n_E=\left(\begin{array}{c}a\\b\\c\end{array}\right)$ von $E$ gegeben.
+  Das Lot $l$ von $S$ auf $E$ hat $\vec n_E$ als Richtungsvektor.
+  \item Der Durchstoßpunkt von $l$ durch $E$ ist der Mittelpunkt $M$ des Grundkreises.
+  \item Der Betrag des Vektors $\overrightarrow{MP}$ ist der Radius $r$ des Grundkreises.
+\end{itemize}
+\end{lsg}
+
+\aufgabe{Stochastik} (vgl. Abitur 2017)\\
+In einer Urne liegen drei rote, zwei grüne und eine blaue Kugel. Es werden so lange nacheinander einzelne Kugeln gezogen und zur Seite gelegt, bis mainn eine rote Kugel erhält. Bestimmen Sie die Wahrscheinlichkeit dafür, dass man höchstens drei Kugeln zieht. \pts{2}
+\begin{lsg}{}
+3 Rot, 2 Grün, 1 Blau. Insgesamt 6.
+
+$\frac 3 6 + \frac 3 6 \cdot\frac 3 5 + \frac 3 6 \cdot \frac 2 5 \cdot \frac 3 4 = \frac 1 2+\frac{9}{30} +\frac{18}{120}=\frac 1 2 + \frac{3}{10}+  \frac{3}{20}$
+\end{lsg}
+
+\vfill
+
+\hfill\rule{1.5cm}{0.4mm}
+
+\hfill (20 VP)\hspace{0.22cm}
+
+\section{Wahlteil Analysis}
+
+\aufgabe{} (vgl. Abitur 2006)\\
+Gegeben ist die Funktion von f durch:
+\begin{equation*}
+  f(x)=\frac{120(x-120)^2}{(x-120)^2+7200} + 10 \quad\text{mit $0\leq x \leq 130$}
+\end{equation*}
+Ihr Schaubild sei K. Das Schaubild der Funktion g mit $g(x)=-0.015x^2+0.15x+95$ sei C.
+
+Eine Skisprunganlage besteht aus Sprungschanze und Aufsprunghang. Das Schaubild K beschreibt das Profil des Aufsprunghangs, die Kurve C die Flugbahn eines Skisprungers. Der Absprung erfolgt bei $x=0$. Alle Angaben in Metern.
+
+\begin{enumerate}
+  \item Bestimmen Sie die Koordinaten des Punktes, an dem der Springer auf dem Aufsprunghang aufsetzt. Wie groß ist die maximale vertikal gemessene Höhe des Springers über dem Hang?
+  \item Der Wendepunkt $W(71|40)$ von K entspricht dem kritischen Punkt des Aufsprunghangs. Mögliche Flugbahnen des Skispringers werden nun durch Schaubider der Funktionen $g_k=-0.015x^2+kx+95$ beschrieben. Welchen Wert darf der Parameter k höchstens annehmen, damit der Springer mit dieser Flugbahn nicht hinter dem kritrischen Punkt landet?
+  \item Beim Umbau dieser Schanze soll das Profil des Aufsprunghangs verändert werden. Er soll nach dem Umbau durch die Funktion h mit
+  \begin{equation*}
+    h(x)=0.0001(1,25x^3-225x^2+2150x+900000) \quad\text{mit $0\leq x \leq 130$}
+  \end{equation*}
+  beschrieben werden. Muss zur Realisierung des neuen Profils insgesamt Erde weggefahren oder angeliefert werden, wenn angenommen wird, dass der Hang überall gleich breit ist.
+\end{enumerate}
+\begin{lsg}{}
+selbst.
+\end{lsg}
+
+\aufgabe{} (vgl. Abitur 2015)
+Gegeben sind ein Kreis mit Mittelpunkt $O(0|0)$ und die Funktion f mit $f(x)=\frac{4}{x^2+1}$. Bestimmen Sie die Anzahl der gemeinsamen Punkte des Kreises mit dem Graphen von f in Abhängigkeit vom Kreisradius.
+
+\begin{lsg}{}
+Für die Entfernung des Punktes $P(u|f(u))$ vom Ursprung gilt:
+$d(u)=\sqrt{u^2+(f(u))^2}$ Gesucht ist das Minimum:
+$d_{\mathrm{min}}\approx 1,94$ d.h. der Kreis mit dem Radius $d_{\mathrm{min}}$ berührt den Graphen in genau zwei Punkten.
+Der Kreis mit Radius 4 geht durch den Hochpunkt und hat damit 3 Schnittpunkte.
+
+\bigskip
+\noindent
+\begin{tabular}{c | c}
+  Radius & Schnittpunkte\\
+  \hline $0<r<d_{\mathrm{min}}$ & 0\\
+  $r=d_{\mathrm{min}}$ & 2\\
+  $d_{\mathrm{min}}<r<4$ & 4\\
+  $r=4$ & 3\\
+  $r>4$ & 2
+\end{tabular}
+\end{lsg}
+
+\aufgabe{}
+
+\section{Wahlteil Analytische Geometrie}
+
+\aufgabe{}
+Gegeben sind die Gerade $g$ durch die Punkte $A(0|-4|1)$ und $B(1|-2|0)$ sowie für jedes $a\in\R$ eine Ebene $E_a$ durch $x_1+(a-1)x_2+2ax_3=-2a+1$.
+\begin{enumerate}
+  \item Berechnen Sie den Schnittpunkt von $g$ mit der Ebene $E_0$.\\
+  Begründen Sie, dass $A$ und $B$ auf der gleichen Seite der Ebene $E_0$ liegen.\\
+  Bestimmen Sie den Schnittwinkel von $g$ und der Ebene $E_0$. \pts{2,5}
+
+  \item Berechnen Sie den Wert von $a$, für den die Ebene $E_a$ parallel zur $x_2$-Achse ist. Für welche Werte von $a$ mit $-1\leq a\leq 1$ schneidet die $x_1$-Achse die Ebene $E_a$ unter einem Winkel von 45$^\circ$? \pts{3}
+
+  \item Zeigen Sie, dass eine Gerade $h$ gibt, die in allen Ebenen $E_a$ liegt. \pts{2,5}
+
+  \item Welcher Punkt der $x_3$-Achse liegt in keiner Ebene $E_a$? \pts{2}
+\end{enumerate}
+
+\aufgabe{}
+
+\section{Wahlteil Stochastik}
+
+\aufgabe{}
+
+\aufgabe{}
+\aufgabe{}
+\aufgabe{}
+
+\end{document}

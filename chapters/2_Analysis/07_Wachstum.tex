@@ -22,7 +22,7 @@ Wir modellieren einen exponentiellen Wachstumsprozess mit einer \emph{Exponentia
 \end{bla}
 
 \begin{bla}{Bedeutung der Wachstumskonstante}
-  Wir haben gesagt, dass bei einem exponentiellen Wachstumsprozess $f(x+1)=b*f(x)$ ist. Also ist
+  Wir haben gesagt, dass bei einem exponentiellen Wachstumsprozess $f(x+1)=b*f(x)$ ist, d.h.
   \begin{align*}
     f(x+1) &= f(x)*b \\
     f(x+2) &= f(x+1)*b = f(x)*b^2 \\
@@ -45,8 +45,8 @@ Wir modellieren einen exponentiellen Wachstumsprozess mit einer \emph{Exponentia
 
 \begin{bla}{Verdoppelungs-/Halbwertszeit}
   \begin{itemize}
-    \item \textbf{Verdoppelungszeit.} Die Verdoppelungszeit ist die Zeit $x_0$, für die $f(x_0)=2*f(0)$ gilt. Man erhält sie durch Auflösen dieser Gleichung nach $x_0$.
-    \item \textbf{Halbwertszeit.} Die Halbwertszeit ist die Zeit $x_0$, für die $f(x_0)= \tfrac{1}{2}*f(0)$ gilt. Man erhält sie durch Auflösen dieser Gleichung nach $x_0$.
+    \item \textbf{Verdoppelungszeit.} Die Verdoppelungszeit ist die Zeit $t_V$, für die $f(t_V)=2*f(0)$ gilt. Man erhält sie durch Auflösen dieser Gleichung nach $t_V$.
+    \item \textbf{Halbwertszeit.} Die Halbwertszeit ist die Zeit $t_H$, für die $f(t_H)= \tfrac{1}{2}*f(0)$ gilt. Man erhält sie durch Auflösen dieser Gleichung nach $t_H$.
   \end{itemize}
 \end{bla}
 
@@ -59,8 +59,14 @@ Wächst etwas, aber mit zunehmender Zeit immer langsamer, so liegt \emph{beschr�
 \end{bla}
 
 \begin{bla}{Beschränktes Wachstum}
-  Ein beschränktes Wachstum kann beschrieben werden durch $f(x)=S-ce^{-kx}$. $S$ ist die Schranke, $c=S-f(0)$ ist der angepasste Startwert und $k=-\ln(b)$ der angepasste Wachstumsfaktor. Beim beschränkten Wachstum ist $0<a<1$.
+  Ein beschränktes Wachstum kann beschrieben werden durch $f(x)=S-ce^{-kx}$. $S$ ist die Schranke, $c=S-f(0)$ ist der angepasste Startwert und $k=\ln(b)$ der angepasste Wachstumsfaktor. Beim beschränkten Wachstum ist $0<a<1$.\\
+  Die Differentialgleichung für das beschränkte Wachstum ist $f'(t)=k*(S-f(t))$.
 \end{bla}
+
+\begin{bla}{Verdoppelungs-/Halbwertszeit}
+  Gilt genauso wie beim exponentiellen Wachstum auch.
+\end{bla}
+
 
 \begin{marginfigure}
   \begin{tikzpicture}[
